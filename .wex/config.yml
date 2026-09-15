@@ -1,8 +1,10 @@
 domain: symfony-search.wex
+git:
+  publication_strategy: main_push
 global:
   name: symfony-search
   type: php-package
-  version: 1.0.0
+  version: 1.0.1
 wex:
   migration: 5
   version: 6.0.136
