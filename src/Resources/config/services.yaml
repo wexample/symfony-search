@@ -1,0 +1,28 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # Providers and services only. Everything else under Class/ is a value —
+    # a query, a resolved attribute — built by the code that needs it and
+    # never by the container.
+    Wexample\SymfonySearch\:
+        resource: '../../{Class/Provider,Service}'
+
+    Wexample\SymfonySearch\Service\SearchService:
+        arguments:
+            $minimumRole: '%wexample_symfony_search.minimum_role%'
+            $maxResultsDefault: '%wexample_symfony_search.max_results%'
+
+    Wexample\SymfonySearch\Api\Controller\:
+        resource: '../../Api/Controller/*'
+        tags: ['controller.service_arguments']
+
+    Wexample\SymfonySearch\Controller\:
+        resource: '../../Controller/*'
+        tags: ['controller.service_arguments']
+
+    Wexample\SymfonySearch\Api\Normalizer\:
+        resource: '../../Api/Normalizer/*'
+        tags: ['serializer.normalizer']

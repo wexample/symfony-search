@@ -1,0 +1,7 @@
+search_api_controllers:
+    resource: '../../Api/Controller/'
+    type: attribute
+
+search_controllers:
+    resource: '../../Controller/'
+    type: attribute

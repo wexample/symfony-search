@@ -1,0 +1,285 @@
+{
+    "name": "search_result",
+    "package": "@wexample/symfony-search",
+    "type": "class",
+    "description": "One thing found, whatever kind of thing it is.\nAn entity without an ORM mapping. Nothing is ever persisted from here — the\nrow it points at already exists, and a page points at no row at all. It is an\nentity for what being one gives on the way out: the pseudocode export, the\ngenerated `SearchResult.ts` and its repository, and a collection of results\nbeing a collection of entities like any other, which the front already knows\nhow to render. Doctrine skips a class carrying no `#[ORM\\Entity]`, so\nextending `AbstractEntity` costs nothing but the identity it brings.\nThat is also why the `Has*Trait` of symfony-helpers are not used here: they\ncarry `#[Column]`, and a column is exactly what none of these fields has.",
+    "properties": [
+        {
+            "name": "id",
+            "type": "Symfony\\Component\\Uid\\Uuid"
+        },
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "reference",
+            "type": "string"
+        },
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "subtitle",
+            "type": "string",
+            "nullable": true,
+            "default": null
+        },
+        {
+            "name": "url",
+            "type": "string",
+            "nullable": true,
+            "default": null
+        },
+        {
+            "name": "icon",
+            "type": "string",
+            "nullable": true,
+            "default": null
+        },
+        {
+            "name": "score",
+            "type": "float",
+            "default": 0
+        },
+        {
+            "name": "data",
+            "type": "array",
+            "default": []
+        }
+    ],
+    "methods": [
+        {
+            "type": "method",
+            "name": "buildEntityPath",
+            "parameters": [
+                {
+                    "type": "string",
+                    "name": "className"
+                }
+            ],
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getEntityKeyName",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getEntityShortName",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getId",
+            "return": {
+                "type": "Symfony\\Component\\Uid\\Uuid"
+            }
+        },
+        {
+            "type": "method",
+            "name": "setId",
+            "parameters": [
+                {
+                    "type": "Symfony\\Component\\Uid\\Uuid",
+                    "name": "id"
+                }
+            ],
+            "return": {
+                "type": "void"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getTableizedName",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getCamelName",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "__construct",
+            "parameters": [
+                {
+                    "type": "string",
+                    "name": "type"
+                },
+                {
+                    "type": "string",
+                    "name": "reference"
+                },
+                {
+                    "type": "string",
+                    "name": "title"
+                }
+            ]
+        },
+        {
+            "type": "method",
+            "name": "idFor",
+            "description": "The identity of one found thing, which is its kind and its reference.",
+            "parameters": [
+                {
+                    "type": "string",
+                    "name": "type"
+                },
+                {
+                    "type": "string",
+                    "name": "reference"
+                }
+            ],
+            "return": {
+                "type": "Uuid"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getType",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getReference",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getTitle",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "setTitle",
+            "parameters": [
+                {
+                    "type": "string",
+                    "name": "title"
+                }
+            ],
+            "return": {
+                "type": "self"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getSubtitle",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "setSubtitle",
+            "parameters": [
+                {
+                    "type": "string",
+                    "name": "subtitle"
+                }
+            ],
+            "return": {
+                "type": "self"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getUrl",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "setUrl",
+            "parameters": [
+                {
+                    "type": "string",
+                    "name": "url"
+                }
+            ],
+            "return": {
+                "type": "self"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getIcon",
+            "return": {
+                "type": "string"
+            }
+        },
+        {
+            "type": "method",
+            "name": "setIcon",
+            "parameters": [
+                {
+                    "type": "string",
+                    "name": "icon"
+                }
+            ],
+            "return": {
+                "type": "self"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getScore",
+            "return": {
+                "type": "float"
+            }
+        },
+        {
+            "type": "method",
+            "name": "setScore",
+            "parameters": [
+                {
+                    "type": "float",
+                    "name": "score"
+                }
+            ],
+            "return": {
+                "type": "self"
+            }
+        },
+        {
+            "type": "method",
+            "name": "getData",
+            "return": {
+                "type": "array"
+            }
+        },
+        {
+            "type": "method",
+            "name": "setData",
+            "parameters": [
+                {
+                    "type": "array",
+                    "name": "data"
+                }
+            ],
+            "return": {
+                "type": "self"
+            }
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+@use '@wexample/symfony-design-system/css/partials/code';
+@use '@wexample/symfony-design-system/css/shapes/doc';
+
+// The bar is the demonstration, not an aside: it gets the width of the column
+// holding it rather than the width of its content.
+.search-page--try {
+  align-items: flex-start;
+  display: flex;
+}

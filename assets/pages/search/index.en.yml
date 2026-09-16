@@ -1,0 +1,51 @@
+page_title: Search
+page_icon: ph:bold/magnifying-glass
+
+try:
+  title: Try it
+  body: >
+    One field, every kind of result. Page names come from the router and need no
+    declaration; records come from the entities carrying the attribute below.
+    Each result carries where it goes, so the bar has nothing to decide about
+    what a click means.
+
+providers:
+  title: Providers
+  body: >
+    A provider is one family of findable things. Implementing the interface is
+    the whole registration — autoconfiguration tags it, so a provider written in
+    an application joins the search by existing. These are the ones answering
+    here, by the name a query restricts itself to.
+
+entities:
+  title: Searchable entities
+  body: >
+    An entity declares what it can be found on, and the generic provider does
+    the rest. The field list is the only thing no convention supplies; title,
+    subtitle, link and weight follow from it. An entity whose answer depends on
+    who is asking adds provider: true and gets a class of its own.
+  empty: No entity declares the attribute in this application yet — page results still work.
+  fields: Fields
+  weight: Weight
+  contexts: Contexts
+  own_provider: Served by a provider of its own.
+
+api:
+  title: The API
+  body: >
+    A result is an entity, so its endpoint is the collection of that entity and
+    nothing else. The TypeScript repository generated from the same PHP class
+    calls it without being told where it is — which is what the field above uses.
+  query: Query parameters
+  query_search: What is being looked for. An empty query answers nothing rather than everything.
+  query_context: Where the search is made from, which decides what it may answer. Shipped contexts :
+  query_type: Restricts the answer to one kind — an entity name, or a provider key.
+  query_length: How many results. Absent, the bundle configuration decides.
+
+translations:
+  title: Translations
+  body: >
+    The bar reads its own labels from the four faces of the component, so a
+    placeholder is never written in markup. Result titles, on the other hand,
+    come from the record itself or from the route name — translating those is
+    not wired yet, and a page currently shows its route name humanised.

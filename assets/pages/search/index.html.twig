@@ -1,0 +1,106 @@
+{%- extends '@front/layouts/private/layout.html.twig' -%}
+
+{%- block page_body -%}
+    <div class="doc">
+        <div class="doc-section">
+            <div class="doc-section--description">
+                <h2>{{ '@page::try.title' | trans }}</h2>
+                <p>{{ '@page::try.body' | trans }}</p>
+            </div>
+            <div class="doc-section--code search-page--try">
+                {{ component(render_pass, '@WexampleSymfonySearchBundle/components/search-bar', {}, { context: 'default', length: 8 }) }}
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <div class="doc-section--description">
+                <h2>{{ '@page::providers.title' | trans }}</h2>
+                <p>{{ '@page::providers.body' | trans }}</p>
+                <ul>
+                    {% for key, className in providers %}
+                        <li>
+                            <strong>{{ key }}</strong>
+                            <p>{{ className }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="doc-section--code">
+                {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
+                    lang: 'php',
+                    code: 'class CommandSearchProvider extends AbstractSearchProvider\n{\n    public function provide(SearchQuery $query): iterable\n    {\n        // yield $this->createResult($reference, $title)->setScore($score);\n    }\n}'
+                }) }}
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <div class="doc-section--description">
+                <h2>{{ '@page::entities.title' | trans }}</h2>
+                <p>{{ '@page::entities.body' | trans }}</p>
+                {% if searchableEntities is empty %}
+                    <p><em>{{ '@page::entities.empty' | trans }}</em></p>
+                {% else %}
+                    <ul>
+                        {% for type, entity in searchableEntities %}
+                            <li>
+                                <strong>{{ type }}</strong>
+                                <p>
+                                    {{ entity.className }}<br>
+                                    {{ '@page::entities.fields' | trans }} : {{ entity.fields | join(', ') }}<br>
+                                    {{ '@page::entities.weight' | trans }} : {{ entity.weight }}
+                                    {%- if entity.contexts is not empty %}<br>
+                                        {{ '@page::entities.contexts' | trans }} : {{ entity.contexts | join(', ') }}
+                                    {%- endif %}
+                                    {%- if entity.hasOwnProvider %}<br>
+                                        <em>{{ '@page::entities.own_provider' | trans }}</em>
+                                    {%- endif %}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="doc-section--code">
+                {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
+                    lang: 'php',
+                    code: "#[ORM\\Entity]\n#[Searchable(\n    fields: ['reference', 'label'],\n    subtitleField: 'label',\n    route: 'app_invoice_show',\n    weight: 2,\n)]\nclass Invoice extends AbstractEntity"
+                }) }}
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <div class="doc-section--description">
+                <h2>{{ '@page::api.title' | trans }}</h2>
+                <p>{{ '@page::api.body' | trans }}</p>
+                <h3>{{ '@page::api.query' | trans }}</h3>
+                <ul>
+                    <li><strong>search</strong><p>{{ '@page::api.query_search' | trans }}</p></li>
+                    <li><strong>context</strong><p>{{ '@page::api.query_context' | trans }} {{ contexts | join(', ') }}</p></li>
+                    <li><strong>type</strong><p>{{ '@page::api.query_type' | trans }}</p></li>
+                    <li><strong>length</strong><p>{{ '@page::api.query_length' | trans }}</p></li>
+                </ul>
+            </div>
+            <div class="doc-section--code">
+                {% set api_url = path(apiRouteName) %}
+                <a target="_blank" href="{{ api_url }}?search=a">{{ api_url }}</a>
+                {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
+                    lang: 'bash',
+                    code: 'curl "' ~ api_url ~ '?search=dupont&context=header&length=5"'
+                }) }}
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <div class="doc-section--description">
+                <h2>{{ '@page::translations.title' | trans }}</h2>
+                <p>{{ '@page::translations.body' | trans }}</p>
+            </div>
+            <div class="doc-section--code">
+                {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
+                    lang: 'yaml',
+                    code: "# assets/components/search-bar.fr.yml\nplaceholder: Rechercher...\nempty: Aucun résultat.\npending: Recherche en cours..."
+                }) }}
+            </div>
+        </div>
+    </div>
+{%- endblock -%}

@@ -1,0 +1,9 @@
+{
+  "name": "@wexample/symfony-search",
+  "version": "1.0.1",
+  "peerDependencies": {
+    "@wexample/js-api": "*",
+    "@wexample/symfony-design-system": "*",
+    "@wexample/symfony-loader": "*"
+  }
+}

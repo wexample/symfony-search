@@ -1,0 +1,54 @@
+page_title: Recherche
+page_icon: ph:bold/magnifying-glass
+
+try:
+  title: Essayer
+  body: >
+    Un seul champ, toutes les natures de résultat. Les pages viennent du routeur
+    et ne se déclarent nulle part ; les enregistrements viennent des entités qui
+    portent l'attribut plus bas. Chaque résultat porte sa destination, donc la
+    barre n'a rien à décider de ce qu'un clic veut dire.
+
+providers:
+  title: Fournisseurs
+  body: >
+    Un fournisseur, c'est une famille de choses trouvables. Implémenter
+    l'interface suffit à l'enregistrer — l'autoconfiguration le tague, donc un
+    fournisseur écrit dans une application rejoint la recherche en existant.
+    Voici ceux qui répondent ici, sous le nom par lequel une requête peut se
+    restreindre.
+
+entities:
+  title: Entités cherchables
+  body: >
+    Une entité déclare sur quoi on peut la trouver, le fournisseur générique
+    fait le reste. La liste de champs est la seule chose qu'aucune convention ne
+    fournit ; titre, sous-titre, lien et poids en découlent. L'entité dont la
+    réponse dépend de qui demande ajoute provider: true et obtient sa
+    propre classe.
+  empty: Aucune entité ne porte encore l'attribut dans cette application — les résultats de pages fonctionnent quand même.
+  fields: Champs
+  weight: Poids
+  contexts: Contextes
+  own_provider: Servie par un fournisseur dédié.
+
+api:
+  title: L'API
+  body: >
+    Un résultat est une entité, donc son endpoint est la collection de cette
+    entité et rien d'autre. Le repository TypeScript généré depuis la même
+    classe PHP l'appelle sans qu'on lui dise où il est — c'est ce qu'utilise le
+    champ ci-dessus.
+  query: Paramètres de requête
+  query_search: Ce qu'on cherche. Une requête vide ne répond rien, et non pas tout.
+  query_context: D'où la recherche est faite, ce qui décide de ce qu'elle peut répondre. Contextes livrés :
+  query_type: Restreint la réponse à une seule nature — un nom d'entité, ou la clé d'un fournisseur.
+  query_length: Combien de résultats. Absent, la configuration du bundle décide.
+
+translations:
+  title: Traductions
+  body: >
+    La barre lit ses libellés dans les quatre faces du composant, donc aucun
+    placeholder ne s'écrit dans le markup. Les titres de résultats, eux, viennent
+    de l'enregistrement ou du nom de route — les traduire n'est pas encore
+    câblé, et une page affiche aujourd'hui son nom de route humanisé.

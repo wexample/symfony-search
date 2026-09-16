@@ -1,1 +1,95 @@
-The repository does not provide any concrete code that could be documented for now.
+## Architecture
+
+One query, several families of findable things, one sorted list out. The families do not
+know each other and the caller does not know them either — it asks src/Service/SearchService.php
+and reads src/Entity/SearchResult.php back.
+
+### The parts
+
+src/WexampleSymfonySearchBundle.php extends `AbstractBundle` from
+`wexample/symfony-helpers` and implements `PseudocodeBundleInterface`, which is what lets
+the entity of this bundle be exported to TypeScript from the application that installs it.
+
+src/DependencyInjection/WexampleSymfonySearchExtension.php loads the services
+and does one thing worth knowing: it calls `registerForAutoconfiguration` on
+src/Interface/SearchProviderInterface.php. A provider written in a host
+application is tagged by implementing the interface, so nothing has to name the tag — and
+no compiler pass has to walk the definitions, which is what
+`wexample/symfony-routing` needs only because it keys off an attribute instead.
+
+src/Class/SearchQuery.php is the question: terms, context, how many results,
+and optionally one type to restrict to. It is a value, built by a controller, a form field
+or a test alike. Two things happen in its constructor and nowhere else — the terms are
+trimmed, and the context is turned from a backed enum into the string it carries.
+
+src/Entity/SearchResult.php is the answer. See below.
+
+src/Service/SearchService.php asks every provider that `supports()` the query,
+cuts each provider's answers to the asked number, merges, sorts and cuts again.
+
+### Providers
+
+src/Class/Provider/AbstractSearchProvider.php reads the provider's key off its
+own class name — `RouteSearchProvider` answers with `route` — so that the key, the class and
+the `type` a client asks for are one thing rather than three to keep in agreement.
+
+src/Class/Provider/EntitySearchProvider.php covers every entity carrying
+src/Attribute/Searchable.php, read from Doctrine's metadata by
+src/Service/SearchableRegistry.php. One provider for all of them, because what
+differed between the legacy's seven `*SearchService` classes was a field list, and a field
+list is data. Its results carry the *entity* as their type, not the provider — a client
+asking for `invoice` gets invoices and never learns who found them.
+
+src/Service/EntitySearchRunner.php is the query and the mapping, held apart
+because two providers need it and neither owns it: the generic one runs it over every entity
+that declared no provider, and src/Class/Provider/AbstractEntitySearchProvider.php
+runs it over its single entity after `configureQuery()` has narrowed the builder. That second
+road is the one the legacy's `UserSearchService` needed, and the entity taking it says so with
+`provider: true` — which is also what keeps the generic provider from answering alongside it
+and returning every record twice.
+
+src/Class/Provider/RouteSearchProvider.php answers with pages, which are
+routes. Nothing is indexed: the router already holds the list. What it decides is which
+route is a page someone could be looking for, and that decision is four refusals — the
+internals (`_`-prefixed and `/api/`), anything that is not a GET, anything that cannot be
+linked to without data, and anything `#[IsGranted]` closes to the current user. A route
+protected by a firewall pattern or by a check inside the action is not seen from here.
+
+### Why the result is an entity with no ORM mapping
+
+`SearchResult` extends `AbstractEntity` and carries no `#[ORM\Entity]`. Doctrine skips a
+class that does not declare itself an entity, so nothing is mapped, nothing is persisted,
+and no table exists. What is gained is everything being an entity brings on the way out:
+`#[PseudocodeExport]` produces `SearchResult.ts` and its repository, and a collection of
+results is a collection of entities like any other, which the front already renders.
+
+That is also why the `Has*Trait` of `symfony-helpers` are not used for its fields — they
+carry `#[Column]`, and a column is exactly what none of these fields has.
+
+Identity is `Uuid::v5` over the type and the reference, so the same thing found twice is
+the same result twice, in another request or another process.
+
+### Filtering is SQL, ranking is PHP
+
+src/Helper/SearchScoreHelper.php runs after the query, on the rows it
+returned. Expressing "the needle is a whole word, near the start, accents aside" as joins
+is the shape the legacy avoided and this package avoids too.
+
+The consequence is `EntitySearchProvider::FETCH_FACTOR`: the database is asked for twice
+what will be shown, because it cannot order by a score that does not exist yet. Widening
+the window is not fixing it — a term matching a thousand rows still ranks only the first
+two hundred the database happened to return. That is the known ceiling of the design, and
+the reason a full-text engine would be a provider rather than a patch.
+
+`stringScore()` tries three ways of making two strings meet — as written, ignoring case,
+then ignoring accents — and the first that answers wins rather than adding to the others.
+The needle is `preg_quote`d before the word-boundary test; the legacy interpolated it raw,
+so a query containing `(` scored nothing and emitted a warning.
+
+### Boundaries
+
+The DQL is built here, but the query helpers it could have used — `querySearchLike`,
+`querySearchNumber`, `querySelectEntity` — stay in `SearchableRepositoryTrait` in
+`wexample/symfony-helpers`, for the repository that wants to write its own provider.
+Numeric columns reached by `LIKE` are not handled: the declared fields are expected to hold
+text.
