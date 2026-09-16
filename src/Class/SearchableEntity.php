@@ -30,6 +30,17 @@ final readonly class SearchableEntity
         return ClassHelper::getTableizedName($this->className);
     }
 
+    /**
+     * The class saying what a record of this entity is worth, or null when
+     * the declared fields say it all.
+     *
+     * @return class-string|null
+     */
+    public function getScoringClass(): ?string
+    {
+        return $this->searchable->scoring;
+    }
+
     /** Whether a provider written by hand answers for this entity. */
     public function hasOwnProvider(): bool
     {

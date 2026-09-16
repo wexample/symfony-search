@@ -5,13 +5,16 @@ namespace Wexample\SymfonySearch\Service;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Wexample\Helpers\Helper\ClassHelper;
 use Wexample\SymfonyHelpers\Entity\AbstractEntity;
 use Wexample\SymfonySearch\Class\SearchableEntity;
 use Wexample\SymfonySearch\Class\SearchQuery;
+use Wexample\SymfonySearch\Class\SearchScore;
 use Wexample\SymfonySearch\Entity\SearchResult;
-use Wexample\SymfonySearch\Helper\SearchScoreHelper;
+use Wexample\SymfonySearch\Interface\SearchScoringInterface;
 
 /**
  * Searching one entity from what its attribute declared.
@@ -20,6 +23,11 @@ use Wexample\SymfonySearch\Helper\SearchScoreHelper;
  * it: the generic provider runs it over every entity that declared no provider
  * of its own, and a hand-written provider runs it over its single entity after
  * having narrowed the query.
+ *
+ * Filtering is SQL and ranking is PHP, as decided: each field adds the clause
+ * its kind allows for the query's shape, the rows come back, and each is scored
+ * through the same builder — by the declared fields, or by the scoring class
+ * the attribute names.
  */
 class EntitySearchRunner
 {
@@ -35,11 +43,13 @@ class EntitySearchRunner
 
     public const string ALIAS = 'e';
 
-    private const string PARAMETER_TERMS = 'terms';
+    private const string PARAMETER_PREFIX = 'search_';
 
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly UrlGeneratorInterface $urlGenerator,
+        #[AutowireLocator(SearchScoringInterface::TAG)]
+        private readonly ContainerInterface $scorings,
     ) {
     }
 
@@ -55,6 +65,12 @@ class EntitySearchRunner
     ): iterable {
         $builder = $this->createQueryBuilder($searchableEntity, $query);
 
+        // No field could be asked this shape of query: nothing to fetch, and
+        // an unconstrained query would have returned the table.
+        if (null === $builder) {
+            return;
+        }
+
         if ($configureQuery instanceof Closure) {
             $configureQuery($builder, $query);
         }
@@ -64,10 +80,14 @@ class EntitySearchRunner
         }
     }
 
+    /**
+     * The query over the declared fields, or null when none of them can be
+     * looked for what was typed.
+     */
     public function createQueryBuilder(
         SearchableEntity $searchableEntity,
         SearchQuery $query
-    ): QueryBuilder {
+    ): ?QueryBuilder {
         $builder = $this
             ->entityManager
             ->createQueryBuilder()
@@ -76,23 +96,20 @@ class EntitySearchRunner
 
         $orX = $builder->expr()->orX();
 
-        foreach ($searchableEntity->searchable->fields as $field) {
-            $orX->add(
-                $builder->expr()->like(
-                    'LOWER('.self::ALIAS.'.'.$field.')',
-                    ':'.self::PARAMETER_TERMS
-                )
-            );
+        foreach ($searchableEntity->searchable->fields as $index => $field) {
+            $clause = $field->constrain($builder, self::ALIAS, $query, self::PARAMETER_PREFIX.$index);
+
+            if (null !== $clause) {
+                $orX->add($clause);
+            }
+        }
+
+        if (0 === $orX->count()) {
+            return null;
         }
 
         return $builder
             ->where($orX)
-            // Lowered on both sides rather than trusting the collation, which
-            // is the database's business and differs between two of them.
-            ->setParameter(
-                self::PARAMETER_TERMS,
-                '%'.mb_strtolower($query->terms).'%'
-            )
             ->setMaxResults($query->maxResults * self::FETCH_FACTOR);
     }
 
@@ -117,12 +134,7 @@ class EntitySearchRunner
         );
 
         $result
-            ->setScore(
-                SearchScoreHelper::fieldsScore(
-                    $query->terms,
-                    $this->readFields($entity, $searchable->fields)
-                ) * $searchable->weight
-            )
+            ->setScore($this->score($searchableEntity, $entity, $query))
             ->setIcon($searchable->icon);
 
         if ($searchable->subtitleField) {
@@ -147,17 +159,32 @@ class EntitySearchRunner
     }
 
     /**
-     * @param array<string> $fields
-     *
-     * @return array<string|null>
+     * The declared fields, said to the builder one by one — unless the
+     * attribute names a class, which then says it all.
      */
-    private function readFields(
+    private function score(
+        SearchableEntity $searchableEntity,
         AbstractEntity $entity,
-        array $fields
-    ): array {
-        return array_map(
-            static fn (string $field): ?string => ClassHelper::getFieldGetterValueOrDefault($entity, $field),
-            $fields
-        );
+        SearchQuery $query
+    ): float {
+        $score = new SearchScore($query);
+        $scoringClass = $searchableEntity->getScoringClass();
+
+        if (null !== $scoringClass) {
+            /** @var SearchScoringInterface $scoring */
+            $scoring = $this->scorings->get($scoringClass);
+            $scoring->score($query, $entity, $score);
+
+            return $score->getPoints();
+        }
+
+        foreach ($searchableEntity->searchable->fields as $field) {
+            $field->score(
+                $score,
+                ClassHelper::getFieldGetterValueOrDefault($entity, $field->name)
+            );
+        }
+
+        return $score->getPoints();
     }
 }

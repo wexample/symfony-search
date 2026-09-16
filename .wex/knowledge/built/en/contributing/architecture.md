@@ -71,8 +71,16 @@ the same result twice, in another request or another process.
 
 ### Filtering is SQL, ranking is PHP
 
-src/Helper/SearchScoreHelper.php runs after the query, on the rows it
-returned. Expressing "the needle is a whole word, near the start, accents aside" as joins
+A field is typed — src/Class/Field/AbstractField.php and its five kinds — and
+the type answers both sides: `constrain()` gives the SQL clause for the query's shape, or
+null when that shape cannot be looked for in this kind of field; `score()` says the points
+to src/Class/SearchScore.php. The builder is what an entity's scoring class
+receives too, so the declarative list and the hand-written class are one vocabulary at two
+levels rather than two formats. A query whose shape fits none of the declared fields runs
+no SQL at all: an unconstrained query would have returned the table.
+
+src/Helper/SearchScoreHelper.php is the engine under the builder, and runs
+after the query, on the rows it returned. Expressing "the needle is a whole word, near the start, accents aside" as joins
 is the shape the legacy avoided and this package avoids too.
 
 The consequence is `EntitySearchProvider::FETCH_FACTOR`: the database is asked for twice

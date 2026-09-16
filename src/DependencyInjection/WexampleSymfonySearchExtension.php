@@ -5,6 +5,7 @@ namespace Wexample\SymfonySearch\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Wexample\SymfonyHelpers\DependencyInjection\AbstractWexampleSymfonyExtension;
 use Wexample\SymfonySearch\Interface\SearchProviderInterface;
+use Wexample\SymfonySearch\Interface\SearchScoringInterface;
 
 class WexampleSymfonySearchExtension extends AbstractWexampleSymfonyExtension
 {
@@ -28,6 +29,12 @@ class WexampleSymfonySearchExtension extends AbstractWexampleSymfonyExtension
         $container
             ->registerForAutoconfiguration(SearchProviderInterface::class)
             ->addTag(SearchProviderInterface::TAG);
+
+        // A scoring class is named on the attribute and fetched by that name:
+        // the tag is what lets a locator hand it back, wired like any service.
+        $container
+            ->registerForAutoconfiguration(SearchScoringInterface::class)
+            ->addTag(SearchScoringInterface::TAG);
 
         $config = $this->processConfiguration(
             new Configuration(),

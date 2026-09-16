@@ -21,14 +21,15 @@ providers:
 entities:
   title: Entités cherchables
   body: >
-    Une entité déclare sur quoi on peut la trouver, le fournisseur générique
-    fait le reste. La liste de champs est la seule chose qu'aucune convention ne
-    fournit ; titre, sous-titre, lien et poids en découlent. L'entité dont la
-    réponse dépend de qui demande ajoute provider: true et obtient sa
-    propre classe.
+    Une entité déclare sur quoi on peut la trouver, chaque champ avec sa nature
+    — un titre se lit, un montant est un chiffre, une adresse est entière ou
+    rien — et la nature décide du SQL comme des points. Six des sept fonctions
+    de score du legacy étaient cette liste déguisée. La septième raisonnait, et
+    celle-là nomme une classe de scoring ; l'entité dont la réponse dépend de
+    qui demande ajoute provider: true et obtient son propre fournisseur.
   empty: Aucune entité ne porte encore l'attribut dans cette application — les résultats de pages fonctionnent quand même.
   fields: Champs
-  weight: Poids
+  scoring: Scoré par
   contexts: Contextes
   own_provider: Servie par un fournisseur dédié.
 

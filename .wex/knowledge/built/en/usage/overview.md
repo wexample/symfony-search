@@ -21,23 +21,65 @@ One attribute, no class:
 ```php
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
 #[Searchable(
-    fields: ['reference', 'label'],
+    fields: [
+        new TextField('label'),
+        new ReferenceField('reference', points: 30),
+        new AmountField('priceTotal', points: 40),
+        new EmailField('contactEmail'),
+    ],
     contexts: [AppSearchContext::HEADER],
     subtitleField: 'label',
     route: 'app_invoice_show',
-    weight: 2,
 )]
 class Invoice extends AbstractEntity
 ```
 
-`fields` is the only required argument: it is what the SQL looks in and what the score is
-computed from. `contexts` left empty means the entity is findable everywhere. `weight`
-multiplies the score, which is how an invoice outranks a log line matching just as well.
-`route` receives the entity id as `id` and turns into the result's url.
+`fields` is the only required argument, and each field says what it *is*. The kind is
+the whole point: it decides the SQL — a title is searched with `LIKE`, an amount with
+`=` on its absolute value, an address whole — and the points, through the matching method
+of src/Class/SearchScore.php. A kind that does not fit the query's shape adds
+no clause and no points: an amount is not asked `dupont`, a title is not asked `15428`. So
+`15428` finds the invoice of 15428 before the log whose id happens to be 15428, and a bare
+string is a `TextField` with the default points.
 
-Contexts are declared by the application in its own backed enum — nothing has to know it
-exists, because what travels is the string behind the case. The bundle ships
-src/Enum/SearchContext.php for the three it has an opinion about.
+The kinds shipped: `TextField`, `ReferenceField`, `AmountField`, `EmailField`, `IdField`
+under src/Class/Field/, each with its default points. They are declared with
+`new` because an attribute argument can be a constructor call and nothing more.
+
+`contexts` left empty means the entity is findable everywhere. `route` receives the entity
+id as `id` and turns into the result's url. Contexts are declared by the application in its
+own backed enum — nothing has to know it exists, because what travels is the string behind
+the case. The bundle ships src/Enum/SearchContext.php for the three it has an
+opinion about.
+
+## When the points are not a list
+
+Six of the legacy's seven scoring functions were a field list in disguise. The seventh
+halved its points in the header and doubled them on one field, and that one names a class:
+
+```php
+#[Searchable(fields: [new TextField('description'), new AmountField('amount')], scoring: TransactionSearchScoring::class)]
+```
+
+`wex app::state/rectify` writes `src/Search/TransactionSearchScoring.php`, implementing
+src/Interface/SearchScoringInterface.php. It is handed the same builder the
+declared fields go through, so it reads like the attribute would:
+
+```php
+public function score(SearchQuery $query, AbstractEntity $entity, SearchScore $score): void
+{
+    $score
+        ->text($entity->getDescription())
+        ->amount($entity->getAmount(), points: 80)
+        ->email($entity->getContact()?->getEmail())
+        ->inContext(SearchContext::HEADER, factor: .5);
+}
+```
+
+Each method keeps the guard its kind needs — `->amount()` says nothing to a word,
+`->email()` nothing to a fragment — so the class never asks `is_numeric()` itself. The
+fields on the attribute still say what the SQL looks in; the class says what it is worth.
+A scoring class is a service: it may take the security or anything else in its constructor.
 
 ## Asking
 
