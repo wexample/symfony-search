@@ -122,15 +122,11 @@ in its layout:
 {{ menu_item_collapsible_from_controller(render_pass, 'Wexample\\SymfonySearch\\Controller\\Pages') }}
 ```
 
-assets/components/search-bar.ts is the field itself, droppable anywhere:
-
-```twig
-{{ component(render_pass, '@WexampleSymfonySearchBundle/components/search-bar', {}, { context: 'header', length: 8 }) }}
-```
-
-It fetches through the generated `SearchResultRepository`, so it builds no url and reads no
-envelope — which means the host application must register the bundle's repositories on its
-API client:
+The field itself is not here. A search box is dynamic through and through, so it is a Vue
+component of `wexample/symfony-design-system` — `vue/search/search-box` — and so is the
+row it draws for each result, `vue/search/search-result`. This bundle is what they talk to:
+the box asks the `searchResult` repository generated from src/Entity/SearchResult.php,
+which means the host application registers that repository on its API client:
 
 ```typescript
 protected getRepositoryClasses() {
@@ -138,8 +134,45 @@ protected getRepositoryClasses() {
 }
 ```
 
-A result carries where it goes, so a click needs no rule. One whose kind declared no `route`
-carries no url: it stays in the list and stops pretending to be clickable.
+Dropped anywhere in a template:
+
+```twig
+{{ vue(render_pass, '@WexampleSymfonyDesignSystemBundle/vue/search/search-box', { context: 'header', length: 8 }) }}
+```
+
+### One row per kind of result
+
+The box resolves the row from the result's `type`: a component registered as
+`search-result-<type>` draws it, the default row draws everything else — pages included,
+which is why nothing has to be declared for them. An application that wants its invoices
+to look like invoices extends the box and registers the rows it adds, one Vue component
+per entity, each with its `.vue.twig` required and its `.scss`:
+
+```js
+export default {
+  extends: SearchBox,
+  template: '#vue-template-app-vue-search-app-search-box',
+  components: { SearchResultInvoice, SearchResultContact }
+};
+```
+
+A row extends `search-result` and overrides what differs — an icon, the label of its type,
+a block of the template. `wexample/symfony-design-system-demo` does exactly this for its
+two entities, and the showcase's header uses that box rather than the bare one.
+
+Arrows, Home, End and Enter walk the rows through the keyboard service of the loader, so
+a dropdown and a modal open at once never both answer the same key; Escape closes; a click
+outside is told by the overlay service. A result whose kind declared no `route` carries no
+url: its row stands as a plain block rather than a link.
+
+### Which pages are found
+
+A page is a route served by a controller extending `AbstractPagesController` — the same
+test the menu builder makes — reachable by GET without parameters, and open to the current
+user by `#[IsGranted]`. Its title is the `page_title` its own translations declare, the one
+the menu and the tab show; a route option `search_title` stands in when there is none, and
+the route name humanised when there is neither. `options: ['searchable' => false]` hides a
+page that has no business being found.
 
 ## Configuration
 
