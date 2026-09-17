@@ -3,7 +3,7 @@
   "description": "Cross-cutting search for Symfony: entities, pages, and anything else worth finding",
   "type": "library",
   "license": "MIT",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "autoload": {
     "psr-4": {
       "Wexample\\SymfonySearch\\": "src/"

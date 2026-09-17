@@ -1,6 +1,6 @@
 # symfony-search
 
-Version: 2.0.0
+Version: 3.0.0
 
 `wexample/symfony-search` answers one question — *what, here, is called this?* — across
 things that have nothing in common: rows in a table, pages in a router, and whatever else a
