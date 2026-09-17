@@ -48,10 +48,26 @@ The kinds shipped, each with its default points: `SearchText`, `SearchReference`
 `SearchAmount`, `SearchEmail`, `SearchId`, under src/Attribute/.
 
 Declared on the property, the field travels with a renaming, and **a trait bringing a
-column brings the way it is searched with it** — one `HasReferenceTrait` and every entity
-using it is findable on its reference, with nothing to repeat. Only entities carrying
-`#[Searchable]` are read at all, so a trait may carry the attribute without making every
-user of it findable.
+column brings the way it is searched with it**. `wexample/symfony-helpers` does exactly
+that: `HasTitleTrait`, `HasNameTrait`, `HasBodyTrait`, `HasDescriptionTrait` and
+`HasEmailTrait` each carry the attribute for the column they bring, so an entity using them
+is findable on those columns with a bare `#[Searchable]` and nothing else:
+
+```php
+#[ORM\Entity]
+#[Searchable]
+class DemoRoom extends AbstractEntity
+{
+    use HasNameTrait;
+}
+```
+
+Only entities carrying `#[Searchable]` are read at all, so a trait may carry the attribute
+without making every user of it findable. And that package requires nothing from this one:
+an attribute is inert until something reflects on it, and only this bundle's registry ever
+does — on entities carrying `#[Searchable]`, which cannot exist without it either. The
+dependency would otherwise close a circle, the api requiring helpers and this package
+requiring the api.
 
 ### Taking a field back
 
@@ -72,9 +88,8 @@ or on the class, for the entity that would rather not redeclare the property:
 
 ### A property that cannot speak for itself
 
-A column brought by a trait of a package that must not depend on this one — a
-`HasBodyTrait` of `wexample/symfony-helpers`, which sits under search in the dependency
-graph — has no way to carry the attribute. That one is named on the class:
+A column whose property is out of reach — a trait of a package that will not name this one,
+a mapping declared in XML — is named on the class instead:
 
 ```php
 #[Searchable(fields: ['body' => new SearchText(points: 5)])]
