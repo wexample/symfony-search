@@ -265,7 +265,7 @@ page that has no business being found.
 
 ## In a form
 
-`wexample/symfony-forms` ships `EntitySearchInputType`, a field whose value is a record
+src/Form/Type/EntitySearchInputType.php is a field whose value is a record
 picked by searching for it:
 
 ```php
@@ -280,12 +280,14 @@ person sees is the search box narrowed to that one kind, then the picked record.
 do not link there — picking is the point — and the context defaults to `form_field`, which
 is what lets an entity be findable in a picker without appearing in the header.
 
-That package names the kind as a string and depends on nothing here, because it cannot:
-`wexample/symfony-api` requires it and this package requires the api, so a dependency the
-other way would close a circle. It declares a composer `suggest` instead, and the field has
-nothing to offer in an application where this bundle is not installed.
+The field lives here and not in `wexample/symfony-forms`, because it offers this package's
+feature and would have nothing to show without it. src/Resources/config/ is
+not where it is declared: assets/form/form_theme.html.twig holds its one
+block and the extension prepends it to `twig.form_themes`, which Twig merges — so a bundle
+brings the fields it offers rather than the form package carrying fields whose feature it
+does not ship.
 
-## Configuration
+## Configuration## Configuration
 
 ```yaml
 # config/packages/wexample_symfony_search.yaml

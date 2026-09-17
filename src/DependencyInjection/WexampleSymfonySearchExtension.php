@@ -9,6 +9,24 @@ use Wexample\SymfonySearch\Interface\SearchScoringInterface;
 
 class WexampleSymfonySearchExtension extends AbstractWexampleSymfonyExtension
 {
+    /** The one form block this package adds, holding the field it offers. */
+    public const string FORM_THEME = '@WexampleSymfonySearchBundle/form/form_theme.html.twig';
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        parent::prepend($container);
+
+        if (! $container->hasExtension('twig')) {
+            return;
+        }
+
+        // Themes are merged, so this adds a block rather than replacing what
+        // `wexample/symfony-forms` declared.
+        $container->prependExtensionConfig('twig', [
+            'form_themes' => [self::FORM_THEME],
+        ]);
+    }
+
     public const PARAMETER_MINIMUM_ROLE = 'wexample_symfony_search.minimum_role';
 
     public const PARAMETER_MAX_RESULTS = 'wexample_symfony_search.max_results';

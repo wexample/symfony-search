@@ -1,0 +1,47 @@
+{#- The one block this package adds to the form theme of
+    `wexample/symfony-forms`. Twig merges themes, so a bundle brings the
+    fields it offers rather than the form package carrying fields whose
+    feature it does not ship. -#}
+{% block entity_search_input_widget %}
+    {% set label_key = form.vars.label is same as(false)
+        ? form.vars.name
+        : (form.vars.label ?? form.vars.name)
+    %}
+    {% if label_key is same as(true) %}
+        {% set label_key = 'field.' ~ form.vars.name ~ '.label' %}
+    {% endif %}
+    {% set label_value = form.vars.translation_domain is same as(false)
+        ? label_key
+        : label_key|trans({}, form.vars.translation_domain)
+    %}
+    {% set placeholder_key = form.vars.placeholder ?? null %}
+    {% if placeholder_key is same as(true) %}
+        {% set placeholder_key = 'field.' ~ form.vars.name ~ '.placeholder' %}
+    {% endif %}
+    {% set placeholder_value = placeholder_key %}
+    {% if placeholder_key is not null and form.vars.translation_domain is not same as(false) %}
+        {% set placeholder_value = placeholder_key|trans({}, form.vars.translation_domain) %}
+    {% endif %}
+    {#- The only field of this theme rendered as a Vue component rather than a
+        Twig one: what it does — asking as it is typed in, and showing what was
+        picked instead of itself — has no still form. -#}
+    {{ vue(
+        render_pass,
+        '@WexampleSymfonyDesignSystemBundle/vue/form/fields/entity-search-input',
+        {
+            name: full_name,
+            id: id,
+            label: label_value,
+            placeholder: placeholder_value,
+            required: required,
+            disabled: disabled ?? false,
+            modelValue: value,
+            type: form.vars.entity_type,
+            context: form.vars.search_context,
+            selectedTitle: form.vars.selected_title,
+            selectedSubtitle: form.vars.selected_subtitle,
+            selectedIcon: form.vars.selected_icon,
+            translate: false
+        }
+    ) }}
+{% endblock %}
