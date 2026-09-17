@@ -2,12 +2,17 @@
 
 namespace Wexample\SymfonySearch\Service;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use InvalidArgumentException;
 use ReflectionAttribute;
 use ReflectionClass;
 use Wexample\SymfonySearch\Attribute\AbstractSearchField;
 use Wexample\SymfonySearch\Attribute\Searchable;
+use Wexample\SymfonySearch\Attribute\SearchAmount;
 use Wexample\SymfonySearch\Attribute\SearchIgnore;
+use Wexample\SymfonySearch\Attribute\SearchText;
 use Wexample\SymfonySearch\Class\SearchableEntity;
 
 /**
@@ -19,6 +24,20 @@ use Wexample\SymfonySearch\Class\SearchableEntity;
  */
 class SearchableRegistry
 {
+    /**
+     * What a column type says a field is, for a field named without a kind.
+     *
+     * Only the mappings nobody would argue with: a string is read, a decimal is
+     * a figure. Anything else — a date, a boolean, an enum — has to say what it
+     * is, because guessing there would be guessing what the search is for.
+     */
+    private const array KINDS_BY_COLUMN_TYPE = [
+        Types::STRING => SearchText::class,
+        Types::TEXT => SearchText::class,
+        Types::DECIMAL => SearchAmount::class,
+        Types::FLOAT => SearchAmount::class,
+    ];
+
     /** @var array<string, SearchableEntity>|null by the type they answer to */
     private ?array $entities = null;
 
@@ -65,7 +84,7 @@ class SearchableRegistry
             $entity = new SearchableEntity(
                 $metadata->getName(),
                 $searchable,
-                $this->loadFields($reflection, $searchable)
+                $this->loadFields($metadata, $reflection, $searchable)
             );
 
             $entities[$entity->getType()] = $entity;
@@ -75,28 +94,45 @@ class SearchableRegistry
     }
 
     /**
-     * The fields the properties declare, in the order they are declared.
+     * The fields of one entity: those named on its attribute, then those its
+     * properties declare.
      *
      * `getProperties()` reports what a trait brought as if the class had written
-     * it, so a trait carrying a column carries the way it is searched with it —
-     * and an entity that would rather not redeclares the property with
-     * `#[SearchIgnore]`, or names it in the attribute's `except`.
+     * it, so a trait may carry a column and the way it is searched together —
+     * but only a trait of a package allowed to name this one. The traits of
+     * `wexample/symfony-helpers` are not: the api requires them and this package
+     * requires the api, so the dependency would close a circle, and the suite's
+     * own check refuses it. Their columns are named on the class instead.
+     *
+     * An entity that would rather not have what a trait declared redeclares the
+     * property with `#[SearchIgnore]`, or names it in the attribute's `except`.
      *
      * @return array<AbstractSearchField>
      */
     private function loadFields(
+        ClassMetadata $metadata,
         ReflectionClass $reflection,
         Searchable $searchable
     ): array {
         $fields = [];
 
         // Named on the class for the property that cannot speak for itself:
-        // one brought by a trait of a package that must not depend on this one.
-        foreach ($searchable->fields as $name => $field) {
-            if (! in_array($name, $searchable->except, true)) {
-                $field->name = $name;
-                $fields[] = $field;
+        // one brought by a trait of a package that must not name this one.
+        // `'name'` alone takes the kind its column implies; `'body' => new
+        // SearchText(points: 5)` says it, where the default is not wanted.
+        foreach ($searchable->fields as $key => $declaration) {
+            $name = is_int($key) ? $declaration : $key;
+
+            if (in_array($name, $searchable->except, true)) {
+                continue;
             }
+
+            $field = $declaration instanceof AbstractSearchField
+                ? $declaration
+                : $this->inferField($metadata, $name);
+
+            $field->name = $name;
+            $fields[] = $field;
         }
 
         foreach ($reflection->getProperties() as $property) {
@@ -115,5 +151,27 @@ class SearchableRegistry
         }
 
         return $fields;
+    }
+
+    /** The kind a named field takes when it did not say one. */
+    private function inferField(
+        ClassMetadata $metadata,
+        string $name
+    ): AbstractSearchField {
+        $type = $metadata->hasField($name) ? $metadata->getTypeOfField($name) : null;
+        $kind = self::KINDS_BY_COLUMN_TYPE[$type] ?? null;
+
+        if (null === $kind) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Searchable field "%s" of "%s" holds %s, which says nothing about how it is searched: name its kind, as in `new SearchText()`.',
+                    $name,
+                    $metadata->getName(),
+                    null === $type ? 'no mapped column' : 'a '.$type.' column'
+                )
+            );
+        }
+
+        return new $kind();
     }
 }

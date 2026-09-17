@@ -26,7 +26,7 @@ class Searchable
 
     /**
      * @param array<BackedEnum|string>             $contexts Where this entity may be found; empty means anywhere.
-     * @param array<string, AbstractSearchField>   $fields   Fields for properties that cannot carry the attribute themselves, by property name — one brought by a trait of a package that must not depend on this one. A property able to carry it says it itself.
+     * @param array<string|int, AbstractSearchField|string> $fields Fields for properties that cannot carry the attribute themselves — one brought by a trait of a package that must not name this one. `'name'` takes the kind its column implies; `'body' => new SearchText(points: 5)` says it. A property able to carry the attribute says it itself.
      * @param array<string>                        $except   Properties whose search attribute is refused here — the other way of taking back what a trait declared, for the entity that would rather not redeclare the property.
      */
     public function __construct(

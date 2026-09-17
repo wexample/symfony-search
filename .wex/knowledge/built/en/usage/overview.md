@@ -47,27 +47,24 @@ the log whose id happens to be 15428.
 The kinds shipped, each with its default points: `SearchText`, `SearchReference`,
 `SearchAmount`, `SearchEmail`, `SearchId`, under src/Attribute/.
 
-Declared on the property, the field travels with a renaming, and **a trait bringing a
-column brings the way it is searched with it**. `wexample/symfony-helpers` does exactly
-that: `HasTitleTrait`, `HasNameTrait`, `HasBodyTrait`, `HasDescriptionTrait` and
-`HasEmailTrait` each carry the attribute for the column they bring, so an entity using them
-is findable on those columns with a bare `#[Searchable]` and nothing else:
+Declared on the property, the field travels with a renaming, and a trait bringing a column
+may bring the way it is searched with it — a trait of the application, or of a package
+allowed to name this one.
+
+`wexample/symfony-helpers` is not allowed to: the api requires it and this package requires
+the api, so the dependency would close a circle, and the suite's dependency check refuses
+the import outright. Its traits — `HasTitleTrait`, `HasNameTrait`, `HasBodyTrait` — hold the
+columns most entities are searched on, so those are named on the class:
 
 ```php
-#[ORM\Entity]
-#[Searchable]
-class DemoRoom extends AbstractEntity
-{
-    use HasNameTrait;
-}
+#[Searchable(fields: ['name', 'body' => new SearchText(points: 5)])]
 ```
 
-Only entities carrying `#[Searchable]` are read at all, so a trait may carry the attribute
-without making every user of it findable. And that package requires nothing from this one:
-an attribute is inert until something reflects on it, and only this bundle's registry ever
-does — on entities carrying `#[Searchable]`, which cannot exist without it either. The
-dependency would otherwise close a circle, the api requiring helpers and this package
-requiring the api.
+A name alone takes the kind its column implies: a `string` or a `text` is read, a `decimal`
+or a `float` is a figure. Anything else has to say what it is — a date, a boolean, an enum
+say nothing about how they would be searched, and the registry refuses to guess rather than
+guess wrong. Naming the kind is also how the default points are changed, as `body` does
+above.
 
 ### Taking a field back
 
@@ -85,18 +82,6 @@ or on the class, for the entity that would rather not redeclare the property:
 ```php
 #[Searchable(except: ['title'])]
 ```
-
-### A property that cannot speak for itself
-
-A column whose property is out of reach — a trait of a package that will not name this one,
-a mapping declared in XML — is named on the class instead:
-
-```php
-#[Searchable(fields: ['body' => new SearchText(points: 5)])]
-```
-
-Same classes, same kinds, same points; only the place changes. A property able to carry the
-attribute says it itself.
 
 ## When the points are not a list
 
