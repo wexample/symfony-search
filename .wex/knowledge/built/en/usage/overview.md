@@ -211,11 +211,14 @@ in its layout:
 {{ menu_item_collapsible_from_controller(render_pass, 'Wexample\\SymfonySearch\\Controller\\Pages') }}
 ```
 
-The field itself is not here. A search box is dynamic through and through, so it is a Vue
-component of `wexample/symfony-design-system` — `vue/search/search-box` — and so is the
-row it draws for each result, `vue/search/search-result`. This bundle is what they talk to:
-the box asks the `searchResult` repository generated from src/Entity/SearchResult.php,
-which means the host application registers that repository on its API client:
+A search box is dynamic through and through, so it is a Vue component —
+assets/vue/search/search-box.vue — and so is the row it draws for each result,
+assets/vue/search/search-result.vue. They live here rather than in
+`wexample/symfony-design-system`, because they know this package's API: the box asks the
+`searchResult` repository generated from src/Entity/SearchResult.php and sends
+it `search`, `context` and `type`. What they borrow from the design system is its
+vocabulary — the `bar` partial a row is drawn as — which is the part that knows nothing of
+searching. The host application registers the repository on its API client:
 
 ```typescript
 protected getRepositoryClasses() {
@@ -226,7 +229,7 @@ protected getRepositoryClasses() {
 Dropped anywhere in a template:
 
 ```twig
-{{ vue(render_pass, '@WexampleSymfonyDesignSystemBundle/vue/search/search-box', { context: 'header', length: 8 }) }}
+{{ vue(render_pass, '@WexampleSymfonySearchBundle/vue/search/search-box', { context: 'header', length: 8 }) }}
 ```
 
 ### One row per kind of result

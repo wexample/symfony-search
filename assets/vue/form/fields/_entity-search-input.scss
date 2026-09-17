@@ -1,0 +1,16 @@
+@use '../../css/shapes/search-box';
+@use '@wexample/symfony-design-system/css/shapes/bar';
+@use '@wexample/symfony-design-system/css/shapes/avatar';
+@use '@wexample/symfony-design-system/css/shapes/spinner';
+@use '@wexample/symfony-design-system/css/shapes/button';
+@use '@wexample/symfony-design-system/css/shapes/form';
+
+.entity-search-input--picked {
+  border: var(--border-default);
+  border-radius: var(--radius-1);
+  padding: var(--space-2) var(--space-3);
+}
+
+.entity-search-input--clear {
+  line-height: 1;
+}

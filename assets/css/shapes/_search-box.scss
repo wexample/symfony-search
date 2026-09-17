@@ -1,0 +1,92 @@
+@use '@wexample/symfony-design-system/css/mixins/field' as field;
+
+// A field that answers as it is typed in: the input, and under it a dropdown
+// holding one bar per result. The rows are the `bar` shape; what is here is
+// the field, the dropdown and the way a row says it is the focused one.
+
+.search-box {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.search-box--field {
+  @include field.field-base;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+
+  &:focus-within {
+    @include field.field-focus;
+  }
+}
+
+.search-box--icon {
+  @include field.icon-muted;
+}
+
+.search-box--input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+
+.search-box--dropdown {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  right: 0;
+  max-height: 24rem;
+  overflow-y: auto;
+  background: var(--surface-1);
+  border: var(--border-default);
+  border-radius: var(--radius-1);
+  box-shadow: var(--shadow-2);
+  z-index: var(--z-dropdown);
+}
+
+.search-box--items {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-1) 0;
+}
+
+.search-box--state {
+  padding: var(--space-3);
+  color: var(--text-color-muted);
+  text-align: center;
+}
+
+// The rows. Each one is a bar and carries the roving attribute; the shape only
+// says what hovering and focusing look like, the bar says the rest.
+.search-box--items > [data-search-result] {
+  padding: var(--space-2) var(--space-3);
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--state-hover);
+  }
+
+  // The ring is drawn inside the row. The dropdown scrolls, and a scrolling box
+  // clips whatever pokes out of it — an outline sitting outside the row lost
+  // its two sides against the dropdown's edges.
+  &:focus-visible {
+    background: var(--state-hover);
+    border-radius: var(--radius-1);
+    outline: var(--border-focus);
+    outline-offset: -2px;
+  }
+}
+
+.search-result--type {
+  font-size: var(--font-size-1);
+  color: var(--text-color-muted);
+  white-space: nowrap;
+}

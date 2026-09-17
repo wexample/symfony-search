@@ -1,0 +1,27 @@
+{%- extends '@WexampleSymfonyDesignSystemBundle/vue/bases/vue.vue.twig' -%}
+
+{%- block vue_require -%}
+    {{- vue_require(render_pass, '@WexampleSymfonyDesignSystemBundle/vue/partials/bar') -}}
+{%- endblock -%}
+
+{%- block vue_body -%}
+    {# The roving attribute and the tabindex fall through to the bar's root,
+       which is what the keyboard walks. #}
+    <bar
+            :class="cssClass"
+            :title="title"
+            :subtitle="subtitle"
+            :icon="icon"
+            :href="href"
+            data-search-result
+            tabindex="-1"
+            role="option"
+            @click="onClick"
+    >
+        <template #trailing>
+            {%- block search_result_trailing -%}
+                <span class="search-result--type">[[ typeLabel ]]</span>
+            {%- endblock -%}
+        </template>
+    </bar>
+{%- endblock -%}

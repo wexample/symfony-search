@@ -1,0 +1,51 @@
+{%- extends '@WexampleSymfonyDesignSystemBundle/vue/bases/vue.vue.twig' -%}
+
+{%- block vue_config -%}
+    {{ parent() }}
+    {{ trans_js(render_pass, 'WexampleSymfonySearchBundle.vue.search.search-box::*') }}
+{%- endblock -%}
+
+{%- block vue_require -%}
+    {{- vue_require(render_pass, '@WexampleSymfonySearchBundle/vue/search/search-result') -}}
+    {{- vue_require(render_pass, '@WexampleSymfonyDesignSystemBundle/vue/partials/spinner') -}}
+{%- endblock -%}
+
+{%- block vue_body -%}
+    <div ref="focusableRoot" class="search-box" :class="{ 'search-box--open': isOpen }">
+        <div class="search-box--field">
+            <span class="search-box--icon" aria-hidden="true" v-html="searchIconHtml"></span>
+            <input
+                    ref="searchInput"
+                    class="search-box--input"
+                    type="search"
+                    autocomplete="off"
+                    role="combobox"
+                    aria-autocomplete="list"
+                    :aria-expanded="isOpen ? 'true' : 'false'"
+                    :placeholder="resolvedPlaceholder"
+                    :value="terms"
+                    @input="onInput"
+                    @focus="onFocus"
+                    @keydown.tab="onSearchTab"
+            >
+        </div>
+        <div v-show="isOpen" class="search-box--dropdown">
+            <div v-if="isLoading && !hasItems" class="search-box--state">
+                <spinner size="sm" :label="resolvedPendingLabel"></spinner>
+            </div>
+            <div v-else-if="!hasItems" class="search-box--state">[[ resolvedEmptyLabel ]]</div>
+            <div v-else ref="itemsContainer" class="search-box--items" role="listbox" @focusin="onItemFocus">
+                {%- block search_box_items -%}
+                    <component
+                            v-for="result in results"
+                            :key="resultKey(result)"
+                            :is="resultComponent(result)"
+                            :result="result"
+                            :link="linkResults"
+                            @select="onSelect"
+                    ></component>
+                {%- endblock -%}
+            </div>
+        </div>
+    </div>
+{%- endblock -%}

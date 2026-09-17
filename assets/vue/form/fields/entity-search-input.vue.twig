@@ -1,0 +1,48 @@
+{%- extends '@WexampleSymfonyDesignSystemBundle/vue/bases/form-field.vue.twig' -%}
+
+{%- block vue_config -%}
+    {{ parent() }}
+    {{ trans_js(render_pass, 'WexampleSymfonySearchBundle.vue.form.fields.entity-search-input::*') }}
+{%- endblock -%}
+
+{%- block vue_require -%}
+    {{- vue_require(render_pass, '@WexampleSymfonySearchBundle/vue/search/search-box') -}}
+    {{- vue_require(render_pass, '@WexampleSymfonyDesignSystemBundle/vue/partials/bar') -}}
+{%- endblock -%}
+
+{%- block field_control -%}
+    <div class="entity-search-input">
+        {#- The value the form submits. The box is a way of filling it, never
+            what is posted. -#}
+        <input type="hidden" :name="name || null" :id="resolvedId" :value="modelValue">
+
+        <template v-if="hasPicked">
+            <bar
+                    class="entity-search-input--picked"
+                    :title="picked.title"
+                    :subtitle="picked.subtitle"
+                    :icon="picked.icon || null"
+            >
+                <template #trailing>
+                    <button
+                            type="button"
+                            class="button button--flat entity-search-input--clear"
+                            :disabled="isDisabled ? true : null"
+                            :aria-label="resolvedClearLabel"
+                            @click="clear"
+                    >&times;</button>
+                </template>
+            </bar>
+        </template>
+
+        <search-box
+                v-else
+                ref="searchBox"
+                :type="type"
+                :context="context"
+                :placeholder="placeholder"
+                :link-results="false"
+                @select="onSelect"
+        ></search-box>
+    </div>
+{%- endblock -%}
