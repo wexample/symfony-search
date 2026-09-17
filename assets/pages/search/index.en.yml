@@ -20,7 +20,7 @@ providers:
 entities:
   title: Searchable entities
   body: >
-    An entity declares what it can be found on, each field with its kind — a
+    The class says an entity is findable; its properties say on what, each with its kind — a
     title is read, an amount is a figure, an address is whole or nothing — and
     the kind decides both the SQL and the points. Six of the legacy's seven
     scoring functions were that list in disguise. The seventh reasoned, and that

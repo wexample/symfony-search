@@ -20,41 +20,72 @@ Wexample\SymfonySearch\WexampleSymfonySearchBundle::class => ['all' => true],
 
 ## Making an entity findable
 
-One attribute, no class:
+The class says it is findable; the properties say on what.
 
 ```php
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
-#[Searchable(
-    fields: [
-        new TextField('label'),
-        new ReferenceField('reference', points: 30),
-        new AmountField('priceTotal', points: 40),
-        new EmailField('contactEmail'),
-    ],
-    contexts: [AppSearchContext::HEADER],
-    subtitleField: 'label',
-    route: 'app_invoice_show',
-)]
+#[Searchable(contexts: [AppSearchContext::HEADER], route: 'app_invoice_show')]
 class Invoice extends AbstractEntity
+{
+    #[ORM\Column]
+    #[SearchText]
+    protected string $label;
+
+    #[ORM\Column]
+    #[SearchReference(points: 30)]
+    protected string $reference;
+
+    #[ORM\Column]
+    #[SearchAmount(points: 40)]
+    protected float $priceTotal;
+}
 ```
 
-`fields` is the only required argument, and each field says what it *is*. The kind is
-the whole point: it decides the SQL — a title is searched with `LIKE`, an amount with
-`=` on its absolute value, an address whole — and the points, through the matching method
-of src/Class/SearchScore.php. A kind that does not fit the query's shape adds
-no clause and no points: an amount is not asked `dupont`, a title is not asked `15428`. So
-`15428` finds the invoice of 15428 before the log whose id happens to be 15428, and a bare
-string is a `TextField` with the default points.
+Each attribute says what the property *is*, and the kind is the whole point: it decides the
+SQL — a title is searched with `LIKE`, an amount with `=` on its absolute value, an address
+whole — and the points, through the matching method of src/Class/SearchScore.php.
+A kind that does not fit the query's shape adds no clause and no points: an amount is not
+asked `dupont`, a title is not asked `15428`. So `15428` finds the invoice of 15428 before
+the log whose id happens to be 15428.
 
-The kinds shipped: `TextField`, `ReferenceField`, `AmountField`, `EmailField`, `IdField`
-under src/Class/Field/, each with its default points. They are declared with
-`new` because an attribute argument can be a constructor call and nothing more.
+The kinds shipped, each with its default points: `SearchText`, `SearchReference`,
+`SearchAmount`, `SearchEmail`, `SearchId`, under src/Attribute/.
 
-`contexts` left empty means the entity is findable everywhere. `route` receives the entity
-id as `id` and turns into the result's url. Contexts are declared by the application in its
-own backed enum — nothing has to know it exists, because what travels is the string behind
-the case. The bundle ships src/Enum/SearchContext.php for the three it has an
-opinion about.
+Declared on the property, the field travels with a renaming, and **a trait bringing a
+column brings the way it is searched with it** — one `HasReferenceTrait` and every entity
+using it is findable on its reference, with nothing to repeat. Only entities carrying
+`#[Searchable]` are read at all, so a trait may carry the attribute without making every
+user of it findable.
+
+### Taking a field back
+
+An entity using a trait it did not write may refuse what the trait declared, either where
+the reader of the entity will see it:
+
+```php
+#[SearchIgnore]
+#[ORM\Column]
+protected ?string $title = null;
+```
+
+or on the class, for the entity that would rather not redeclare the property:
+
+```php
+#[Searchable(except: ['title'])]
+```
+
+### A property that cannot speak for itself
+
+A column brought by a trait of a package that must not depend on this one — a
+`HasBodyTrait` of `wexample/symfony-helpers`, which sits under search in the dependency
+graph — has no way to carry the attribute. That one is named on the class:
+
+```php
+#[Searchable(fields: ['body' => new SearchText(points: 5)])]
+```
+
+Same classes, same kinds, same points; only the place changes. A property able to carry the
+attribute says it itself.
 
 ## When the points are not a list
 
@@ -62,7 +93,7 @@ Six of the legacy's seven scoring functions were a field list in disguise. The s
 halved its points in the header and doubled them on one field, and that one names a class:
 
 ```php
-#[Searchable(fields: [new TextField('description'), new AmountField('amount')], scoring: TransactionSearchScoring::class)]
+#[Searchable(scoring: TransactionSearchScoring::class)]
 ```
 
 `wex app::state/rectify` writes `src/Search/TransactionSearchScoring.php`, implementing
@@ -82,7 +113,8 @@ public function score(SearchQuery $query, AbstractEntity $entity, SearchScore $s
 
 Each method keeps the guard its kind needs — `->amount()` says nothing to a word,
 `->email()` nothing to a fragment — so the class never asks `is_numeric()` itself. The
-fields on the attribute still say what the SQL looks in; the class says what it is worth.
+attributes on the properties still say what the SQL looks in; the class says what it is
+worth.
 A scoring class is a service: it may take the security or anything else in its constructor.
 
 ## Asking
@@ -298,9 +330,11 @@ the `type` a client asks for are one thing rather than three to keep in agreemen
 
 src/Class/Provider/EntitySearchProvider.php covers every entity carrying
 src/Attribute/Searchable.php, read from Doctrine's metadata by
-src/Service/SearchableRegistry.php. One provider for all of them, because what
-differed between the legacy's seven `*SearchService` classes was a field list, and a field
-list is data. Its results carry the *entity* as their type, not the provider — a client
+src/Service/SearchableRegistry.php, which resolves each one's fields by
+reflecting its properties — `getProperties()` reports what a trait brought as if the class
+had written it, which is what lets a trait carry a column and the way it is searched
+together. One provider for all of them, because what differed between the legacy's seven
+`*SearchService` classes was a field list, and a field list is data. Its results carry the *entity* as their type, not the provider — a client
 asking for `invoice` gets invoices and never learns who found them.
 
 src/Service/EntitySearchRunner.php is the query and the mapping, held apart
@@ -334,8 +368,8 @@ the same result twice, in another request or another process.
 
 ### Filtering is SQL, ranking is PHP
 
-A field is typed — src/Class/Field/AbstractField.php and its five kinds — and
-the type answers both sides: `constrain()` gives the SQL clause for the query's shape, or
+A field is typed — src/Attribute/AbstractSearchField.php and its five kinds,
+which are the attributes written on the properties — and the type answers both sides: `constrain()` gives the SQL clause for the query's shape, or
 null when that shape cannot be looked for in this kind of field; `score()` says the points
 to src/Class/SearchScore.php. The builder is what an entity's scoring class
 receives too, so the declarative list and the hand-written class are one vocabulary at two

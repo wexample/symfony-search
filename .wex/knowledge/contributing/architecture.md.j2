@@ -35,9 +35,11 @@ the `type` a client asks for are one thing rather than three to keep in agreemen
 
 {{ path("src/Class/Provider/EntitySearchProvider.php") }} covers every entity carrying
 {{ path("src/Attribute/Searchable.php") }}, read from Doctrine's metadata by
-{{ path("src/Service/SearchableRegistry.php") }}. One provider for all of them, because what
-differed between the legacy's seven `*SearchService` classes was a field list, and a field
-list is data. Its results carry the *entity* as their type, not the provider — a client
+{{ path("src/Service/SearchableRegistry.php") }}, which resolves each one's fields by
+reflecting its properties — `getProperties()` reports what a trait brought as if the class
+had written it, which is what lets a trait carry a column and the way it is searched
+together. One provider for all of them, because what differed between the legacy's seven
+`*SearchService` classes was a field list, and a field list is data. Its results carry the *entity* as their type, not the provider — a client
 asking for `invoice` gets invoices and never learns who found them.
 
 {{ path("src/Service/EntitySearchRunner.php") }} is the query and the mapping, held apart
@@ -71,8 +73,8 @@ the same result twice, in another request or another process.
 
 ### Filtering is SQL, ranking is PHP
 
-A field is typed — {{ path("src/Class/Field/AbstractField.php") }} and its five kinds — and
-the type answers both sides: `constrain()` gives the SQL clause for the query's shape, or
+A field is typed — {{ path("src/Attribute/AbstractSearchField.php") }} and its five kinds,
+which are the attributes written on the properties — and the type answers both sides: `constrain()` gives the SQL clause for the query's shape, or
 null when that shape cannot be looked for in this kind of field; `score()` says the points
 to {{ path("src/Class/SearchScore.php") }}. The builder is what an entity's scoring class
 receives too, so the declarative list and the hand-written class are one vocabulary at two

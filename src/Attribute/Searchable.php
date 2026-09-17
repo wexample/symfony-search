@@ -4,38 +4,38 @@ namespace Wexample\SymfonySearch\Attribute;
 
 use Attribute;
 use BackedEnum;
-use Wexample\SymfonySearch\Class\Field\AbstractField;
-use Wexample\SymfonySearch\Class\Field\TextField;
 
 /**
- * Declares an entity findable, and says on what.
+ * Declares an entity findable.
+ *
+ * What it can be found *on* is said by the properties themselves, each with the
+ * attribute naming its kind — `#[SearchText]`, `#[SearchAmount(points: 40)]`.
+ * What is said here is what is true of the whole record: where it may be found,
+ * how it is titled, where it links, and whether its points or its visibility
+ * need a class rather than a declaration.
  *
  * It replaces a class. The legacy wrote one `*SearchService` per entity — seven
  * of them in network — of which six said nothing but a field list and the same
- * scoring lines around it. What is left to write by hand is the case that
- * actually reasons: a scoring class, for the entity whose points depend on the
- * context or on a relation; a provider, for the one whose visibility depends
- * on who is asking.
+ * scoring lines around it.
  */
 #[Attribute(Attribute::TARGET_CLASS | Attribute::IS_REPEATABLE)]
 class Searchable
 {
-    /** @var array<AbstractField> */
-    public readonly array $fields;
-
     /** @var array<string> */
     public readonly array $contexts;
 
     /**
-     * @param array<AbstractField|string> $fields   What the terms are looked for in, each with its kind: `new TextField('title')`, `new AmountField('priceTotal', points: 40)`. A bare string is a text field.
-     * @param array<BackedEnum|string>    $contexts Where this entity may be found; empty means anywhere.
+     * @param array<BackedEnum|string>             $contexts Where this entity may be found; empty means anywhere.
+     * @param array<string, AbstractSearchField>   $fields   Fields for properties that cannot carry the attribute themselves, by property name — one brought by a trait of a package that must not depend on this one. A property able to carry it says it itself.
+     * @param array<string>                        $except   Properties whose search attribute is refused here — the other way of taking back what a trait declared, for the entity that would rather not redeclare the property.
      */
     public function __construct(
-        array $fields,
         array $contexts = [],
+        public readonly array $fields = [],
+        public readonly array $except = [],
         /**
-         * Which property is shown as the title. Defaults to the first field,
-         * which is the one a user recognises a record by often enough.
+         * Which property is shown as the title. Defaults to the first searched
+         * field, which is the one a user recognises a record by often enough.
          */
         public readonly ?string $titleField = null,
         public readonly ?string $subtitleField = null,
@@ -48,7 +48,7 @@ class Searchable
         /**
          * A class implementing `SearchScoringInterface`, for the entity whose
          * points are not a list of fields — a context that halves them, a
-         * relation to read, a figure worth more than a word. The fields above
+         * relation to read, a figure worth more than a word. The properties
          * still say what the SQL looks in; this says what it is worth.
          *
          * @var class-string|null
@@ -61,13 +61,6 @@ class Searchable
          */
         public readonly bool $provider = false,
     ) {
-        $this->fields = array_map(
-            static fn (AbstractField|string $field): AbstractField => $field instanceof AbstractField
-                ? $field
-                : new TextField($field),
-            $fields
-        );
-
         // Cases in, strings out: an application declares its contexts in its
         // own enum, and nothing downstream has to know that enum exists.
         $this->contexts = array_map(
@@ -76,10 +69,5 @@ class Searchable
                 : $context,
             $contexts
         );
-    }
-
-    public function getTitleField(): string
-    {
-        return $this->titleField ?? $this->fields[0]->name;
     }
 }

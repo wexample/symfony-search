@@ -21,7 +21,7 @@ providers:
 entities:
   title: Entités cherchables
   body: >
-    Une entité déclare sur quoi on peut la trouver, chaque champ avec sa nature
+    La classe dit qu'une entité est cherchable ; ses propriétés disent sur quoi, chacune avec sa nature
     — un titre se lit, un montant est un chiffre, une adresse est entière ou
     rien — et la nature décide du SQL comme des points. Six des sept fonctions
     de score du legacy étaient cette liste déguisée. La septième raisonnait, et

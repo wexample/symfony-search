@@ -1,14 +1,16 @@
 <?php
 
-namespace Wexample\SymfonySearch\Class\Field;
+namespace Wexample\SymfonySearch\Attribute;
 
+use Attribute;
 use Doctrine\ORM\Query\Expr\Comparison;
 use Doctrine\ORM\QueryBuilder;
 use Wexample\SymfonySearch\Class\SearchQuery;
 use Wexample\SymfonySearch\Class\SearchScore;
 
 /** An identifier: pasted whole, matched exactly, worth little. */
-class IdField extends AbstractField
+#[Attribute(Attribute::TARGET_PROPERTY)]
+class SearchId extends AbstractSearchField
 {
     public function constrain(
         QueryBuilder $builder,
@@ -30,5 +32,10 @@ class IdField extends AbstractField
         mixed $value
     ): void {
         $score->id(is_scalar($value) ? $value : null, $this->points ?? SearchScore::POINTS_ID);
+    }
+
+    public function getKindName(): string
+    {
+        return 'id';
     }
 }

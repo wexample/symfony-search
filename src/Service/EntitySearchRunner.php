@@ -96,7 +96,7 @@ class EntitySearchRunner
 
         $orX = $builder->expr()->orX();
 
-        foreach ($searchableEntity->searchable->fields as $index => $field) {
+        foreach ($searchableEntity->fields as $index => $field) {
             $clause = $field->constrain($builder, self::ALIAS, $query, self::PARAMETER_PREFIX.$index);
 
             if (null !== $clause) {
@@ -120,17 +120,17 @@ class EntitySearchRunner
     ): SearchResult {
         $searchable = $searchableEntity->searchable;
 
+        $titleField = $searchableEntity->getTitleField();
+
         $result = new SearchResult(
             // The type of an entity result is the entity, not whichever
             // provider found it: a client asking for `invoice` gets invoices
             // and never learns who answered.
             $searchableEntity->getType(),
             (string) $entity->getId(),
-            (string) ClassHelper::getFieldGetterValueOrDefault(
-                $entity,
-                $searchable->getTitleField(),
-                ''
-            )
+            null === $titleField
+                ? ''
+                : (string) ClassHelper::getFieldGetterValueOrDefault($entity, $titleField, '')
         );
 
         $result
@@ -178,7 +178,7 @@ class EntitySearchRunner
             return $score->getPoints();
         }
 
-        foreach ($searchableEntity->searchable->fields as $field) {
+        foreach ($searchableEntity->fields as $field) {
             $field->score(
                 $score,
                 ClassHelper::getFieldGetterValueOrDefault($entity, $field->name)

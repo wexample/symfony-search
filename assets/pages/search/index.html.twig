@@ -65,7 +65,7 @@
             <div class="doc-section--code">
                 {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
                     lang: 'php',
-                    code: "#[ORM\\Entity]\n#[Searchable(\n    fields: [\n        new TextField('label'),\n        new ReferenceField('reference', points: 30),\n        new AmountField('priceTotal', points: 40),\n    ],\n    subtitleField: 'label',\n    route: 'app_invoice_show',\n)]\nclass Invoice extends AbstractEntity"
+                    code: "#[ORM\\Entity]\n#[Searchable(route: 'app_invoice_show')]\nclass Invoice extends AbstractEntity\n{\n    #[SearchText]\n    protected string $label;\n\n    #[SearchAmount(points: 40)]\n    protected float $priceTotal;\n}"
                 }) }}
             </div>
         </div>

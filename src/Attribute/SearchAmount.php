@@ -1,7 +1,8 @@
 <?php
 
-namespace Wexample\SymfonySearch\Class\Field;
+namespace Wexample\SymfonySearch\Attribute;
 
+use Attribute;
 use Doctrine\ORM\Query\Expr\Comparison;
 use Doctrine\ORM\QueryBuilder;
 use Wexample\SymfonySearch\Class\SearchQuery;
@@ -13,7 +14,8 @@ use Wexample\SymfonySearch\Class\SearchScore;
  * Searched on its absolute value, as the legacy did: someone typing `150` is
  * looking for a hundred and fifty, whichever way the money went.
  */
-class AmountField extends AbstractField
+#[Attribute(Attribute::TARGET_PROPERTY)]
+class SearchAmount extends AbstractSearchField
 {
     public function constrain(
         QueryBuilder $builder,
@@ -37,5 +39,10 @@ class AmountField extends AbstractField
         mixed $value
     ): void {
         $score->amount(is_scalar($value) ? $value : null, $this->points ?? SearchScore::POINTS_AMOUNT);
+    }
+
+    public function getKindName(): string
+    {
+        return 'amount';
     }
 }

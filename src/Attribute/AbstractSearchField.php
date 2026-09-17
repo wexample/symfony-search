@@ -1,6 +1,6 @@
 <?php
 
-namespace Wexample\SymfonySearch\Class\Field;
+namespace Wexample\SymfonySearch\Attribute;
 
 use Doctrine\ORM\Query\Expr\Comparison;
 use Doctrine\ORM\QueryBuilder;
@@ -8,27 +8,38 @@ use Wexample\SymfonySearch\Class\SearchQuery;
 use Wexample\SymfonySearch\Class\SearchScore;
 
 /**
- * One property an entity can be found on, and what kind of thing it holds.
+ * A property an entity can be found on, and what kind of thing it holds.
  *
  * The kind is the whole point. It decides the SQL — a title is searched with
- * `LIKE`, an amount with `=` — and the points, through the matching method of
- * the score builder. A field whose kind does not fit the query's shape adds no
- * clause and no points: an amount is not asked `dupont`.
+ * `LIKE`, an amount with `=` on its absolute value — and the points, through
+ * the matching method of the score builder. A kind that does not fit the
+ * query's shape adds no clause and no points: an amount is not asked `dupont`,
+ * a title is not asked `15428`.
  *
- * Declared in `#[Searchable]` with `new`, because an attribute argument can be
- * a constructor call and nothing more.
+ * Declared on the property rather than listed on the class, so that it travels
+ * with a renaming, and so that a trait bringing a column can bring the way it
+ * is searched with it.
  */
-abstract class AbstractField
+abstract class AbstractSearchField
 {
+    /**
+     * The property carrying this attribute.
+     *
+     * Filled by the registry rather than by the constructor: an attribute has
+     * no way of knowing what it was written on, and the registry reads it once
+     * for the whole request.
+     */
+    public string $name = '';
+
     public function __construct(
-        public readonly string $name,
+        /** Null takes the kind's own default. */
         public readonly ?float $points = null,
     ) {
     }
 
     /**
-     * The clause finding this field, or null when the query's shape cannot
-     * be looked for in it.
+     * The clause finding this field, or null when the query's shape cannot be
+     * looked for in it.
      */
     abstract public function constrain(
         QueryBuilder $builder,
@@ -42,6 +53,9 @@ abstract class AbstractField
         SearchScore $score,
         mixed $value
     ): void;
+
+    /** What the search page and the debug output call this kind. */
+    abstract public function getKindName(): string;
 
     protected function lowerLike(
         QueryBuilder $builder,

@@ -1,14 +1,16 @@
 <?php
 
-namespace Wexample\SymfonySearch\Class\Field;
+namespace Wexample\SymfonySearch\Attribute;
 
+use Attribute;
 use Doctrine\ORM\Query\Expr\Comparison;
 use Doctrine\ORM\QueryBuilder;
 use Wexample\SymfonySearch\Class\SearchQuery;
 use Wexample\SymfonySearch\Class\SearchScore;
 
 /** A code, a serial, an invoice number: letters or digits, matched as typed. */
-class ReferenceField extends AbstractField
+#[Attribute(Attribute::TARGET_PROPERTY)]
+class SearchReference extends AbstractSearchField
 {
     public function constrain(
         QueryBuilder $builder,
@@ -24,5 +26,10 @@ class ReferenceField extends AbstractField
         mixed $value
     ): void {
         $score->reference(null === $value ? null : (string) $value, $this->points ?? SearchScore::POINTS_REFERENCE);
+    }
+
+    public function getKindName(): string
+    {
+        return 'reference';
     }
 }

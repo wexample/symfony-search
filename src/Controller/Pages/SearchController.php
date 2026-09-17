@@ -5,12 +5,10 @@ namespace Wexample\SymfonySearch\Controller\Pages;
 use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Wexample\Helpers\Helper\ClassHelper;
-use Wexample\Helpers\Helper\TextHelper;
 use Wexample\SymfonyHelpers\Helper\VariableHelper;
 use Wexample\SymfonyLoader\Controller\AbstractPagesController;
 use Wexample\SymfonySearch\Api\Controller\SearchResultController;
-use Wexample\SymfonySearch\Class\Field\AbstractField;
+use Wexample\SymfonySearch\Attribute\AbstractSearchField;
 use Wexample\SymfonySearch\Enum\SearchContext;
 use Wexample\SymfonySearch\Interface\SearchProviderInterface;
 use Wexample\SymfonySearch\Service\SearchableRegistry;
@@ -75,13 +73,13 @@ final class SearchController extends AbstractPagesController
             $described[$type] = [
                 'className' => $searchableEntity->className,
                 'fields' => array_map(
-                    static fn (AbstractField $field): string => sprintf(
+                    static fn (AbstractSearchField $field): string => sprintf(
                         '%s (%s%s)',
                         $field->name,
-                        lcfirst(TextHelper::removeSuffix(ClassHelper::getShortName($field), 'Field')),
+                        $field->getKindName(),
                         null === $field->points ? '' : ', '.$field->points
                     ),
-                    $searchableEntity->searchable->fields
+                    $searchableEntity->fields
                 ),
                 'contexts' => $searchableEntity->searchable->contexts,
                 'scoring' => $searchableEntity->getScoringClass(),
