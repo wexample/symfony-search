@@ -252,6 +252,28 @@ the menu and the tab show; a route option `search_title` stands in when there is
 the route name humanised when there is neither. `options: ['searchable' => false]` hides a
 page that has no business being found.
 
+## In a form
+
+`wexample/symfony-forms` ships `EntitySearchInputType`, a field whose value is a record
+picked by searching for it:
+
+```php
+->add('room', EntitySearchInputType::class, [
+    EntitySearchInputType::OPTION_ENTITY_TYPE => 'demo_room',
+    'placeholder' => true,
+])
+```
+
+What the form carries is an identifier, in a hidden input like any other field; what the
+person sees is the search box narrowed to that one kind, then the picked record. The rows
+do not link there — picking is the point — and the context defaults to `form_field`, which
+is what lets an entity be findable in a picker without appearing in the header.
+
+That package names the kind as a string and depends on nothing here, because it cannot:
+`wexample/symfony-api` requires it and this package requires the api, so a dependency the
+other way would close a circle. It declares a composer `suggest` instead, and the field has
+nothing to offer in an application where this bundle is not installed.
+
 ## Configuration
 
 ```yaml
@@ -283,6 +305,7 @@ names.
 - [When the entity has to reason](#when-the-entity-has-to-reason)
 - [Searching something that is not an entity](#searching-something-that-is-not-an-entity)
 - [The front](#the-front)
+- [In a form](#in-a-form)
 - [Configuration](#configuration)
 - [Hiding a page from the search](#hiding-a-page-from-the-search)
 - [Architecture](#architecture)
