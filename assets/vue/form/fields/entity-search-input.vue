@@ -1,5 +1,5 @@
 <script>
-import BaseField from '@wexample/symfony-design-system/components/bases/form-field/form-field.vue';
+import FormField from '@wexample/symfony-design-system/components/bases/form-field/form-field.vue';
 import SearchBox from '../../search/search-box.vue';
 import Bar from '@wexample/symfony-design-system/components/bar/bar.vue';
 import buildTranslatedBindings from '@wexample/symfony-design-system/js/Helper/TranslationHelper';
@@ -18,7 +18,7 @@ const translated = buildTranslatedBindings({
 // afterwards. The box is told which kind to answer with, so a field asking for
 // an invoice never offers a page.
 export default {
-  extends: BaseField,
+  extends: FormField,
 
   template: '#vue-template-wexample-symfony-search-bundle-vue-form-fields-entity-search-input',
 
