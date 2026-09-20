@@ -1,12 +1,12 @@
 @use '@wexample/symfony-design-system/css/partials/code';
-@use '@wexample/symfony-design-system/css/shapes/doc';
+@use '@wexample/symfony-design-system/components/doc/doc';
 
 // The page mounts this package's own search box and brings the shapes it wears,
 // as a layout imports no shape it does not use itself.
 @use '../../css/shapes/search-box';
-@use '@wexample/symfony-design-system/css/shapes/bar';
-@use '@wexample/symfony-design-system/css/shapes/avatar';
-@use '@wexample/symfony-design-system/css/shapes/spinner';
+@use '@wexample/symfony-design-system/components/bar/bar';
+@use '@wexample/symfony-design-system/components/avatar/avatar';
+@use '@wexample/symfony-design-system/components/spinner/spinner';
 
 // The bar is the demonstration, not an aside: it gets the width of the column
 // holding it rather than the width of its content.

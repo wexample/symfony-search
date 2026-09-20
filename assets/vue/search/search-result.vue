@@ -1,5 +1,5 @@
 <script>
-import Bar from "@wexample/symfony-design-system/vue/partials/bar.vue";
+import Bar from "@wexample/symfony-design-system/components/bar/bar.vue";
 import { stringToKebab } from '@wexample/js-helpers/Helper/String';
 
 // One result, drawn as a bar. This is the row every kind of result gets unless

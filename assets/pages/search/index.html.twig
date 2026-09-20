@@ -26,7 +26,7 @@
                 </ul>
             </div>
             <div class="doc-section--code">
-                {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
+                {{ include('@WexampleSymfonyDesignSystemBundle/components/code-block/code-block.html.twig', {
                     lang: 'php',
                     code: 'class CommandSearchProvider extends AbstractSearchProvider\n{\n    public function provide(SearchQuery $query): iterable\n    {\n        // yield $this->createResult($reference, $title)->setScore($score);\n    }\n}'
                 }) }}
@@ -63,7 +63,7 @@
                 {% endif %}
             </div>
             <div class="doc-section--code">
-                {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
+                {{ include('@WexampleSymfonyDesignSystemBundle/components/code-block/code-block.html.twig', {
                     lang: 'php',
                     code: "#[ORM\\Entity]\n#[Searchable(route: 'app_invoice_show')]\nclass Invoice extends AbstractEntity\n{\n    #[SearchText]\n    protected string $label;\n\n    #[SearchAmount(points: 40)]\n    protected float $priceTotal;\n}"
                 }) }}
@@ -85,7 +85,7 @@
             <div class="doc-section--code">
                 {% set api_url = path(apiRouteName) %}
                 <a target="_blank" href="{{ api_url }}?search=a">{{ api_url }}</a>
-                {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
+                {{ include('@WexampleSymfonyDesignSystemBundle/components/code-block/code-block.html.twig', {
                     lang: 'bash',
                     code: 'curl "' ~ api_url ~ '?search=dupont&context=header&length=5"'
                 }) }}
@@ -98,7 +98,7 @@
                 <p>{{ '@page::translations.body' | trans }}</p>
             </div>
             <div class="doc-section--code">
-                {{ include('@WexampleSymfonyDesignSystemBundle/partials/code-block.html.twig', {
+                {{ include('@WexampleSymfonyDesignSystemBundle/components/code-block/code-block.html.twig', {
                     lang: 'yaml',
                     code: "# assets/components/search-bar.fr.yml\nplaceholder: Rechercher...\nempty: Aucun résultat.\npending: Recherche en cours..."
                 }) }}

@@ -1,4 +1,4 @@
-{%- extends '@WexampleSymfonyDesignSystemBundle/vue/bases/form-field.vue.twig' -%}
+{%- extends '@WexampleSymfonyDesignSystemBundle/components/bases/form-field/form-field.vue.twig' -%}
 
 {%- block vue_config -%}
     {{ parent() }}
@@ -7,7 +7,7 @@
 
 {%- block vue_require -%}
     {{- vue_require(render_pass, '@WexampleSymfonySearchBundle/vue/search/search-box') -}}
-    {{- vue_require(render_pass, '@WexampleSymfonyDesignSystemBundle/vue/partials/bar') -}}
+    {{- vue_require(render_pass, '@WexampleSymfonyDesignSystemBundle/components/bar') -}}
 {%- endblock -%}
 
 {%- block field_control -%}

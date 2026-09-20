@@ -1,9 +1,9 @@
 @use '../../css/shapes/search-box';
-@use '@wexample/symfony-design-system/css/shapes/bar';
-@use '@wexample/symfony-design-system/css/shapes/avatar';
-@use '@wexample/symfony-design-system/css/shapes/spinner';
-@use '@wexample/symfony-design-system/css/shapes/button';
-@use '@wexample/symfony-design-system/css/shapes/form';
+@use '@wexample/symfony-design-system/components/bar/bar';
+@use '@wexample/symfony-design-system/components/avatar/avatar';
+@use '@wexample/symfony-design-system/components/spinner/spinner';
+@use '@wexample/symfony-design-system/components/button/button';
+@use '@wexample/symfony-design-system/components/form/form';
 
 .entity-search-input--picked {
   border: var(--border-default);

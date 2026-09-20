@@ -6,7 +6,7 @@ import KeyboardService from "@wexample/symfony-loader/js/Services/KeyboardServic
 import OverlayService from "@wexample/symfony-loader/js/Services/OverlayService";
 import { stringToKebab } from '@wexample/js-helpers/Helper/String';
 import SearchResult from "./search-result.vue";
-import Spinner from "@wexample/symfony-design-system/vue/partials/spinner.vue";
+import Spinner from "@wexample/symfony-design-system/components/spinner/spinner.vue";
 
 const translated = buildTranslatedBindings({
   resolvedPlaceholder: [
