@@ -45,7 +45,7 @@
   overflow-y: auto;
   background: var(--surface-1);
   border: var(--border-default);
-  border-radius: var(--radius-1);
+  border-radius: var(--radius-box);
   box-shadow: var(--shadow-2);
   z-index: var(--z-dropdown);
 }
@@ -79,7 +79,7 @@
   // its two sides against the dropdown's edges.
   &:focus-visible {
     background: var(--state-hover);
-    border-radius: var(--radius-1);
+    border-radius: var(--radius-control);
     outline: var(--border-focus);
     outline-offset: -2px;
   }
