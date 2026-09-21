@@ -1,5 +1,5 @@
 <script>
-import FormField from '@wexample/symfony-design-system/components/bases/form-field/form-field.vue';
+import FormField from '@wexample/symfony-design-system/components/_abstract/form-field/form-field.vue';
 import SearchBox from '../../search/search-box.vue';
 import Bar from '@wexample/symfony-design-system/components/bar/bar.vue';
 import buildTranslatedBindings from '@wexample/symfony-design-system/js/Helper/TranslationHelper';
