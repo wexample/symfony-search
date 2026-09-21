@@ -74,14 +74,12 @@
     background: var(--state-hover);
   }
 
-  // The ring is drawn inside the row. The dropdown scrolls, and a scrolling box
-  // clips whatever pokes out of it — an outline sitting outside the row lost
-  // its two sides against the dropdown's edges.
+  // A ground and not a ring: the row spans the dropdown, so the eye has
+  // nothing to find — only to be told which one it is on. It also saves the
+  // dropdown from clipping an outline against its own scrolling edges.
   &:focus-visible {
-    background: var(--state-hover);
-    border-radius: var(--radius-control);
-    outline: var(--border-focus);
-    outline-offset: -2px;
+    background: var(--state-focus);
+    outline: 0;
   }
 }
 
