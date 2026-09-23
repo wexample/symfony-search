@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "peerDependencies": {
     "@wexample/js-api": "*",
+    "@wexample/symfony-content": "*",
     "@wexample/symfony-design-system": "*",
     "@wexample/symfony-loader": "*"
   }
