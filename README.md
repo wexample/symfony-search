@@ -1,6 +1,6 @@
 # symfony-search
 
-Version: 4.0.7
+Version: 4.0.8
 
 `wexample/symfony-search` answers one question — *what, here, is called this?* — across
 things that have nothing in common: rows in a table, pages in a router, and whatever else a
@@ -442,17 +442,17 @@ Visit the [Wexample Suite documentation](https://docs.wexample.com) for the comp
 - php: >=8.5
 - wexample/php-helpers: >=4.0.0
 - wexample/php-pseudocode: >=2.1.0
-- wexample/symfony-helpers: >=9.0.0
-- wexample/symfony-api: >=5.0.0
+- wexample/symfony-helpers: >=10.0.0
+- wexample/symfony-api: >=6.0.0
 - wexample/symfony-pseudocode: >=3.0.0
 - symfony/uid: >=6.2
 - symfony/routing: >=6.2
 - symfony/security-bundle: >=6.2
 - doctrine/orm: >=2.14
-- wexample/symfony-loader: >=11.0.0
-- wexample/symfony-design-system: >=19.0.0
+- wexample/symfony-loader: >=13.0.0
+- wexample/symfony-design-system: >=20.0.0
 - wexample/symfony-content: >=4.0.0
-- wexample/symfony-forms: >=7.0.0
+- wexample/symfony-forms: >=8.0.0
 
 ## Versioning & Compatibility Policy
 
