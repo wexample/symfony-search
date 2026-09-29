@@ -1,0 +1,31 @@
+page_title: Haku
+page_icon: 'ph:bold/magnifying-glass'
+try:
+  title: Kokeile
+  body: |
+    Yksi kenttä, kaikentyyppiset tulokset. Sivun nimet tulevat reitittimestä, eikä niitä tarvitse ilmoittaa; tietueet tulevat alla olevan attribuutin sisältävistä entiteeteistä. Jokainen tulos kertoo, minne se menee, joten palkilla ei ole päätettävää siitä, mitä klikkaus tarkoittaa.
+providers:
+  title: Palveluntarjoajat
+  body: |
+    Palveluntarjoaja on yksi perhe löydettävissä olevista asioista. Käyttöliittymän toteuttaminen on koko rekisteröinti — automaattinen konfigurointi merkitsee sen, joten sovelluksessa kirjoitettu palveluntarjoaja liittyy hakuun olemalla olemassa. Nämä ovat niitä, jotka vastaavat täällä, nimellä, johon kysely rajoittuu.
+entities:
+  title: 'Haettavat entiteetit'
+  body: |
+    Luokka sanoo, että entiteetti on löydettävissä; sen ominaisuudet sanovat, mihin, jokainen omalla tavallaan — otsikko luetaan, määrä on luku, osoite on kokonainen tai ei mitään — ja tyyppi päättää sekä SQL:stä että pisteistä. Kuusi seitsemästä perinnöstä oli tuo lista naamioituna. Seitsemäs järkeili, ja tuo nimeää pisteytysluokan; entiteetti, jonka vastaus riippuu siitä, kuka kysyy, lisää provider: true ja saa oman palveluntarjoajan.
+  empty: 'Yksikään entiteetti ei ole vielä ilmoittanut attribuuttia tässä sovelluksessa — sivutulokset toimivat silti.'
+  fields: Kentät
+  scoring: Pisteytetty
+  contexts: Kontekstit
+  own_provider: 'Palvelun tarjoaa oma palveluntarjoaja.'
+api:
+  title: API
+  body: |
+    Tulos on entiteetti, joten sen päätepiste on kyseisen entiteetin kokoelma eikä mitään muuta. TypeScript-repositorio, joka on luotu samasta PHP-luokasta, kutsuu sitä ilman, että sille kerrotaan, missä se on — mikä on se, mitä yllä oleva kenttä käyttää.
+  query: Kyselyparametrit
+  query_search: 'Mitä etsitään. Tyhjään kyselyyn ei vastata mitään sen sijaan, että vastattaisiin kaikkeen.'
+  query_context: 'Mistä haku tehdään, mikä päättää, mihin se voi vastata. Lähetetyt kontekstit :'
+  query_type: 'Rajoittaa vastauksen yhteen tyyppiin — entiteetin nimeen tai palveluntarjoajan avaimen.'
+  query_length: 'Kuinka monta tulosta. Poissa ollessa, paketin konfigurointi päättää.'
+translations:
+  title: Käännökset
+  body: 'Palkki lukee omat tunnisteensa komponentin neljästä pinnasta, joten paikkaajaa ei koskaan kirjoiteta merkkaukseen. Tulostekstit puolestaan tulevat itse tietueesta tai reitin nimestä — niiden kääntäminen ei ole vielä kytketty, ja sivu näyttää tällä hetkellä reitin nimen ihmismäisenä.'

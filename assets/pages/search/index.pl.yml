@@ -1,0 +1,32 @@
+page_title: Szukaj
+page_icon: 'ph:bold/magnifying-glass'
+try:
+  title: Wypróbuj
+  body: |
+    Jedno pole, każdy rodzaj wyniku. Nazwy stron pochodzą z routera i nie wymagają deklaracji; rekordy pochodzą z encji posiadających atrybut poniżej. Każdy wynik zawiera informacje, gdzie prowadzi, więc pasek nie ma nic do zdecydowania, co oznacza kliknięcie.
+providers:
+  title: Dostawcy
+  body: |
+    Dostawca to jedna rodzina rzeczy, które można znaleźć. Implementacja interfejsu to cała rejestracja — autokonfiguracja oznacza to, więc dostawca napisany w aplikacji dołącza do wyszukiwania poprzez istnienie. To są ci, którzy odpowiadają tutaj, według nazwy, do której ogranicza się zapytanie.
+entities:
+  title: 'Wyszukiwalne encje'
+  body: |
+    Klasa wskazuje, że encja jest znajdowana; jej właściwości mówią, na co, każda z ich rodzaju — tytuł jest odczytywany, ilość to liczba, adres jest pełny lub żaden — a rodzaj decyduje zarówno o SQL, jak i o punktach. Sześć z siedmiu funkcji punktacji dziedzictwa to ta lista w przebraniu. Siódma myślała, a ta jedna nazywa klasę punktacji; encja, której odpowiedź zależy od tego, kto pyta, dodaje provider: true i otrzymuje swojego dostawcę.
+  empty: 'Żadna encja jeszcze nie deklaruje atrybutu w tej aplikacji — wyniki strony wciąż działają.'
+  fields: Pola
+  scoring: 'Punktowane przez'
+  contexts: Konteksty
+  own_provider: 'Obsługiwane przez własnego dostawcę.'
+api:
+  title: API
+  body: |
+    Wynik to encja, więc jej punkt końcowy to kolekcja tej encji i nic więcej. Repozytorium TypeScript wygenerowane z tej samej klasy PHP wywołuje to bez wskazywania, gdzie się znajduje — co jest tym, co wykorzystuje pole powyżej.
+  query: 'Parametry zapytania'
+  query_search: 'Czego się szuka. Puste zapytanie nie odpowiada niczemu zamiast wszystkiemu.'
+  query_context: 'Z jakiego miejsca jest przeprowadzane wyszukiwanie, co decyduje, na co może odpowiedzieć. Wysłane konteksty :'
+  query_type: 'Ogranicza odpowiedź do jednego rodzaju — nazwy encji lub klucza dostawcy.'
+  query_length: 'Ile wyników. Nieobecne, konfiguracja pakietu decyduje.'
+translations:
+  title: Tłumaczenia
+  body: |
+    Pasek odczytuje swoje etykiety z czterech stron komponentu, więc placeholder nigdy nie jest zapisany w markupie. Tytuły wyników, z drugiej strony, pochodzą z samego rekordu lub z nazwy trasy — tłumaczenie tych nie jest jeszcze podłączone, a strona obecnie pokazuje swoją nazwę trasy w zrozumiałej formie.
