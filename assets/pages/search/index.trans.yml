@@ -1,0 +1,821 @@
+en:
+  page_title: Search
+  page_icon: ph:bold/magnifying-glass
+
+  try:
+    title: Try it
+    body: >
+      One field, every kind of result. Page names come from the router and need no
+      declaration; records come from the entities carrying the attribute below.
+      Each result carries where it goes, so the bar has nothing to decide about
+      what a click means.
+
+  providers:
+    title: Providers
+    body: >
+      A provider is one family of findable things. Implementing the interface is
+      the whole registration — autoconfiguration tags it, so a provider written in
+      an application joins the search by existing. These are the ones answering
+      here, by the name a query restricts itself to.
+
+  entities:
+    title: Searchable entities
+    body: >
+      The class says an entity is findable; its properties say on what, each with its kind — a
+      title is read, an amount is a figure, an address is whole or nothing — and
+      the kind decides both the SQL and the points. Six of the legacy's seven
+      scoring functions were that list in disguise. The seventh reasoned, and that
+      one names a scoring class; the entity whose answer depends on who is asking
+      adds provider: true and gets a provider of its own.
+    empty: No entity declares the attribute in this application yet — page results still work.
+    fields: Fields
+    scoring: Scored by
+    contexts: Contexts
+    own_provider: Served by a provider of its own.
+
+  api:
+    title: The API
+    body: >
+      A result is an entity, so its endpoint is the collection of that entity and
+      nothing else. The TypeScript repository generated from the same PHP class
+      calls it without being told where it is — which is what the field above uses.
+    query: Query parameters
+    query_search: What is being looked for. An empty query answers nothing rather than everything.
+    query_context: Where the search is made from, which decides what it may answer. Shipped contexts :
+    query_type: Restricts the answer to one kind — an entity name, or a provider key.
+    query_length: How many results. Absent, the bundle configuration decides.
+
+  translations:
+    title: Translations
+    body: >
+      The bar reads its own labels from the four faces of the component, so a
+      placeholder is never written in markup. Result titles, on the other hand,
+      come from the record itself or from the route name — translating those is
+      not wired yet, and a page currently shows its route name humanised.
+
+ar:
+  page_title: بحث
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: جربه
+    body: |
+      حقل واحد، كل نوع من النتائج. أسماء الصفحات تأتي من الموجه ولا تحتاج إلى إعلان؛ السجلات تأتي من الكيانات التي تحمل السمة أدناه. كل نتيجة تحمل وجهتها، لذا لا يتعين على الشريط اتخاذ قرار بشأن ما يعنيه النقر.
+  providers:
+    title: المزودون
+    body: |
+      المزود هو عائلة واحدة من الأشياء القابلة للاكتشاف. تنفيذ الواجهة هو التسجيل الكامل - التكوين التلقائي يحدد ذلك، لذا فإن المزود المكتوب في تطبيق ينضم إلى البحث بوجوده. هؤلاء هم الذين يجيبون هنا، بالاسم الذي تقتصر عليه الاستعلام.
+  entities:
+    title: 'الكيانات القابلة للبحث'
+    body: |
+      الفئة تقول إن الكيان قابل للاكتشاف؛ خصائصه تشير إلى ما، كل منها بنوعه - العنوان يُقرأ، المبلغ هو رقم، العنوان كامل أو لا شيء - والنوع يحدد كل من SQL والنقاط. ستة من سبع وظائف تسجيل الدرجات في التراث كانت تلك القائمة متخفية. السابع كان منطقيًا، وتلك تسمي فئة تسجيل الدرجات؛ الكيان الذي تعتمد إجابته على من يسأل يضيف provider: true ويحصل على مزود خاص به.
+    empty: 'لا كيان يعلن عن السمة في هذا التطبيق حتى الآن - لا تزال نتائج الصفحات تعمل.'
+    fields: الحقول
+    scoring: 'تم تسجيله بواسطة'
+    contexts: السياقات
+    own_provider: 'يتم تقديمه بواسطة مزود خاص به.'
+  api:
+    title: 'واجهة برمجة التطبيقات'
+    body: |
+      النتيجة هي كيان، لذا فإن نقطة النهاية الخاصة بها هي مجموعة ذلك الكيان ولا شيء آخر. مستودع TypeScript الناتج عن نفس فئة PHP يناديها دون أن يُقال له أين هي - وهو ما يستخدمه الحقل أعلاه.
+    query: 'معلمات الاستعلام'
+    query_search: 'ما الذي يتم البحث عنه. الاستعلام الفارغ لا يجيب على شيء بدلاً من كل شيء.'
+    query_context: 'من أين يتم إجراء البحث، مما يحدد ما يمكن أن يجيب عليه. السياقات المشحونة :'
+    query_type: 'يقتصر الجواب على نوع واحد - اسم كيان، أو مفتاح مزود.'
+    query_length: 'عدد النتائج. في حالة الغياب، يحدد تكوين الحزمة.'
+  translations:
+    title: الترجمات
+    body: |
+      يقرأ الشريط تسمياته الخاصة من الوجوه الأربعة للمكون، لذا فإن عنصر النائب لا يُكتب أبدًا في العلامات. من ناحية أخرى، تأتي عناوين النتائج من السجل نفسه أو من اسم المسار - ترجمة تلك لم يتم توصيلها بعد، وتظهر الصفحة حاليًا اسم مسارها بشكل إنساني.
+
+bn:
+  page_title: অনুসন্ধান
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 'এটি চেষ্টা করুন'
+    body: |
+      একটি ক্ষেত্র, সকল ধরনের ফলাফল। পৃষ্ঠার নাম রাউটার থেকে আসে এবং এর জন্য কোন ঘোষণা প্রয়োজন নেই; রেকর্ডগুলি নীচের বৈশিষ্ট্য বহনকারী সত্তাগুলির থেকে আসে। প্রতিটি ফলাফল নির্দেশ করে এটি কোথায় যাবে, তাই বারের কাছে ক্লিকের অর্থ সম্পর্কে কিছু সিদ্ধান্ত নিতে হয় না।
+  providers:
+    title: প্রদানকারী
+    body: |
+      একটি প্রদানকারী হল খোঁজার জন্য উক্ত জিনিসের একটি পরিবার। ইন্টারফেসটি বাস্তবায়ন করা হল পুরো নিবন্ধন — স্বয়ংক্রিয় কনফিগারেশন এটি চিহ্নিত করে, তাই একটি অ্যাপ্লিকেশনে লেখা একটি প্রদানকারী বিদ্যমান থেকে অনুসন্ধানে যোগ দেয়। এখানে উত্তর দেওয়া হয়, একটি প্রশ্ন নামের মাধ্যমে এটি সীমাবদ্ধ।
+  entities:
+    title: 'অনুসন্ধানযোগ্য সত্তা'
+    body: |
+      শ্রেণী বলে একটি সত্তা খুঁজে পাওয়া যায়; এর বৈশিষ্ট্যগুলি বলে এটি কী, প্রতিটি এর প্রকার অনুযায়ী — একটি শিরোনাম পড়া হয়, একটি পরিমাণ একটি সংখ্যা, একটি ঠিকানা পুরো বা কিছু নয় — এবং প্রকার উভয় SQL এবং পয়েন্ট নির্ধারণ করে। ঐতিহ্যের সাতটি স্কোরিং ফাংশনের ছয়টি সেই তালিকা গোপনে ছিল। সপ্তমটি যুক্তি দিয়েছে, এবং সেটি একটি স্কোরিং শ্রেণী নামকরণ করে; যে সত্তার উত্তর নির্ভর করে কে জিজ্ঞাসা করছে, সে প্রদানকারী: সত্য যুক্ত করে এবং তার নিজস্ব একটি প্রদানকারী পায়।
+    empty: 'এই অ্যাপ্লিকেশনে এখনও কোন সত্তা এই বৈশিষ্ট্য ঘোষণা করেনি — পৃষ্ঠার ফলাফল এখনও কাজ করে।'
+    fields: ক্ষেত্রগুলি
+    scoring: 'স্কোর করা হয়েছে'
+    contexts: প্রেক্ষাপট
+    own_provider: 'এর নিজস্ব প্রদানকারীর দ্বারা পরিবেশন করা হয়েছে।'
+  api:
+    title: এপিআই
+    body: |
+      একটি ফলাফল একটি সত্তা, তাই এর এন্ডপয়েন্ট হল সেই সত্তার সংগ্রহ এবং আর কিছু নয়। একই PHP শ্রেণী থেকে তৈরি TypeScript রিপোজিটরি এটি কোথায় তা বলা ছাড়াই কল করে — যা উপরের ক্ষেত্রটি ব্যবহার করে।
+    query: 'প্রশ্নের প্যারামিটার'
+    query_search: 'কী খুঁজে বের করা হচ্ছে। একটি খালি প্রশ্ন কিছু উত্তর দেয় না বরং সবকিছু।'
+    query_context: 'অনুসন্ধান কোথা থেকে করা হচ্ছে, যা এটি কি উত্তর দিতে পারে সেটি নির্ধারণ করে। প্রেরিত প্রেক্ষাপট:'
+    query_type: 'উত্তরকে একটি প্রকারে সীমাবদ্ধ করে — একটি সত্তার নাম, অথবা একটি প্রদানকারী কীগুলির।'
+    query_length: 'কতগুলো ফলাফল। অনুপস্থিত হলে, বান্ডল কনফিগারেশন নির্ধারণ করে।'
+  translations:
+    title: অনুবাদ
+    body: |
+      বারটি উপাদানের চারটি দিক থেকে তার নিজস্ব লেবেল পড়ে, তাই একটি প্লেসহোল্ডার কখনও মার্কআপে লেখা হয় না। ফলাফলের শিরোনাম, অন্যদিকে, রেকর্ডের নিজস্ব বা রুটের নাম থেকে আসে — সেগুলোর অনুবাদ এখনও সংযুক্ত হয়নি, এবং একটি পৃষ্ঠা বর্তমানে তার রুটের নাম মানবায়িতভাবে প্রদর্শন করে।
+
+de:
+  page_title: Suche
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: Ausprobieren
+    body: |
+      Ein Feld, jede Art von Ergebnis. Seitennamen stammen vom Router und benötigen keine Deklaration; Datensätze kommen von den Entitäten, die das untenstehende Attribut tragen. Jedes Ergebnis zeigt, wohin es führt, sodass die Leiste nichts über die Bedeutung eines Klicks entscheiden muss.
+  providers:
+    title: Anbieter
+    body: |
+      Ein Anbieter ist eine Familie von auffindbaren Dingen. Die Implementierung der Schnittstelle ist die gesamte Registrierung – die Autokonfiguration kennzeichnet ihn, sodass ein in einer Anwendung geschriebener Anbieter durch seine Existenz der Suche beitritt. Dies sind die, die hier antworten, durch den Namen, auf den sich eine Abfrage einschränkt.
+  entities:
+    title: 'Durchsuchbare Entitäten'
+    body: |
+      Die Klasse sagt, dass eine Entität auffindbar ist; ihre Eigenschaften sagen, wonach, jede mit ihrer Art – ein Titel wird gelesen, eine Menge ist eine Zahl, eine Adresse ist ganz oder nichts – und die Art entscheidet sowohl über das SQL als auch über die Punkte. Sechs der sieben Bewertungsfunktionen des Erbes waren diese Liste im Verborgenen. Der siebte argumentierte, und dieser nennt eine Bewertungsgruppe; die Entität, deren Antwort davon abhängt, wer fragt, fügt provider: true hinzu und erhält einen eigenen Anbieter.
+    empty: 'Keine Entität deklariert das Attribut in dieser Anwendung bisher – Seitenresultate funktionieren weiterhin.'
+    fields: Felder
+    scoring: 'Bewertet nach'
+    contexts: Kontexte
+    own_provider: 'Von einem eigenen Anbieter bereitgestellt.'
+  api:
+    title: 'Die API'
+    body: |
+      Ein Ergebnis ist eine Entität, daher ist sein Endpunkt die Sammlung dieser Entität und nichts anderes. Das TypeScript-Repository, das aus derselben PHP-Klasse generiert wurde, ruft es auf, ohne gesagt zu bekommen, wo es sich befindet – genau das verwendet das obige Feld.
+    query: Abfrageparameter
+    query_search: 'Wonach gesucht wird. Eine leere Abfrage ergibt nichts statt alles.'
+    query_context: 'Von wo die Suche ausgeführt wird, was entscheidet, was sie beantworten kann. Gelieferte Kontexte :'
+    query_type: 'Beschränkt die Antwort auf eine Art – einen Entitätsnamen oder einen Anbieter-Schlüssel.'
+    query_length: 'Wie viele Ergebnisse. Abwesend entscheidet die Bundle-Konfiguration.'
+  translations:
+    title: Übersetzungen
+    body: |
+      Die Leiste liest ihre eigenen Bezeichnungen von den vier Seiten der Komponente, sodass ein Platzhalter niemals im Markup geschrieben wird. Die Ergebnistitel hingegen stammen entweder aus dem Datensatz selbst oder vom Routenamen – das Übersetzen dieser ist noch nicht implementiert, und eine Seite zeigt derzeit ihren Routenamen in menschenlesbarer Form an.
+
+es:
+  page_title: Buscar
+  page_icon: 'ph:bold/lupa'
+  try:
+    title: Pruébalo
+    body: |
+      Un campo, todo tipo de resultado. Los nombres de las páginas provienen del enrutador y no necesitan declaración; los registros provienen de las entidades que llevan el atributo a continuación. Cada resultado lleva a dónde va, por lo que la barra no tiene nada que decidir sobre lo que significa un clic.
+  providers:
+    title: Proveedores
+    body: |
+      Un proveedor es una familia de cosas encontrables. Implementar la interfaz es todo el registro — la autoconfiguración lo etiqueta, por lo que un proveedor escrito en una aplicación se une a la búsqueda al existir. Estos son los que responden aquí, por el nombre al que una consulta se restringe.
+  entities:
+    title: 'Entidades buscables'
+    body: |
+      La clase dice que una entidad es encontrable; sus propiedades dicen sobre qué, cada una con su tipo — un título se lee, una cantidad es una cifra, una dirección es total o nada — y el tipo decide tanto el SQL como los puntos. Seis de las siete funciones de puntuación del legado eran esa lista disfrazada. La séptima razonaba, y esa nombra una clase de puntuación; la entidad cuya respuesta depende de quién pregunta añade provider: true y obtiene un proveedor propio.
+    empty: 'Ninguna entidad declara el atributo en esta aplicación aún — los resultados de la página aún funcionan.'
+    fields: Campos
+    scoring: 'Puntuado por'
+    contexts: Contextos
+    own_provider: 'Servido por un proveedor propio.'
+  api:
+    title: 'La API'
+    body: |
+      Un resultado es una entidad, por lo que su punto final es la colección de esa entidad y nada más. El repositorio de TypeScript generado a partir de la misma clase PHP lo llama sin ser informado de dónde está — que es lo que utiliza el campo anterior.
+    query: 'Parámetros de consulta'
+    query_search: 'Qué se está buscando. Una consulta vacía no responde nada en lugar de todo.'
+    query_context: 'Desde dónde se realiza la búsqueda, lo que decide lo que puede responder. Contextos enviados:'
+    query_type: 'Restringe la respuesta a un tipo — un nombre de entidad, o una clave de proveedor.'
+    query_length: 'Cuántos resultados. Ausente, la configuración del paquete decide.'
+  translations:
+    title: Traducciones
+    body: |
+      La barra lee sus propias etiquetas de las cuatro caras del componente, por lo que nunca se escribe un marcador de posición en el marcado. Los títulos de los resultados, por otro lado, provienen del propio registro o del nombre de la ruta — traducir esos aún no está cableado, y una página actualmente muestra su nombre de ruta humanizado.
+
+fa:
+  page_title: جستجو
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 'تجربه کنید'
+    body: |
+      یک فیلد، هر نوع نتیجه. نام‌های صفحه از روتر می‌آیند و نیازی به اعلام ندارند؛ رکوردها از موجودیت‌هایی می‌آیند که ویژگی زیر را دارند. هر نتیجه نشان می‌دهد که به کجا می‌رود، بنابراین نوار هیچ تصمیمی در مورد معنای یک کلیک ندارد.
+  providers:
+    title: تأمین‌کنندگان
+    body: |
+      یک تأمین‌کننده یک خانواده از چیزهای قابل پیدا کردن است. پیاده‌سازی رابط، کل ثبت‌نام است — خودکارسازی آن را برچسب‌گذاری می‌کند، بنابراین یک تأمین‌کننده که در یک برنامه نوشته شده است، با وجود آن به جستجو ملحق می‌شود. این‌ها کسانی هستند که در اینجا پاسخ می‌دهند، بر اساس نامی که یک پرسش خود را به آن محدود می‌کند.
+  entities:
+    title: 'موجودیت‌های قابل جستجو'
+    body: |
+      کلاس می‌گوید یک موجودیت قابل پیدا کردن است؛ ویژگی‌های آن می‌گویند بر روی چه چیزی، هر کدام با نوع خود — یک عنوان خوانده می‌شود، یک مقدار یک عدد است، یک آدرس یا کامل است یا هیچ — و نوع، هم SQL و هم امتیازها را تعیین می‌کند. شش مورد از هفت تابع امتیازدهی میراث، همان لیست در لباس مبدل بودند. هفتمی استدلال کرد و آن یکی یک کلاس امتیازدهی را نام‌گذاری می‌کند؛ موجودیتی که پاسخ آن به اینکه چه کسی می‌پرسد بستگی دارد، تأمین‌کننده: true را اضافه می‌کند و یک تأمین‌کننده خاص خود را دریافت می‌کند.
+    empty: 'هیچ موجودیتی هنوز ویژگی را در این برنامه اعلام نکرده است — نتایج صفحه همچنان کار می‌کنند.'
+    fields: فیلدها
+    scoring: 'امتیازدهی شده توسط'
+    contexts: زمینه‌ها
+    own_provider: 'توسط یک تأمین‌کننده خاص خود سرویس‌دهی می‌شود.'
+  api:
+    title: API
+    body: |
+      یک نتیجه یک موجودیت است، بنابراین نقطه پایانی آن مجموعه‌ای از آن موجودیت و هیچ چیز دیگر است. مخزن TypeScript که از همان کلاس PHP تولید شده است، بدون اینکه به او گفته شود کجاست، آن را فراخوانی می‌کند — که همان چیزی است که فیلد بالا از آن استفاده می‌کند.
+    query: 'پارامترهای پرسش'
+    query_search: 'چه چیزی در حال جستجو است. یک پرسش خالی پاسخ هیچ چیزی را نمی‌دهد تا همه چیز را.'
+    query_context: 'جایی که جستجو از آن انجام می‌شود، که تعیین می‌کند چه چیزی ممکن است پاسخ دهد. زمینه‌های ارسال شده:'
+    query_type: 'پاسخ را به یک نوع محدود می‌کند — یک نام موجودیت یا یک کلید تأمین‌کننده.'
+    query_length: 'چند نتیجه. در صورت نبود، پیکربندی بسته تصمیم می‌گیرد.'
+  translations:
+    title: ترجمه‌ها
+    body: |
+      نوار برچسب‌های خود را از چهار سمت مؤلفه می‌خواند، بنابراین یک نشان‌گر هرگز در نشانه‌گذاری نوشته نمی‌شود. از سوی دیگر، عناوین نتایج از رکورد خود یا از نام مسیر می‌آیند — ترجمه آن‌ها هنوز راه‌اندازی نشده است، و یک صفحه در حال حاضر نام مسیر خود را به صورت انسانی نمایش می‌دهد.
+
+fi:
+  page_title: Haku
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: Kokeile
+    body: |
+      Yksi kenttä, kaikentyyppiset tulokset. Sivun nimet tulevat reitittimestä, eikä niitä tarvitse ilmoittaa; tietueet tulevat alla olevan attribuutin sisältävistä entiteeteistä. Jokainen tulos kertoo, minne se menee, joten palkilla ei ole päätettävää siitä, mitä klikkaus tarkoittaa.
+  providers:
+    title: Palveluntarjoajat
+    body: |
+      Palveluntarjoaja on yksi perhe löydettävissä olevista asioista. Käyttöliittymän toteuttaminen on koko rekisteröinti — automaattinen konfigurointi merkitsee sen, joten sovelluksessa kirjoitettu palveluntarjoaja liittyy hakuun olemalla olemassa. Nämä ovat niitä, jotka vastaavat täällä, nimellä, johon kysely rajoittuu.
+  entities:
+    title: 'Haettavat entiteetit'
+    body: |
+      Luokka sanoo, että entiteetti on löydettävissä; sen ominaisuudet sanovat, mihin, jokainen omalla tavallaan — otsikko luetaan, määrä on luku, osoite on kokonainen tai ei mitään — ja tyyppi päättää sekä SQL:stä että pisteistä. Kuusi seitsemästä perinnöstä oli tuo lista naamioituna. Seitsemäs järkeili, ja tuo nimeää pisteytysluokan; entiteetti, jonka vastaus riippuu siitä, kuka kysyy, lisää provider: true ja saa oman palveluntarjoajan.
+    empty: 'Yksikään entiteetti ei ole vielä ilmoittanut attribuuttia tässä sovelluksessa — sivutulokset toimivat silti.'
+    fields: Kentät
+    scoring: Pisteytetty
+    contexts: Kontekstit
+    own_provider: 'Palvelun tarjoaa oma palveluntarjoaja.'
+  api:
+    title: API
+    body: |
+      Tulos on entiteetti, joten sen päätepiste on kyseisen entiteetin kokoelma eikä mitään muuta. TypeScript-repositorio, joka on luotu samasta PHP-luokasta, kutsuu sitä ilman, että sille kerrotaan, missä se on — mikä on se, mitä yllä oleva kenttä käyttää.
+    query: Kyselyparametrit
+    query_search: 'Mitä etsitään. Tyhjään kyselyyn ei vastata mitään sen sijaan, että vastattaisiin kaikkeen.'
+    query_context: 'Mistä haku tehdään, mikä päättää, mihin se voi vastata. Lähetetyt kontekstit :'
+    query_type: 'Rajoittaa vastauksen yhteen tyyppiin — entiteetin nimeen tai palveluntarjoajan avaimen.'
+    query_length: 'Kuinka monta tulosta. Poissa ollessa, paketin konfigurointi päättää.'
+  translations:
+    title: Käännökset
+    body: 'Palkki lukee omat tunnisteensa komponentin neljästä pinnasta, joten paikkaajaa ei koskaan kirjoiteta merkkaukseen. Tulostekstit puolestaan tulevat itse tietueesta tai reitin nimestä — niiden kääntäminen ei ole vielä kytketty, ja sivu näyttää tällä hetkellä reitin nimen ihmismäisenä.'
+
+fr:
+  page_title: Recherche
+  page_icon: ph:bold/magnifying-glass
+
+  try:
+    title: Essayer
+    body: >
+      Un seul champ, toutes les natures de résultat. Les pages viennent du routeur
+      et ne se déclarent nulle part ; les enregistrements viennent des entités qui
+      portent l'attribut plus bas. Chaque résultat porte sa destination, donc la
+      barre n'a rien à décider de ce qu'un clic veut dire.
+
+  providers:
+    title: Fournisseurs
+    body: >
+      Un fournisseur, c'est une famille de choses trouvables. Implémenter
+      l'interface suffit à l'enregistrer — l'autoconfiguration le tague, donc un
+      fournisseur écrit dans une application rejoint la recherche en existant.
+      Voici ceux qui répondent ici, sous le nom par lequel une requête peut se
+      restreindre.
+
+  entities:
+    title: Entités cherchables
+    body: >
+      La classe dit qu'une entité est cherchable ; ses propriétés disent sur quoi, chacune avec sa nature
+      — un titre se lit, un montant est un chiffre, une adresse est entière ou
+      rien — et la nature décide du SQL comme des points. Six des sept fonctions
+      de score du legacy étaient cette liste déguisée. La septième raisonnait, et
+      celle-là nomme une classe de scoring ; l'entité dont la réponse dépend de
+      qui demande ajoute provider: true et obtient son propre fournisseur.
+    empty: Aucune entité ne porte encore l'attribut dans cette application — les résultats de pages fonctionnent quand même.
+    fields: Champs
+    scoring: Scoré par
+    contexts: Contextes
+    own_provider: Servie par un fournisseur dédié.
+
+  api:
+    title: L'API
+    body: >
+      Un résultat est une entité, donc son endpoint est la collection de cette
+      entité et rien d'autre. Le repository TypeScript généré depuis la même
+      classe PHP l'appelle sans qu'on lui dise où il est — c'est ce qu'utilise le
+      champ ci-dessus.
+    query: Paramètres de requête
+    query_search: Ce qu'on cherche. Une requête vide ne répond rien, et non pas tout.
+    query_context: D'où la recherche est faite, ce qui décide de ce qu'elle peut répondre. Contextes livrés :
+    query_type: Restreint la réponse à une seule nature — un nom d'entité, ou la clé d'un fournisseur.
+    query_length: Combien de résultats. Absent, la configuration du bundle décide.
+
+  translations:
+    title: Traductions
+    body: >
+      La barre lit ses libellés dans les quatre faces du composant, donc aucun
+      placeholder ne s'écrit dans le markup. Les titres de résultats, eux, viennent
+      de l'enregistrement ou du nom de route — les traduire n'est pas encore
+      câblé, et une page affiche aujourd'hui son nom de route humanisé.
+
+he:
+  page_title: חיפוש
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 'נסה את זה'
+    body: |
+      שדה אחד, כל סוגי התוצאות. שמות העמודים מגיעים מהנתב ואינם דורשים הצהרה; רשומות מגיעות מהיישויות הנושאות את המאפיין למטה. כל תוצאה נושאת את היעד שלה, כך שהשורה אינה צריכה להחליט מה המשמעות של לחיצה.
+  providers:
+    title: ספקים
+    body: |
+      ספק הוא משפחה אחת של דברים שניתן למצוא. יישום הממשק הוא כל ההרשמה — תיוג אוטומטי מסמן זאת, כך שספק שנכתב ביישום מצטרף לחיפוש על ידי קיום. אלו הם הספקים שעונים כאן, לפי השם שהשאילתה מגבילה את עצמה אליו.
+  entities:
+    title: 'יישויות ניתנות לחיפוש'
+    body: |
+      המחלקה אומרת שישות ניתנת למציאה; המאפיינים שלה אומרים על מה, כל אחד עם הסוג שלו — כותרת נקראת, כמות היא מספר, כתובת היא שלמה או לא כלום — והסוג קובע גם את ה-SQL וגם את הנקודות. שישה מתוך שבעת פונקציות הניקוד של המורשת היו אותה רשימה בתחפושת. השביעי היה בעל היגיון, וזה אחד שנקרא כיתת ניקוד; הישות whose answer depends on who is asking מוסיפה provider: true ומקבלת ספק משלה.
+    empty: 'עדיין אין ישות המצהירה על המאפיין ביישום הזה — תוצאות העמוד עדיין פועלות.'
+    fields: שדות
+    scoring: 'ניקוד לפי'
+    contexts: הקשרים
+    own_provider: 'מסופק על ידי ספק משלו.'
+  api:
+    title: ה-API
+    body: |
+      תוצאה היא ישות, כך שהנקודה שלה היא האוסף של אותה ישות ושום דבר נוסף. מאגר ה-TypeScript שנוצר מאותה מחלקת PHP קורא לה מבלי שיגידו לו היכן היא — מה שהשדה למעלה משתמש בו.
+    query: 'פרמטרי שאילתה'
+    query_search: 'מה מחפשים. שאילתה ריקה לא עונה על כלום ולא על הכל.'
+    query_context: 'מאיפה מתבצע החיפוש, מה שמחליט מה היא עשויה לענות. הקשרים שנשלחו :'
+    query_type: 'מגביל את התשובה לסוג אחד — שם ישות, או מפתח ספק.'
+    query_length: 'כמה תוצאות. בהיעדרן, קונפיגורציית החבילה מחליטה.'
+  translations:
+    title: תרגומים
+    body: |
+      השורה קוראת את התוויות שלה מהארבעה צדדים של הרכיב, כך שאין מקום למילוי בשפה. כותרות התוצאות, לעומת זאת, מגיעות מהרשומה עצמה או משם הנתיב — תרגום שלהם עוד לא מחובר, ועכשיו עמוד מציג את שם הנתיב בצורה אנושית.
+
+hi:
+  page_title: खोजें
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 'इसे आजमाएं'
+    body: |
+      एक फ़ील्ड, हर प्रकार का परिणाम। पृष्ठ नाम राउटर से आते हैं और किसी घोषणा की आवश्यकता नहीं होती; रिकॉर्ड उन एंटिटीज़ से आते हैं जो नीचे उल्लेखित विशेषता लेकर आती हैं। प्रत्येक परिणाम में यह होता है कि यह कहाँ जाता है, इसलिए बार को यह निर्णय लेने की आवश्यकता नहीं होती कि एक क्लिक का क्या अर्थ है।
+  providers:
+    title: प्रदाता
+    body: |
+      एक प्रदाता खोजे जाने योग्य वस्तुओं का एक परिवार है। इंटरफ़ेस को लागू करना पूरी पंजीकरण प्रक्रिया है - ऑटो-कॉन्फ़िगरेशन इसे चिह्नित करता है, इसलिए एक एप्लिकेशन में लिखा गया प्रदाता अपने अस्तित्व से खोज में शामिल होता है। ये वही हैं जो यहाँ उत्तर देते हैं, उस नाम से जिससे एक क्वेरी खुद को सीमित करती है।
+  entities:
+    title: 'खोजे जाने योग्य एंटिटीज़'
+    body: |
+      क्लास बताती है कि एक एंटिटी खोजने योग्य है; इसकी विशेषताएँ बताती हैं कि किस पर, प्रत्येक अपने प्रकार के साथ - एक शीर्षक पढ़ा जाता है, एक मात्रा एक आंकड़ा है, एक पता सम्पूर्ण या कुछ नहीं है - और प्रकार SQL और बिंदुओं को निर्धारित करता है। विरासत के सात में से छह स्कोरिंग फ़ंक्शन उस सूची में छिपे हुए थे। सातवाँ तर्क करता है, और वही एक स्कोरिंग क्लास का नाम देता है; एंटिटी जिसका उत्तर उन पर निर्भर करता है जो पूछ रहे हैं, प्रदाता: सत्य जोड़ता है और अपना प्रदाता प्राप्त करता है।
+    empty: 'इस एप्लिकेशन में अभी तक कोई एंटिटी इस विशेषता की घोषणा नहीं करती - पृष्ठ परिणाम फिर भी कार्य करते हैं।'
+    fields: फ़ील्ड
+    scoring: 'स्कोर किया गया'
+    contexts: संदर्भ
+    own_provider: 'अपने स्वयं के प्रदाता द्वारा सेवा दी गई।'
+  api:
+    title: API
+    body: |
+      एक परिणाम एक एंटिटी है, इसलिए इसका एंडपॉइंट उस एंटिटी का संग्रह है और कुछ नहीं। TypeScript रिपॉजिटरी जो उसी PHP क्लास से उत्पन्न होती है, इसे बताए बिना कॉल करती है कि यह कहाँ है - जो ऊपर वाले फ़ील्ड का उपयोग करता है।
+    query: 'क्वेरी पैरामीटर'
+    query_search: 'क्या खोजा जा रहा है। एक खाली क्वेरी कुछ नहीं जवाब देती बल्कि सब कुछ।'
+    query_context: 'जहाँ से खोज की जा रही है, जो यह निर्णय करती है कि यह क्या उत्तर दे सकती है। भेजे गए संदर्भ:'
+    query_type: 'उत्तर को एक प्रकार तक सीमित करता है - एक एंटिटी का नाम, या एक प्रदाता कुंजी।'
+    query_length: 'कितने परिणाम। अनुपस्थित होने पर, बंडल कॉन्फ़िगरेशन निर्णय लेता है।'
+  translations:
+    title: अनुवाद
+    body: |
+      बार अपने स्वयं के लेबल चारों तरफ से घटक से पढ़ती है, इसलिए एक प्लेसहोल्डर मार्कअप में कभी नहीं लिखा जाता। दूसरी ओर, परिणाम शीर्षक स्वयं रिकॉर्ड से या रूट नाम से आते हैं - उनका अनुवाद अभी तक नहीं किया गया है, और एक पृष्ठ वर्तमान में अपने रूट नाम को मानवित दिखाता है।
+
+id:
+  page_title: Cari
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: Coba
+    body: |
+      Satu field, setiap jenis hasil. Nama halaman berasal dari router dan tidak memerlukan deklarasi; catatan berasal dari entitas yang membawa atribut di bawah ini. Setiap hasil menunjukkan kemana arahnya, jadi bar tidak perlu memutuskan apa arti sebuah klik.
+  providers:
+    title: Penyedia
+    body: |
+      Penyedia adalah satu keluarga dari hal-hal yang dapat ditemukan. Mengimplementasikan antarmuka adalah seluruh pendaftaran — tag autokonfigurasi menandainya, sehingga penyedia yang ditulis dalam aplikasi bergabung dengan pencarian berdasarkan keberadaannya. Ini adalah yang menjawab di sini, berdasarkan nama yang dibatasi oleh kueri.
+  entities:
+    title: 'Entitas yang dapat dicari'
+    body: |
+      Kelas menyatakan bahwa entitas dapat ditemukan; propertinya menyatakan tentang apa, masing-masing dengan jenisnya — sebuah judul dibaca, jumlah adalah angka, alamat adalah utuh atau tidak sama sekali — dan jenis menentukan baik SQL dan poin. Enam dari tujuh fungsi penilaian warisan adalah daftar itu dalam penyamaran. Yang ketujuh beralasan, dan yang satu itu menamai kelas penilaian; entitas yang jawabannya tergantung pada siapa yang bertanya menambahkan provider: true dan mendapatkan penyedia miliknya sendiri.
+    empty: 'Belum ada entitas yang menyatakan atribut dalam aplikasi ini — hasil halaman masih berfungsi.'
+    fields: Field
+    scoring: 'Diberi skor oleh'
+    contexts: Konteks
+    own_provider: 'Dilayani oleh penyedia miliknya sendiri.'
+  api:
+    title: API
+    body: |
+      Sebuah hasil adalah entitas, jadi endpointnya adalah koleksi dari entitas itu dan tidak ada yang lain. Repositori TypeScript yang dihasilkan dari kelas PHP yang sama memanggilnya tanpa diberi tahu di mana letaknya — yang digunakan oleh field di atas.
+    query: 'Parameter kueri'
+    query_search: 'Apa yang dicari. Kueri kosong tidak menjawab apa pun daripada segalanya.'
+    query_context: 'Di mana pencarian dilakukan, yang menentukan apa yang mungkin dijawab. Konteks yang dikirim:'
+    query_type: 'Membatasi jawaban ke satu jenis — nama entitas, atau kunci penyedia.'
+    query_length: 'Berapa banyak hasil. Jika tidak ada, konfigurasi bundle memutuskan.'
+  translations:
+    title: Terjemahan
+    body: |
+      Bar membaca labelnya sendiri dari empat sisi komponen, jadi placeholder tidak pernah ditulis dalam markup. Judul hasil, di sisi lain, berasal dari catatan itu sendiri atau dari nama rute — menerjemahkan itu belum terhubung, dan halaman saat ini menunjukkan nama rutenya yang dihumanisasi.
+
+it:
+  page_title: Cerca
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: Provalo
+    body: |
+      Un campo, ogni tipo di risultato. I nomi delle pagine provengono dal router e non necessitano di dichiarazione; i record provengono dalle entità che portano l'attributo qui sotto. Ogni risultato indica dove va, quindi la barra non deve decidere cosa significa un clic.
+  providers:
+    title: Fornitori
+    body: |
+      Un fornitore è una famiglia di cose rintracciabili. Implementare l'interfaccia è l'intera registrazione — l'autoconfigurazione lo etichetta, quindi un fornitore scritto in un'applicazione si unisce alla ricerca semplicemente esistendo. Questi sono quelli che rispondono qui, con il nome a cui una query si limita.
+  entities:
+    title: 'Entità ricercabili'
+    body: |
+      La classe indica che un'entità è rintracciabile; le sue proprietà indicano su cosa, ognuna con il suo tipo — un titolo è leggibile, un importo è un numero, un indirizzo è tutto o niente — e il tipo decide sia il SQL che i punti. Sei delle sette funzioni di punteggio dell'eredità erano quella lista travestita. La settima ragionava, e quella nomina una classe di punteggio; l'entità la cui risposta dipende da chi sta chiedendo aggiunge provider: true e ottiene un fornitore tutto suo.
+    empty: "Nessuna entità dichiara l'attributo in questa applicazione ancora — i risultati delle pagine funzionano comunque."
+    fields: Campi
+    scoring: 'Punteggiato da'
+    contexts: Contesti
+    own_provider: 'Servito da un fornitore tutto suo.'
+  api:
+    title: "L'API"
+    body: |
+      Un risultato è un'entità, quindi il suo endpoint è la collezione di quell'entità e nient'altro. Il repository TypeScript generato dalla stessa classe PHP lo chiama senza essere detto dove si trova — ed è ciò che il campo qui sopra utilizza.
+    query: 'Parametri della query'
+    query_search: 'Cosa si sta cercando. Una query vuota non risponde a nulla piuttosto che a tutto.'
+    query_context: 'Da dove viene effettuata la ricerca, il che decide a cosa può rispondere. Contesti inviati:'
+    query_type: 'Limita la risposta a un tipo — un nome di entità o una chiave di fornitore.'
+    query_length: 'Quanti risultati. In assenza, la configurazione del pacchetto decide.'
+  translations:
+    title: Traduzioni
+    body: |
+      La barra legge le proprie etichette dalle quattro facce del componente, quindi un segnaposto non viene mai scritto nel markup. I titoli dei risultati, d'altra parte, provengono dal record stesso o dal nome della route — tradurre quelli non è ancora attivato, e una pagina attualmente mostra il suo nome di route umanizzato.
+
+ja:
+  page_title: 検索
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 試してみる
+    body: |
+      1つのフィールド、あらゆる種類の結果。ページ名はルーターから取得され、宣言は不要です。レコードは下に示された属性を持つエンティティから取得されます。各結果はどこに進むかを示しているため、バーはクリックが意味することについて何も決定する必要はありません。
+  providers:
+    title: プロバイダー
+    body: |
+      プロバイダーは見つけられるものの一群です。インターフェースを実装することが全体の登録であり、自動構成によってタグ付けされるため、アプリケーションに記述されたプロバイダーは存在することで検索に参加します。これらは、クエリが制限される名前によってここで応答するものです。
+  entities:
+    title: 検索可能なエンティティ
+    body: |
+      クラスはエンティティが見つけられることを示し、そのプロパティはそれぞれの種類に基づいて何を示すかを示します — タイトルは読み取り、金額は数字、住所は全体または無であり、種類はSQLとポイントの両方を決定します。レガシーの7つのスコアリング関数のうち6つはそのリストの偽装でした。7番目は推論され、その1つがスコアリングクラスの名前を付けます。誰が尋ねるかによって答えが決まるエンティティは、provider: trueを追加し、自分自身のプロバイダーを取得します。
+    empty: 'このアプリケーションではまだ属性を宣言しているエンティティはありません — ページ結果はまだ機能します。'
+    fields: フィールド
+    scoring: スコア付け
+    contexts: コンテキスト
+    own_provider: 自分自身のプロバイダーによって提供されています。
+  api:
+    title: API
+    body: |
+      結果はエンティティであり、そのエンドポイントはそのエンティティのコレクションであり、他には何もありません。同じPHPクラスから生成されたTypeScriptリポジトリは、どこにあるかを指示されずに呼び出されます — これは、上記のフィールドが使用しているものです。
+    query: クエリパラメーター
+    query_search: 探しているもの。空のクエリは、すべてではなく何も返しません。
+    query_context: 検索が行われる場所で、それが何に答えるかを決定します。出荷されたコンテキスト：
+    query_type: '回答を1つの種類に制限します — エンティティ名またはプロバイダーキー。'
+    query_length: 結果の数。欠如している場合、バンドルの設定が決定します。
+  translations:
+    title: 翻訳
+    body: |
+      バーはコンポーネントの4つの面から独自のラベルを読み取るため、プレースホルダーはマークアップには書かれません。一方、結果のタイトルはレコード自体またはルート名から取得されます — それらの翻訳はまだ接続されておらず、現在のページは人間らしく表示されたルート名を示しています。
+
+ko:
+  page_title: 검색
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 해보기
+    body: |
+      하나의 필드, 모든 종류의 결과. 페이지 이름은 라우터에서 가져오며 별도의 선언이 필요하지 않습니다; 레코드는 아래의 속성을 가진 엔티티에서 가져옵니다. 각 결과는 이동할 위치를 포함하므로, 바는 클릭의 의미에 대해 결정할 필요가 없습니다.
+  providers:
+    title: 제공자
+    body: |
+      제공자는 찾을 수 있는 것들의 한 가족입니다. 인터페이스를 구현하는 것은 전체 등록입니다 — 자동 구성 태그가 이를 표시하므로, 애플리케이션에 작성된 제공자가 존재함으로써 검색에 참여합니다. 여기에서 응답하는 것은 쿼리가 제한하는 이름에 따라 다릅니다.
+  entities:
+    title: '검색 가능한 엔티티'
+    body: |
+      클래스는 엔티티가 찾을 수 있음을 말합니다; 그 속성은 각각 어떤 것인지, 종류에 따라 말합니다 — 제목은 읽히고, 양은 숫자이며, 주소는 전부이거나 아무것도 아닙니다 — 그리고 종류는 SQL과 포인트를 모두 결정합니다. 레거시의 일곱 가지 점수 함수 중 여섯 가지는 변장을 한 그 목록이었습니다. 일곱 번째는 논리적이었고, 그 하나가 점수 클래스를 명명합니다; 응답이 누가 요청하는지에 따라 달라지는 엔티티는 provider: true를 추가하고 자신의 제공자를 얻습니다.
+    empty: '이 애플리케이션에서 속성을 선언한 엔티티가 없습니다 — 페이지 결과는 여전히 작동합니다.'
+    fields: 필드
+    scoring: '점수 기준'
+    contexts: 컨텍스트
+    own_provider: '자신의 제공자에 의해 제공됩니다.'
+  api:
+    title: API
+    body: |
+      결과는 엔티티이므로, 그 엔드포인트는 해당 엔티티의 컬렉션이고 그 외에는 없습니다. 동일한 PHP 클래스에서 생성된 TypeScript 리포지토리는 그것이 어디에 있는지 알려주지 않고도 호출합니다 — 이것이 위의 필드에서 사용하는 것입니다.
+    query: '쿼리 매개변수'
+    query_search: '무엇을 찾고 있는지. 빈 쿼리는 모든 것이 아니라 아무것도 응답하지 않습니다.'
+    query_context: '검색이 이루어지는 위치로, 어떤 응답을 할 수 있는지를 결정합니다. 제공되는 컨텍스트 :'
+    query_type: '응답을 한 종류로 제한합니다 — 엔티티 이름 또는 제공자 키.'
+    query_length: '결과 수. 없으면, 번들 구성에 의해 결정됩니다.'
+  translations:
+    title: 번역
+    body: |
+      바는 구성 요소의 네 면에서 자신의 레이블을 읽으므로, 플레이스홀더는 마크업에 작성되지 않습니다. 반면, 결과 제목은 레코드 자체나 경로 이름에서 옵니다 — 그것들을 번역하는 것은 아직 연결되어 있지 않으며, 현재 페이지는 그 경로 이름을 인간화하여 표시합니다.
+
+nl:
+  page_title: Zoeken
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 'Probeer het'
+    body: |
+      Één veld, elke soort resultaat. Pagina namen komen van de router en hebben geen verklaring nodig; records komen van de entiteiten die het onderstaande attribuut dragen. Elk resultaat geeft aan waar het naartoe gaat, dus de balk hoeft niets te beslissen over wat een klik betekent.
+  providers:
+    title: Leveranciers
+    body: |
+      Een leverancier is één familie van vindbare dingen. Het implementeren van de interface is de hele registratie — autoconfiguratie tagt het, zodat een leverancier geschreven in een applicatie zich bij de zoekopdracht voegt door te bestaan. Dit zijn degenen die hier antwoorden, door de naam waarmee een query zich beperkt.
+  entities:
+    title: 'Doorzoekbare entiteiten'
+    body: |
+      De klasse zegt dat een entiteit vindbaar is; haar eigenschappen zeggen waar dat op is, elk met zijn soort — een titel is leesbaar, een bedrag is een getal, een adres is geheel of niets — en de soort beslist zowel de SQL als de punten. Zes van de zeven scoringfuncties van de legacy waren die lijst in vermomming. De zevende redeneerde, en die noemt een scoringklasse; de entiteit wiens antwoord afhankelijk is van wie vraagt, voegt provider: true toe en krijgt een eigen provider.
+    empty: 'Geen entiteit verklaart het attribuut in deze applicatie nog — pagina resultaten werken nog steeds.'
+    fields: Velden
+    scoring: 'Beoordeeld door'
+    contexts: Contexten
+    own_provider: 'Geleverd door een eigen provider.'
+  api:
+    title: 'De API'
+    body: |
+      Een resultaat is een entiteit, dus zijn endpoint is de verzameling van die entiteit en niets anders. De TypeScript-repository die is gegenereerd vanuit dezelfde PHP-klasse roept het aan zonder te worden verteld waar het is — wat het veld hierboven gebruikt.
+    query: Queryparameters
+    query_search: 'Wat er wordt gezocht. Een lege zoekopdracht geeft niets terug in plaats van alles.'
+    query_context: 'Waar de zoekopdracht vandaan komt, wat bepaalt wat het kan antwoorden. Verzonden contexten :'
+    query_type: 'Beperkt het antwoord tot één soort — een entiteitsnaam of een leverancier sleutel.'
+    query_length: 'Hoeveel resultaten. Afwezig, de bundelconfiguratie beslist.'
+  translations:
+    title: Vertalingen
+    body: |
+      De balk leest zijn eigen labels van de vier zijden van de component, dus een placeholder wordt nooit in markup geschreven. Resultaat titels komen daarentegen van het record zelf of van de route naam — het vertalen daarvan is nog niet verbonden, en een pagina toont momenteel zijn route naam gehumaniseerd.
+
+pl:
+  page_title: Szukaj
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: Wypróbuj
+    body: |
+      Jedno pole, każdy rodzaj wyniku. Nazwy stron pochodzą z routera i nie wymagają deklaracji; rekordy pochodzą z encji posiadających atrybut poniżej. Każdy wynik zawiera informacje, gdzie prowadzi, więc pasek nie ma nic do zdecydowania, co oznacza kliknięcie.
+  providers:
+    title: Dostawcy
+    body: |
+      Dostawca to jedna rodzina rzeczy, które można znaleźć. Implementacja interfejsu to cała rejestracja — autokonfiguracja oznacza to, więc dostawca napisany w aplikacji dołącza do wyszukiwania poprzez istnienie. To są ci, którzy odpowiadają tutaj, według nazwy, do której ogranicza się zapytanie.
+  entities:
+    title: 'Wyszukiwalne encje'
+    body: |
+      Klasa wskazuje, że encja jest znajdowana; jej właściwości mówią, na co, każda z ich rodzaju — tytuł jest odczytywany, ilość to liczba, adres jest pełny lub żaden — a rodzaj decyduje zarówno o SQL, jak i o punktach. Sześć z siedmiu funkcji punktacji dziedzictwa to ta lista w przebraniu. Siódma myślała, a ta jedna nazywa klasę punktacji; encja, której odpowiedź zależy od tego, kto pyta, dodaje provider: true i otrzymuje swojego dostawcę.
+    empty: 'Żadna encja jeszcze nie deklaruje atrybutu w tej aplikacji — wyniki strony wciąż działają.'
+    fields: Pola
+    scoring: 'Punktowane przez'
+    contexts: Konteksty
+    own_provider: 'Obsługiwane przez własnego dostawcę.'
+  api:
+    title: API
+    body: |
+      Wynik to encja, więc jej punkt końcowy to kolekcja tej encji i nic więcej. Repozytorium TypeScript wygenerowane z tej samej klasy PHP wywołuje to bez wskazywania, gdzie się znajduje — co jest tym, co wykorzystuje pole powyżej.
+    query: 'Parametry zapytania'
+    query_search: 'Czego się szuka. Puste zapytanie nie odpowiada niczemu zamiast wszystkiemu.'
+    query_context: 'Z jakiego miejsca jest przeprowadzane wyszukiwanie, co decyduje, na co może odpowiedzieć. Wysłane konteksty :'
+    query_type: 'Ogranicza odpowiedź do jednego rodzaju — nazwy encji lub klucza dostawcy.'
+    query_length: 'Ile wyników. Nieobecne, konfiguracja pakietu decyduje.'
+  translations:
+    title: Tłumaczenia
+    body: |
+      Pasek odczytuje swoje etykiety z czterech stron komponentu, więc placeholder nigdy nie jest zapisany w markupie. Tytuły wyników, z drugiej strony, pochodzą z samego rekordu lub z nazwy trasy — tłumaczenie tych nie jest jeszcze podłączone, a strona obecnie pokazuje swoją nazwę trasy w zrozumiałej formie.
+
+pt_BR:
+  page_title: Pesquisar
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: Experimente
+    body: |
+      Um campo, todo tipo de resultado. Os nomes das páginas vêm do roteador e não precisam de declaração; os registros vêm das entidades que carregam o atributo abaixo. Cada resultado indica para onde vai, então a barra não tem nada a decidir sobre o que um clique significa.
+  providers:
+    title: Provedores
+    body: |
+      Um provedor é uma família de coisas que podem ser encontradas. Implementar a interface é todo o registro — a autoconfiguração o marca, então um provedor escrito em um aplicativo se junta à busca por existir. Estes são os que respondem aqui, pelo nome que uma consulta se restringe.
+  entities:
+    title: 'Entidades pesquisáveis'
+    body: |
+      A classe diz que uma entidade é encontrável; suas propriedades dizem sobre o que, cada uma com seu tipo — um título é lido, uma quantidade é um número, um endereço é inteiro ou nada — e o tipo decide tanto o SQL quanto os pontos. Seis das sete funções de pontuação do legado eram aquela lista disfarçada. A sétima raciocinava, e essa nomeia uma classe de pontuação; a entidade cuja resposta depende de quem está perguntando adiciona provider: true e obtém um provedor próprio.
+    empty: 'Nenhuma entidade declara o atributo neste aplicativo ainda — os resultados da página ainda funcionam.'
+    fields: Campos
+    scoring: 'Pontuado por'
+    contexts: Contextos
+    own_provider: 'Servido por um provedor próprio.'
+  api:
+    title: 'A API'
+    body: |
+      Um resultado é uma entidade, então seu endpoint é a coleção dessa entidade e nada mais. O repositório TypeScript gerado a partir da mesma classe PHP a chama sem ser informado de onde está — que é o que o campo acima utiliza.
+    query: 'Parâmetros da consulta'
+    query_search: 'O que está sendo procurado. Uma consulta vazia não responde nada ao invés de tudo.'
+    query_context: 'De onde a busca é feita, o que decide o que pode responder. Contextos enviados:'
+    query_type: 'Restringe a resposta a um tipo — um nome de entidade ou uma chave de provedor.'
+    query_length: 'Quantos resultados. Ausente, a configuração do pacote decide.'
+  translations:
+    title: Traduções
+    body: |
+      A barra lê seus próprios rótulos das quatro faces do componente, então um espaço reservado nunca é escrito em marcação. Os títulos dos resultados, por outro lado, vêm do próprio registro ou do nome da rota — traduzir esses ainda não está configurado, e uma página atualmente exibe seu nome de rota humanizado.
+
+ru:
+  page_title: Поиск
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: Попробовать
+    body: |
+      Одно поле, все виды результатов. Названия страниц берутся из маршрутизатора и не требуют объявления; записи приходят от сущностей, имеющих атрибут ниже. Каждый результат содержит информацию о том, куда он ведет, так что панель не должна решать, что означает клик.
+  providers:
+    title: Поставщики
+    body: |
+      Поставщик — это одна семья находящихся вещей. Реализация интерфейса — это вся регистрация — автоконфигурация помечает это, так что поставщик, написанный в приложении, присоединяется к поиску, просто существуя. Это те, кто отвечает здесь, по имени, к которому ограничивается запрос.
+  entities:
+    title: 'Ищущиеся сущности'
+    body: |
+      Класс говорит, что сущность доступна для поиска; её свойства указывают, по каким критериям, каждое со своим типом — заголовок читается, сумма — это число, адрес — или полное значение, или ничего — и тип определяет как SQL, так и баллы. Шесть из семи функций оценки наследия были этим списком в маскировке. Седьмая обосновывала, и она именует класс оценки; сущность, ответ которой зависит от того, кто спрашивает, добавляет provider: true и получает собственного поставщика.
+    empty: 'В этом приложении пока ни одна сущность не объявляет атрибут — результаты страницы все еще работают.'
+    fields: Поля
+    scoring: 'Оценка по'
+    contexts: Контексты
+    own_provider: 'Обслуживается собственным поставщиком.'
+  api:
+    title: API
+    body: |
+      Результат — это сущность, так что её конечная точка — это коллекция этой сущности и ничего больше. Репозиторий TypeScript, созданный из того же класса PHP, вызывает его, не будучи сказанным, где он находится — именно это поле выше и использует.
+    query: 'Параметры запроса'
+    query_search: 'Что ищется. Пустой запрос не дает ответа, а не все.'
+    query_context: 'Откуда производится поиск, что определяет, что он может ответить. Доставленные контексты:'
+    query_type: 'Ограничивает ответ одним видом — именем сущности или ключом поставщика.'
+    query_length: 'Сколько результатов. При отсутствии этого, конфигурация пакета решает.'
+  translations:
+    title: Переводы
+    body: |
+      Панель считывает свои собственные метки с четырех сторон компонента, так что заполнители никогда не пишутся в разметке. Заголовки результатов, с другой стороны, приходят из самой записи или из имени маршрута — перевод этих еще не настроен, и страница в настоящее время показывает своё имя маршрута в человекочитаемом виде.
+
+th:
+  page_title: ค้นหา
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: ลองใช้งาน
+    body: |
+      ฟิลด์เดียว ผลลัพธ์ทุกประเภท ชื่อหน้ามาจากตัวกำหนดเส้นทางและไม่ต้องมีการประกาศ; บันทึกมาจากเอนทิตีที่มีแอตทริบิวต์ด้านล่าง ผลลัพธ์แต่ละรายการมีการระบุทิศทางที่จะไป ดังนั้นแถบจึงไม่ต้องตัดสินใจเกี่ยวกับความหมายของการคลิก
+  providers:
+    title: ผู้ให้บริการ
+    body: |
+      ผู้ให้บริการคือกลุ่มของสิ่งที่ค้นหาได้ การดำเนินการตามอินเทอร์เฟซคือการลงทะเบียนทั้งหมด — การตั้งค่าอัตโนมัติทำให้มันเกิดขึ้น ดังนั้นผู้ให้บริการที่เขียนในแอปพลิเคชันจึงเข้าร่วมการค้นหาโดยการมีอยู่ สิ่งเหล่านี้คือผู้ที่ตอบสนองที่นี่ โดยชื่อที่มีการจำกัดการค้นหาอยู่
+  entities:
+    title: เอนทิตีที่ค้นหาได้
+    body: |
+      คลาสบอกว่าเอนทิตีสามารถค้นหาได้; คุณสมบัติของมันบอกว่าบนสิ่งใด โดยแต่ละอย่างมีประเภทของมัน — ชื่ออ่านได้, จำนวนเป็นตัวเลข, ที่อยู่เป็นทั้งหมดหรือไม่มีเลย — และประเภทนั้นตัดสินทั้ง SQL และคะแนน หกในเจ็ดฟังก์ชันการให้คะแนนของมรดกคือรายการนั้นในคราบแอบแฝง สาเหตุที่เจ็ดคือการให้เหตุผล และอันนั้นชื่อว่าคลาสการให้คะแนน; เอนทิตีที่คำตอบขึ้นอยู่กับผู้ที่ถามจะเพิ่มผู้ให้บริการ: true และได้รับผู้ให้บริการของตนเอง
+    empty: 'ยังไม่มีเอนทิตีใดประกาศแอตทริบิวต์ในแอปพลิเคชันนี้ — ผลลัพธ์ของหน้ายังคงทำงานอยู่'
+    fields: ฟิลด์
+    scoring: ให้คะแนนโดย
+    contexts: บริบท
+    own_provider: ให้บริการโดยผู้ให้บริการของตนเอง
+  api:
+    title: API
+    body: |
+      ผลลัพธ์คือเอนทิตี ดังนั้นจุดสิ้นสุดของมันคือการรวบรวมเอนทิตีนั้นและไม่มีอะไรอื่น รีโพสิตอรี TypeScript ที่สร้างจากคลาส PHP เดียวกันเรียกมันโดยไม่ต้องบอกว่ามันอยู่ที่ไหน — ซึ่งคือสิ่งที่ฟิลด์ข้างบนใช้งานอยู่
+    query: พารามิเตอร์การค้นหา
+    query_search: 'สิ่งที่กำลังถูกค้นหา คำค้นหาที่ว่างเปล่าจะตอบกลับว่าไม่มีสิ่งใดมากกว่าทุกอย่าง'
+    query_context: 'ที่ที่การค้นหาถูกทำขึ้น ซึ่งตัดสินใจว่าสามารถตอบอะไรได้ ส่งบริบท:'
+    query_type: 'จำกัดคำตอบให้เป็นประเภทหนึ่ง — ชื่อเอนทิตี หรือ คีย์ของผู้ให้บริการ'
+    query_length: 'จำนวนผลลัพธ์ ถ้าไม่มีการกำหนด การกำหนดค่าชุดจะตัดสินใจ'
+  translations:
+    title: การแปล
+    body: 'แถบอ่านป้ายกำกับของมันเองจากสี่ด้านของส่วนประกอบ ดังนั้นค่าตัวอย่างจึงไม่เคยเขียนในมาร์กอัป ชื่อผลลัพธ์ในทางกลับกันมาจากบันทึกเองหรือจากชื่อเส้นทาง — การแปลเหล่านั้นยังไม่ได้เชื่อมโยง และหน้านี้แสดงชื่อเส้นทางในรูปแบบที่เข้าใจได้'
+
+tr:
+  page_title: Ara
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: Deneyin
+    body: |
+      Bir alan, her türlü sonuç. Sayfa isimleri yönlendiriciden gelir ve beyan edilmesine gerek yoktur; kayıtlar ise aşağıdaki niteliği taşıyan varlıklardan gelir. Her sonuç nereye gideceğini taşır, bu nedenle çubuğun bir tıklamanın ne anlama geldiği konusunda karar vermesi gerekmez.
+  providers:
+    title: Sağlayıcılar
+    body: |
+      Bir sağlayıcı, bulunabilir nesnelerin bir ailesidir. Arayüzü uygulamak, tüm kayıttır — otomatik yapılandırma bunu etiketler, böylece bir uygulamada yazılmış bir sağlayıcı var olarak aramaya katılır. Bunlar, bir sorgunun kendini kısıtladığı isimle burada yanıt verenlerdir.
+  entities:
+    title: 'Aranabilir varlıklar'
+    body: |
+      Sınıf, bir varlığın bulunabilir olduğunu söyler; özellikleri ise neye dair olduğunu belirtir, her biri kendi türüyle — bir başlık okunur, bir miktar bir rakamdır, bir adres bütündür ya da hiçtir — ve tür hem SQL'i hem de puanları belirler. Mirasın yedi puanlama fonksiyonundan altısı, o listedir gizli olarak. Yedincisi akıl yürüttü ve o bir puanlama sınıfı adlandırır; cevabı soran kişiye bağlı olan varlık, provider: true ekler ve kendi sağlayıcısını alır.
+    empty: 'Bu uygulamada henüz niteliği beyan eden bir varlık yok — sayfa sonuçları yine de çalışır.'
+    fields: Alanlar
+    scoring: 'Puanlama ile'
+    contexts: Bağlamlar
+    own_provider: 'Kendi sağlayıcısı tarafından sunuluyor.'
+  api:
+    title: API
+    body: |
+      Bir sonuç bir varlıktır, dolayısıyla uç noktası o varlığın koleksiyonudur ve başka bir şey değildir. Aynı PHP sınıfından oluşturulan TypeScript deposu, nerede olduğunu söylenmeden çağırır — bu, yukarıdaki alanın kullandığı şeydir.
+    query: 'Sorgu parametreleri'
+    query_search: 'Ne arandığı. Boş bir sorgu, her şey yerine hiçbir şeye yanıt vermez.'
+    query_context: 'Aramanın yapıldığı yer, neye yanıt verebileceğini belirler. Gönderilen bağlamlar:'
+    query_type: 'Yanıtı bir türe kısıtlar — bir varlık ismi veya bir sağlayıcı anahtarı.'
+    query_length: 'Kaç tane sonuç. Yoksa, paket yapılandırması karar verir.'
+  translations:
+    title: Çeviriler
+    body: |
+      Çubuk, bileşenin dört yüzünden kendi etiketlerini okur, bu nedenle bir yer tutucu asla işaretlemeye yazılmaz. Öte yandan, sonuç başlıkları kayıtın kendisinden veya rota adından gelir — bunların çevrilmesi henüz yapılandırılmamıştır ve bir sayfa şu anda rota adını insanlaştırılmış şekilde gösterir.
+
+ur:
+  page_title: 'تلاش کریں'
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: آزمائیں
+    body: |
+      ایک فیلڈ، ہر قسم کے نتائج۔ صفحے کے نام روٹر سے آتے ہیں اور ان کا اعلان کرنے کی ضرورت نہیں ہوتی؛ ریکارڈز ان اداروں سے آتے ہیں جو نیچے دی گئی خصوصیت کو رکھتی ہیں۔ ہر نتیجہ یہ بتاتا ہے کہ یہ کہاں جاتا ہے، لہذا بار کے پاس یہ فیصلہ کرنے کے لیے کچھ نہیں ہے کہ کلک کا کیا مطلب ہے۔
+  providers:
+    title: 'مہیا کرنے والے'
+    body: |
+      ایک مہیا کرنے والا قابل تلاش چیزوں کا ایک خاندان ہے۔ انٹرفیس کا نفاذ پورا اندراج ہے — خودکار تشکیل اس کی نشاندہی کرتی ہے، لہذا ایک ایپلیکیشن میں لکھا گیا مہیا کرنے والا موجود ہونے کی وجہ سے تلاش میں شامل ہوتا ہے۔ یہ وہ ہیں جو یہاں جواب دے رہے ہیں، جس نام کے تحت ایک درخواست خود کو محدود کرتی ہے۔
+  entities:
+    title: 'قابل تلاش ادارے'
+    body: |
+      کلاس کہتا ہے کہ ایک ادارہ قابل تلاش ہے؛ اس کی خصوصیات یہ بتاتی ہیں کہ یہ کس چیز پر ہے، ہر ایک اپنی نوعیت کے ساتھ — ایک عنوان پڑھا جاتا ہے، ایک مقدار ایک عدد ہے، ایک پتہ مکمل یا کچھ نہیں ہے — اور نوعیت دونوں SQL اور پوائنٹس کا فیصلہ کرتی ہے۔ وراثت کے سات میں سے چھ اس فہرست میں پوشیدہ تھے۔ ساتواں دلیل دی گئی، اور وہ ایک اسکورنگ کلاس کا نام دیتا ہے؛ وہ ادارہ جس کا جواب اس بات پر منحصر ہوتا ہے کہ کون پوچھ رہا ہے، مہیا کرنے والے میں: درست شامل کرتا ہے اور اپنے لیے ایک مہیا کرنے والا حاصل کرتا ہے۔
+    empty: 'اس ایپلیکیشن میں ابھی تک کوئی ادارہ اس خصوصیت کا اعلان نہیں کرتا — صفحے کے نتائج اب بھی کام کرتے ہیں۔'
+    fields: فیلڈز
+    scoring: 'اسکور کے لحاظ سے'
+    contexts: 'سیاق و سباق'
+    own_provider: 'اپنے مہیا کرنے والے کی خدمت میں۔'
+  api:
+    title: API
+    body: |
+      ایک نتیجہ ایک ادارہ ہے، لہذا اس کا اینڈپوائنٹ اس ادارے کا مجموعہ ہے اور کچھ نہیں۔ اسی PHP کلاس سے تیار کردہ TypeScript ذخیرہ اسے بتائے بغیر بلا کہ وہ کہاں ہے، بلا لیتا ہے — جو کہ اوپر والا فیلڈ استعمال کرتا ہے۔
+    query: 'تلاش کے پیرامیٹرز'
+    query_search: 'کیا تلاش کیا جا رہا ہے۔ ایک خالی درخواست کچھ نہیں جواب دیتی بلکہ سب کچھ۔'
+    query_context: 'کہاں سے تلاش کی جا رہی ہے، جو یہ فیصلہ کرتی ہے کہ یہ کیا جواب دے سکتی ہے۔ بھیجے گئے سیاق و سباق :'
+    query_type: 'جواب کو ایک قسم پر محدود کرتا ہے — ایک ادارے کا نام، یا ایک مہیا کرنے والے کی کلید۔'
+    query_length: 'کتنے نتائج۔ غیر موجود، پیکج کی تشکیل فیصلہ کرتی ہے۔'
+  translations:
+    title: ترجمے
+    body: |
+      بار اپنے لیبلز کو جزو کے چار چہروں سے پڑھتا ہے، لہذا ایک پلیس ہولڈر کبھی بھی نشان زد نہیں ہوتا۔ دوسری طرف، نتیجہ کے عنوانات ریکارڈ سے خود یا روٹ کے نام سے آتے ہیں — ان کا ترجمہ ابھی تک ترتیب نہیں دیا گیا ہے، اور ایک صفحہ فی الحال اپنے روٹ کے نام کو انسانی شکل میں دکھاتا ہے۔
+
+vi:
+  page_title: 'Tìm kiếm'
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 'Thử ngay'
+    body: |
+      Một trường, mọi loại kết quả. Tên trang xuất phát từ bộ định tuyến và không cần khai báo; các bản ghi đến từ các thực thể mang thuộc tính bên dưới. Mỗi kết quả đều có nơi đến của nó, vì vậy thanh tìm kiếm không cần quyết định về ý nghĩa của mỗi cú nhấp chuột.
+  providers:
+    title: 'Nhà cung cấp'
+    body: |
+      Một nhà cung cấp là một nhóm những thứ có thể tìm thấy. Việc triển khai giao diện là toàn bộ quá trình đăng ký — tự cấu hình đánh dấu nó, vì vậy một nhà cung cấp được viết trong ứng dụng sẽ tham gia tìm kiếm bằng cách tồn tại. Đây là những cái trả lời ở đây, theo tên mà truy vấn giới hạn chính nó.
+  entities:
+    title: 'Các thực thể có thể tìm kiếm'
+    body: |
+      Lớp nói rằng một thực thể là có thể tìm thấy; các thuộc tính của nó cho biết về cái gì, mỗi thuộc tính có loại của nó — một tiêu đề được đọc, một số lượng là một con số, một địa chỉ là toàn bộ hoặc không có gì — và loại quyết định cả SQL và các điểm. Sáu trong bảy hàm tính điểm của di sản đã là danh sách đó trong hình thức giả. Lý do thứ bảy đã suy luận, và cái đó đặt tên cho một lớp tính điểm; thực thể mà câu trả lời của nó phụ thuộc vào ai đang hỏi thêm thuộc tính provider: true và có một nhà cung cấp riêng của nó.
+    empty: 'Chưa có thực thể nào khai báo thuộc tính trong ứng dụng này — kết quả trang vẫn hoạt động.'
+    fields: 'Các trường'
+    scoring: 'Được tính điểm bởi'
+    contexts: 'Ngữ cảnh'
+    own_provider: 'Được phục vụ bởi một nhà cung cấp riêng.'
+  api:
+    title: API
+    body: |
+      Một kết quả là một thực thể, vì vậy điểm cuối của nó là tập hợp của thực thể đó và không có gì khác. Kho lưu trữ TypeScript được tạo ra từ cùng một lớp PHP gọi nó mà không cần được chỉ định nơi nó ở — đó là điều mà trường phía trên sử dụng.
+    query: 'Tham số truy vấn'
+    query_search: 'Điều gì đang được tìm kiếm. Một truy vấn trống không trả lời gì cả thay vì mọi thứ.'
+    query_context: 'Nơi mà tìm kiếm được thực hiện từ đó, điều này quyết định cái mà nó có thể trả lời. Các ngữ cảnh đã được gửi:'
+    query_type: 'Giới hạn câu trả lời chỉ cho một loại — tên thực thể, hoặc khóa nhà cung cấp.'
+    query_length: 'Số lượng kết quả. Nếu không có, cấu hình gói sẽ quyết định.'
+  translations:
+    title: 'Dịch thuật'
+    body: 'Thanh tìm kiếm đọc nhãn riêng của nó từ bốn mặt của thành phần, vì vậy một giá trị giữ chỗ không bao giờ được viết trong markup. Ngược lại, tiêu đề kết quả xuất phát từ bản ghi chính nó hoặc từ tên tuyến đường — việc dịch những cái đó vẫn chưa được kết nối, và một trang hiện tại hiển thị tên tuyến đường theo cách dễ hiểu.'
+
+zh:
+  page_title: 搜索
+  page_icon: 'ph:bold/magnifying-glass'
+  try:
+    title: 试试
+    body: |
+      一个字段，各种结果。页面名称来自路由器，无需声明；记录来自承载以下属性的实体。每个结果都携带去往的地方，因此搜索栏无需决定点击的含义。
+  providers:
+    title: 提供者
+    body: |
+      提供者是一类可查找的事物。实现接口即为整个注册——自动配置标记它，因此在应用程序中编写的提供者通过存在加入搜索。这些是通过查询名称限制的回应。
+  entities:
+    title: 可搜索的实体
+    body: |
+      类表示一个实体是可查找的；它的属性说明了什么，每个属性都有其类型——标题是可读的，数量是数字，地址是完整或无——类型决定了SQL和分数。遗留的七个评分函数中有六个是伪装的列表。第七个是推理的，那个命名了评分类；其答案依赖于提问者的实体添加提供者: true，并获得自己的提供者。
+    empty: 此应用程序中尚无实体声明该属性——页面结果仍然有效。
+    fields: 字段
+    scoring: 评分依据
+    contexts: 上下文
+    own_provider: 由自己的提供者提供。
+  api:
+    title: API
+    body: 结果是一个实体，因此其端点是该实体的集合，别无他物。根据相同PHP类生成的TypeScript库在未被告知其位置的情况下调用它——这就是上面字段所使用的。
+    query: 查询参数
+    query_search: 正在查找的内容。空查询不会回答任何内容，而不是所有内容。
+    query_context: 搜索的来源，决定了它可能的回答。已提供的上下文：
+    query_type: 将答案限制为一种类型——实体名称或提供者密钥。
+    query_length: 结果数量。缺失时，包配置决定。
+  translations:
+    title: 翻译
+    body: |
+      搜索栏从组件的四个面读取自己的标签，因此占位符从未在标记中书写。另一方面，结果标题来自记录本身或路由名称——翻译这些尚未连接，目前页面显示其人性化的路由名称。

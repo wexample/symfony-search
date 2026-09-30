@@ -1,0 +1,114 @@
+en:
+  placeholder: Search...
+  empty: Nothing found.
+  pending: Searching...
+
+ar:
+  placeholder: ابحث...
+  empty: 'لا شيء موجود.'
+  pending: 'جارٍ البحث...'
+
+bn:
+  placeholder: 'অনুসন্ধান করুন...'
+  empty: 'কিছুই পাওয়া যায়নি।'
+  pending: 'অনুসন্ধান করা হচ্ছে...'
+
+de:
+  placeholder: Suche...
+  empty: 'Nichts gefunden.'
+  pending: Suche...
+
+es:
+  placeholder: Buscar...
+  empty: 'Nada encontrado.'
+  pending: Buscando...
+
+fa:
+  placeholder: جستجو...
+  empty: 'هیچ چیزی پیدا نشد.'
+  pending: 'در حال جستجو...'
+
+fi:
+  placeholder: Etsi...
+  empty: 'Ei löytynyt mitään.'
+  pending: Etsitään...
+
+fr:
+  placeholder: Rechercher...
+  empty: Aucun résultat.
+  pending: Recherche en cours...
+
+he:
+  placeholder: חפש...
+  empty: 'לא נמצא דבר.'
+  pending: מחפש...
+
+hi:
+  placeholder: खोजें...
+  empty: 'कुछ नहीं मिला।'
+  pending: 'खोज रहा है...'
+
+id:
+  placeholder: Cari...
+  empty: 'Tidak ada yang ditemukan.'
+  pending: 'Sedang mencari...'
+
+it:
+  placeholder: Cerca...
+  empty: 'Niente trovato.'
+  pending: 'Ricerca in corso...'
+
+ja:
+  placeholder: 検索...
+  empty: 見つかりませんでした。
+  pending: 検索中...
+
+ko:
+  placeholder: 검색...
+  empty: '찾을 수 없습니다.'
+  pending: '검색 중...'
+
+nl:
+  placeholder: Zoeken...
+  empty: 'Niets gevonden.'
+  pending: 'Aan het zoeken...'
+
+pl:
+  placeholder: Szukaj...
+  empty: 'Nic nie znaleziono.'
+  pending: Szukam...
+
+pt_BR:
+  placeholder: Pesquisar...
+  empty: 'Nada encontrado.'
+  pending: Buscando...
+
+ru:
+  placeholder: Поиск...
+  empty: 'Ничего не найдено.'
+  pending: Поиск...
+
+th:
+  placeholder: ค้นหา...
+  empty: ไม่พบข้อมูล.
+  pending: กำลังค้นหา...
+
+tr:
+  placeholder: Ara...
+  empty: 'Hiçbir şey bulunamadı.'
+  pending: Aranıyor...
+
+ur:
+  placeholder: 'تلاش کریں...'
+  empty: 'کچھ نہیں ملا۔'
+  pending: 'تلاش جاری ہے...'
+
+vi:
+  placeholder: 'Tìm kiếm...'
+  empty: 'Không tìm thấy gì.'
+  pending: 'Đang tìm kiếm...'
+
+zh:
+  placeholder: 搜索...
+  empty: 未找到任何内容。
+  pending: 搜索中...

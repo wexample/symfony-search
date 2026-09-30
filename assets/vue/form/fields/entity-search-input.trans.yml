@@ -1,0 +1,68 @@
+en:
+  clear: Pick something else
+
+ar:
+  clear: 'Pick something else'
+
+bn:
+  clear: 'অন্য কিছু বেছে নিন'
+
+de:
+  clear: 'Wählen Sie etwas anderes'
+
+es:
+  clear: 'Pick something else'
+
+fa:
+  clear: 'چیز دیگری انتخاب کنید'
+
+fi:
+  clear: 'Valitse jokin muu'
+
+fr:
+  clear: Choisir autre chose
+
+he:
+  clear: 'בחר משהו אחר'
+
+hi:
+  clear: 'Pick something else'
+
+id:
+  clear: 'Pilih sesuatu yang lain'
+
+it:
+  clear: "Scegli qualcos'altro"
+
+ja:
+  clear: 別のものを選んでください
+
+ko:
+  clear: '다른 것을 선택하세요'
+
+nl:
+  clear: 'Kies iets anders'
+
+pl:
+  clear: 'Wybierz coś innego'
+
+pt_BR:
+  clear: 'Escolha outra coisa'
+
+ru:
+  clear: 'Выберите что-то другое'
+
+th:
+  clear: เลือกอย่างอื่น
+
+tr:
+  clear: 'Başka bir şey seç'
+
+ur:
+  clear: 'کچھ اور منتخب کریں'
+
+vi:
+  clear: 'Chọn cái khác'
+
+zh:
+  clear: 'Pick something else'
