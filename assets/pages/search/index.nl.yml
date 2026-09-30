@@ -1,0 +1,32 @@
+page_title: Zoeken
+page_icon: 'ph:bold/magnifying-glass'
+try:
+  title: 'Probeer het'
+  body: |
+    Één veld, elke soort resultaat. Pagina namen komen van de router en hebben geen verklaring nodig; records komen van de entiteiten die het onderstaande attribuut dragen. Elk resultaat geeft aan waar het naartoe gaat, dus de balk hoeft niets te beslissen over wat een klik betekent.
+providers:
+  title: Leveranciers
+  body: |
+    Een leverancier is één familie van vindbare dingen. Het implementeren van de interface is de hele registratie — autoconfiguratie tagt het, zodat een leverancier geschreven in een applicatie zich bij de zoekopdracht voegt door te bestaan. Dit zijn degenen die hier antwoorden, door de naam waarmee een query zich beperkt.
+entities:
+  title: 'Doorzoekbare entiteiten'
+  body: |
+    De klasse zegt dat een entiteit vindbaar is; haar eigenschappen zeggen waar dat op is, elk met zijn soort — een titel is leesbaar, een bedrag is een getal, een adres is geheel of niets — en de soort beslist zowel de SQL als de punten. Zes van de zeven scoringfuncties van de legacy waren die lijst in vermomming. De zevende redeneerde, en die noemt een scoringklasse; de entiteit wiens antwoord afhankelijk is van wie vraagt, voegt provider: true toe en krijgt een eigen provider.
+  empty: 'Geen entiteit verklaart het attribuut in deze applicatie nog — pagina resultaten werken nog steeds.'
+  fields: Velden
+  scoring: 'Beoordeeld door'
+  contexts: Contexten
+  own_provider: 'Geleverd door een eigen provider.'
+api:
+  title: 'De API'
+  body: |
+    Een resultaat is een entiteit, dus zijn endpoint is de verzameling van die entiteit en niets anders. De TypeScript-repository die is gegenereerd vanuit dezelfde PHP-klasse roept het aan zonder te worden verteld waar het is — wat het veld hierboven gebruikt.
+  query: Queryparameters
+  query_search: 'Wat er wordt gezocht. Een lege zoekopdracht geeft niets terug in plaats van alles.'
+  query_context: 'Waar de zoekopdracht vandaan komt, wat bepaalt wat het kan antwoorden. Verzonden contexten :'
+  query_type: 'Beperkt het antwoord tot één soort — een entiteitsnaam of een leverancier sleutel.'
+  query_length: 'Hoeveel resultaten. Afwezig, de bundelconfiguratie beslist.'
+translations:
+  title: Vertalingen
+  body: |
+    De balk leest zijn eigen labels van de vier zijden van de component, dus een placeholder wordt nooit in markup geschreven. Resultaat titels komen daarentegen van het record zelf of van de route naam — het vertalen daarvan is nog niet verbonden, en een pagina toont momenteel zijn route naam gehumaniseerd.

@@ -1,0 +1,32 @@
+page_title: Pesquisar
+page_icon: 'ph:bold/magnifying-glass'
+try:
+  title: Experimente
+  body: |
+    Um campo, todo tipo de resultado. Os nomes das páginas vêm do roteador e não precisam de declaração; os registros vêm das entidades que carregam o atributo abaixo. Cada resultado indica para onde vai, então a barra não tem nada a decidir sobre o que um clique significa.
+providers:
+  title: Provedores
+  body: |
+    Um provedor é uma família de coisas que podem ser encontradas. Implementar a interface é todo o registro — a autoconfiguração o marca, então um provedor escrito em um aplicativo se junta à busca por existir. Estes são os que respondem aqui, pelo nome que uma consulta se restringe.
+entities:
+  title: 'Entidades pesquisáveis'
+  body: |
+    A classe diz que uma entidade é encontrável; suas propriedades dizem sobre o que, cada uma com seu tipo — um título é lido, uma quantidade é um número, um endereço é inteiro ou nada — e o tipo decide tanto o SQL quanto os pontos. Seis das sete funções de pontuação do legado eram aquela lista disfarçada. A sétima raciocinava, e essa nomeia uma classe de pontuação; a entidade cuja resposta depende de quem está perguntando adiciona provider: true e obtém um provedor próprio.
+  empty: 'Nenhuma entidade declara o atributo neste aplicativo ainda — os resultados da página ainda funcionam.'
+  fields: Campos
+  scoring: 'Pontuado por'
+  contexts: Contextos
+  own_provider: 'Servido por um provedor próprio.'
+api:
+  title: 'A API'
+  body: |
+    Um resultado é uma entidade, então seu endpoint é a coleção dessa entidade e nada mais. O repositório TypeScript gerado a partir da mesma classe PHP a chama sem ser informado de onde está — que é o que o campo acima utiliza.
+  query: 'Parâmetros da consulta'
+  query_search: 'O que está sendo procurado. Uma consulta vazia não responde nada ao invés de tudo.'
+  query_context: 'De onde a busca é feita, o que decide o que pode responder. Contextos enviados:'
+  query_type: 'Restringe a resposta a um tipo — um nome de entidade ou uma chave de provedor.'
+  query_length: 'Quantos resultados. Ausente, a configuração do pacote decide.'
+translations:
+  title: Traduções
+  body: |
+    A barra lê seus próprios rótulos das quatro faces do componente, então um espaço reservado nunca é escrito em marcação. Os títulos dos resultados, por outro lado, vêm do próprio registro ou do nome da rota — traduzir esses ainda não está configurado, e uma página atualmente exibe seu nome de rota humanizado.

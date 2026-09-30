@@ -1,0 +1,31 @@
+page_title: 'Tìm kiếm'
+page_icon: 'ph:bold/magnifying-glass'
+try:
+  title: 'Thử ngay'
+  body: |
+    Một trường, mọi loại kết quả. Tên trang xuất phát từ bộ định tuyến và không cần khai báo; các bản ghi đến từ các thực thể mang thuộc tính bên dưới. Mỗi kết quả đều có nơi đến của nó, vì vậy thanh tìm kiếm không cần quyết định về ý nghĩa của mỗi cú nhấp chuột.
+providers:
+  title: 'Nhà cung cấp'
+  body: |
+    Một nhà cung cấp là một nhóm những thứ có thể tìm thấy. Việc triển khai giao diện là toàn bộ quá trình đăng ký — tự cấu hình đánh dấu nó, vì vậy một nhà cung cấp được viết trong ứng dụng sẽ tham gia tìm kiếm bằng cách tồn tại. Đây là những cái trả lời ở đây, theo tên mà truy vấn giới hạn chính nó.
+entities:
+  title: 'Các thực thể có thể tìm kiếm'
+  body: |
+    Lớp nói rằng một thực thể là có thể tìm thấy; các thuộc tính của nó cho biết về cái gì, mỗi thuộc tính có loại của nó — một tiêu đề được đọc, một số lượng là một con số, một địa chỉ là toàn bộ hoặc không có gì — và loại quyết định cả SQL và các điểm. Sáu trong bảy hàm tính điểm của di sản đã là danh sách đó trong hình thức giả. Lý do thứ bảy đã suy luận, và cái đó đặt tên cho một lớp tính điểm; thực thể mà câu trả lời của nó phụ thuộc vào ai đang hỏi thêm thuộc tính provider: true và có một nhà cung cấp riêng của nó.
+  empty: 'Chưa có thực thể nào khai báo thuộc tính trong ứng dụng này — kết quả trang vẫn hoạt động.'
+  fields: 'Các trường'
+  scoring: 'Được tính điểm bởi'
+  contexts: 'Ngữ cảnh'
+  own_provider: 'Được phục vụ bởi một nhà cung cấp riêng.'
+api:
+  title: API
+  body: |
+    Một kết quả là một thực thể, vì vậy điểm cuối của nó là tập hợp của thực thể đó và không có gì khác. Kho lưu trữ TypeScript được tạo ra từ cùng một lớp PHP gọi nó mà không cần được chỉ định nơi nó ở — đó là điều mà trường phía trên sử dụng.
+  query: 'Tham số truy vấn'
+  query_search: 'Điều gì đang được tìm kiếm. Một truy vấn trống không trả lời gì cả thay vì mọi thứ.'
+  query_context: 'Nơi mà tìm kiếm được thực hiện từ đó, điều này quyết định cái mà nó có thể trả lời. Các ngữ cảnh đã được gửi:'
+  query_type: 'Giới hạn câu trả lời chỉ cho một loại — tên thực thể, hoặc khóa nhà cung cấp.'
+  query_length: 'Số lượng kết quả. Nếu không có, cấu hình gói sẽ quyết định.'
+translations:
+  title: 'Dịch thuật'
+  body: 'Thanh tìm kiếm đọc nhãn riêng của nó từ bốn mặt của thành phần, vì vậy một giá trị giữ chỗ không bao giờ được viết trong markup. Ngược lại, tiêu đề kết quả xuất phát từ bản ghi chính nó hoặc từ tên tuyến đường — việc dịch những cái đó vẫn chưa được kết nối, và một trang hiện tại hiển thị tên tuyến đường theo cách dễ hiểu.'
