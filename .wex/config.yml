@@ -4,7 +4,7 @@ git:
 global:
   name: symfony-search
   type: php-package
-  version: 4.0.13
+  version: 4.0.14
 wex:
   migration: 7
   version: 6.0.136
