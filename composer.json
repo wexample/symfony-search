@@ -3,7 +3,7 @@
   "description": "Cross-cutting search for Symfony: entities, pages, and anything else worth finding",
   "type": "library",
   "license": "MIT",
-  "version": "4.0.19",
+  "version": "4.0.20",
   "autoload": {
     "psr-4": {
       "Wexample\\SymfonySearch\\": "src/"
@@ -18,8 +18,8 @@
   "require": {
     "php": ">=8.5",
     "wexample/php-helpers": ">=7.0.0",
-    "wexample/php-pseudocode": ">=2.1.0",
-    "wexample/symfony-helpers": ">=14.0.0",
+    "wexample/php-pseudocode": ">=2.2.0",
+    "wexample/symfony-helpers": ">=15.0.0",
     "wexample/symfony-api": ">=9.0.0",
     "wexample/symfony-pseudocode": ">=3.0.0",
     "symfony/uid": ">=6.2",
