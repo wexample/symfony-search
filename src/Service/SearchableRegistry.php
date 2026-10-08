@@ -62,6 +62,24 @@ class SearchableRegistry
     }
 
     /**
+     * The entry of a class, or of the entity a Doctrine proxy stands for.
+     *
+     * @param class-string $className
+     */
+    public function getByClass(string $className): ?SearchableEntity
+    {
+        $className = $this->entityManager->getClassMetadata($className)->getName();
+
+        foreach ($this->all() as $searchableEntity) {
+            if ($searchableEntity->className === $className) {
+                return $searchableEntity;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @return array<string, SearchableEntity>
      */
     private function load(): array

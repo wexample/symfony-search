@@ -3,6 +3,8 @@
 namespace Wexample\SymfonySearch\Service;
 
 use Closure;
+use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Psr\Container\ContainerInterface;
@@ -113,10 +115,67 @@ class EntitySearchRunner
             ->setMaxResults($query->maxResults * self::FETCH_FACTOR);
     }
 
-    private function createResult(
+    /**
+     * The record of this id, if the search could have answered it here — the
+     * same context, the same narrowing a provider adds — or null.
+     *
+     * What a form field checks a posted id against: an id is only a picked
+     * record if it is one the person could have been offered, and an entity
+     * existing is not reason enough.
+     *
+     * @param Closure(QueryBuilder, SearchQuery): void|null $configureQuery
+     */
+    public function find(
+        SearchableEntity $searchableEntity,
+        string $id,
+        SearchQuery $query,
+        ?Closure $configureQuery = null,
+    ): ?AbstractEntity {
+        if (! $searchableEntity->isInContext($query->context)) {
+            return null;
+        }
+
+        $metadata = $this->entityManager->getClassMetadata($searchableEntity->className);
+        $idField = $metadata->getSingleIdentifierFieldName();
+
+        $builder = $this
+            ->entityManager
+            ->createQueryBuilder()
+            ->select(self::ALIAS)
+            ->from($searchableEntity->className, self::ALIAS)
+            ->where(self::ALIAS.'.'.$idField.' = :'.self::PARAMETER_PREFIX.'id');
+
+        $idType = $metadata->getTypeOfField($idField);
+
+        try {
+            // Read as the column holds it: a uuid is compared as a uuid and
+            // not as the text it was posted as.
+            $value = Type::getType($idType)->convertToPHPValue(
+                $id,
+                $this->entityManager->getConnection()->getDatabasePlatform()
+            );
+        } catch (ConversionException) {
+            // Not even the shape of an id: nothing to look for.
+            return null;
+        }
+
+        $builder->setParameter(self::PARAMETER_PREFIX.'id', $value, $idType);
+
+        if ($configureQuery instanceof Closure) {
+            $configureQuery($builder, $query);
+        }
+
+        return $builder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * What a record is shown as — its title, subtitle, icon and link — with no
+     * score, there being no query: a value a field opens with, a record named
+     * elsewhere than in a list of results.
+     */
+    public function describe(
         SearchableEntity $searchableEntity,
         AbstractEntity $entity,
-        SearchQuery $query
     ): SearchResult {
         $searchable = $searchableEntity->searchable;
 
@@ -133,9 +192,7 @@ class EntitySearchRunner
                 : (string) ClassHelper::getFieldGetterValueOrDefault($entity, $titleField, '')
         );
 
-        $result
-            ->setScore($this->score($searchableEntity, $entity, $query))
-            ->setIcon($searchable->icon);
+        $result->setIcon($searchable->icon);
 
         if ($searchable->subtitleField) {
             $result->setSubtitle(
@@ -156,6 +213,16 @@ class EntitySearchRunner
         }
 
         return $result;
+    }
+
+    private function createResult(
+        SearchableEntity $searchableEntity,
+        AbstractEntity $entity,
+        SearchQuery $query
+    ): SearchResult {
+        return $this
+            ->describe($searchableEntity, $entity)
+            ->setScore($this->score($searchableEntity, $entity, $query));
     }
 
     /**

@@ -75,7 +75,7 @@ class SearchService
      * spells "do not ask", for the application that has something public to
      * offer.
      */
-    private function isGranted(): bool
+    public function isGranted(): bool
     {
         return RoleHelper::ROLE_ANONYMOUS === $this->minimumRole
             || $this->security->isGranted($this->minimumRole);

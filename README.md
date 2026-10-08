@@ -258,19 +258,39 @@ page that has no business being found.
 ## In a form
 
 src/Form/Type/EntitySearchInputType.php is a field whose value is a record
-picked by searching for it:
+picked by searching for it. Bound to a relation, it reads which kind from the relation
+itself:
+
+```php
+// Invoice::$client is a ManyToOne to Client, which carries #[Searchable].
+->add('client', EntitySearchInputType::class)
+```
+
+Unmapped, or bound to something that is not a relation, it is told — by class or by the
+type a query restricts itself to:
 
 ```php
 ->add('room', EntitySearchInputType::class, [
+    'mapped' => false,
     EntitySearchInputType::OPTION_ENTITY_TYPE => 'demo_room',
     'placeholder' => true,
 ])
 ```
 
-What the form carries is an identifier, in a hidden input like any other field; what the
-person sees is the search box narrowed to that one kind, then the picked record. The rows
-do not link there — picking is the point — and the context defaults to `form_field`, which
-is what lets an entity be findable in a picker without appearing in the header.
+What the form posts is an identifier, in a hidden input like any other field; what it
+hands back is the record. The person sees the search box narrowed to that one kind, then
+the picked record — its title, subtitle and icon read from the record the field opens on,
+the `selected_*` options standing in for a field handed a bare id. The rows do not link
+there — picking is the point — and the context defaults to `form_field`, which is what lets
+an entity be findable in a picker without appearing in the header.
+
+A posted id is checked on the road the search took to offer it: the same context, the
+narrowing of the entity's own provider, the role allowed to search. An id the person could
+not have been offered fails the field like a malformed value, however real the record —
+src/Service/EntityPicker.php is that check.
+
+The field picks one record. A relation holding several is refused for now, with a message
+saying so.
 
 The field lives here and not in `wexample/symfony-forms`, because it offers this package's
 feature and would have nothing to show without it. src/Resources/config/ is

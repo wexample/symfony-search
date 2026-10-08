@@ -5,6 +5,7 @@ namespace Wexample\SymfonySearch\Class\Provider;
 use Doctrine\ORM\QueryBuilder;
 use RuntimeException;
 use Wexample\Helpers\Helper\ClassHelper;
+use Wexample\SymfonyHelpers\Entity\AbstractEntity;
 use Wexample\SymfonySearch\Class\SearchableEntity;
 use Wexample\SymfonySearch\Class\SearchQuery;
 use Wexample\SymfonySearch\Service\EntitySearchRunner;
@@ -55,6 +56,22 @@ abstract class AbstractEntitySearchProvider extends AbstractSearchProvider
     {
         return $this->runner->run(
             $this->getSearchableEntity(),
+            $query,
+            $this->configureQuery(...)
+        );
+    }
+
+    /**
+     * The record of this id, if this provider could have offered it for the
+     * query's context — the narrowing of `configureQuery()` included.
+     */
+    public function find(
+        string $id,
+        SearchQuery $query
+    ): ?AbstractEntity {
+        return $this->runner->find(
+            $this->getSearchableEntity(),
+            $id,
             $query,
             $this->configureQuery(...)
         );

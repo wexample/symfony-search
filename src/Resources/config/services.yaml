@@ -10,6 +10,11 @@ services:
     Wexample\SymfonySearch\:
         resource: '../../{Class/Provider,Service}'
 
+    # The field reads the registry and checks a posted id through the picker,
+    # so it is a service; its transformer is built by the field.
+    Wexample\SymfonySearch\Form\Type\:
+        resource: '../../Form/Type'
+
     Wexample\SymfonySearch\Service\SearchService:
         arguments:
             $minimumRole: '%wexample_symfony_search.minimum_role%'
