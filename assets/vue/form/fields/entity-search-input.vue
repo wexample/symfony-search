@@ -68,6 +68,10 @@ export default {
 
   data() {
     return {
+      // The id posted. Held here and not only read from the prop: drawn from
+      // Twig the field has no parent binding it, and an emitted value would
+      // reach nothing — the hidden input would post what the page opened with.
+      value: this.modelValue,
       picked: this.modelValue
         ? { title: this.selectedTitle, subtitle: this.selectedSubtitle, icon: this.selectedIcon }
         : null
@@ -86,6 +90,8 @@ export default {
     // Cleared from the outside — a form reset, a controller — the field goes
     // back to searching rather than showing a record it no longer carries.
     modelValue(value) {
+      this.value = value;
+
       if (!value) {
         this.picked = null;
       }
@@ -108,19 +114,24 @@ export default {
         icon: read('icon')
       };
 
-      this.$emit('update:modelValue', read('reference'));
+      this.setValue(read('reference'));
     },
 
     clear() {
       this.picked = null;
-      this.$emit('update:modelValue', '');
+      this.setValue('');
       this.$nextTick(() => this.$refs.searchBox?.$refs?.searchInput?.focus());
     },
 
     // Picking is not writing: what a value is spelled out into is the field's
     // own hidden input, and the box is left out of it.
     async writeValueAssisted(value) {
-      this.$emit('update:modelValue', String(value ?? ''));
+      this.setValue(String(value ?? ''));
+    },
+
+    setValue(value) {
+      this.value = value;
+      this.$emit('update:modelValue', value);
     }
   }
 };

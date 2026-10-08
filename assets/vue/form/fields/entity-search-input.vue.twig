@@ -14,7 +14,7 @@
     <div class="entity-search-input">
         {#- The value the form submits. The box is a way of filling it, never
             what is posted. -#}
-        <input type="hidden" :name="name || null" :id="resolvedId" :value="modelValue">
+        <input type="hidden" :name="name || null" :id="resolvedId" :value="value">
 
         <template v-if="hasPicked">
             <bar
