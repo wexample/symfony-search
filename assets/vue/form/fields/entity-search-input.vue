@@ -115,6 +115,10 @@ export default {
       return this.picked.map((row) => row.id);
     },
 
+    removeIconHtml() {
+      return this.app.getServiceOrFail('icon').icon('ph:bold/x');
+    },
+
     isAtCap() {
       return this.maxValues !== null && this.picked.length >= this.maxValues;
     },

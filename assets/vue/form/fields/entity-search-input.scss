@@ -33,7 +33,17 @@
   padding: var(--space-2) var(--space-3);
 }
 
-.entity-search-input--clear {
+// What takes a record off. A disc and not a rounded square: it stands at the
+// end of a capsule, and the ground the pointer lights up has to follow the
+// shape it sits in rather than cut a corner into it.
+// Two classes, so the shape wins over the one `.button` gives every button.
+.entity-search-input--picked .entity-search-input--clear {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border-radius: var(--radius-pill);
   line-height: 1;
 }
 

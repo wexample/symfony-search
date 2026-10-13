@@ -36,7 +36,8 @@
                             :disabled="isDisabled ? true : null"
                             :aria-label="removeAriaLabel(row)"
                             @click="remove(index)"
-                    >&times;</button>
+                            v-html="removeIconHtml"
+                    ></button>
                 </template>
             </bar>
         </div>
