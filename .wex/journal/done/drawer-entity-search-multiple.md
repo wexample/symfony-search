@@ -62,6 +62,8 @@ section 3, and the legacy sources are listed there.
 
 - **No tests in this package** — empty `tests/`, no `phpunit.xml`, no fixture kernel. Its
   own chantier: `.wex/journal/todo/tests-kernel.md`.
-- **Two findings in `symfony-design-system`**, written in its own journal under
-  `drawer-entity-search-css-findings`: `.form--group` on a `1fr` track that grows with its
-  content, and `button-menu` measuring a placement `FloatingHelper` already computes.
+- **Two findings in `symfony-design-system`**, written in its own journal and settled there
+  the same day (`done/drawer-entity-search-css-findings`): `.form--group` now sits on a
+  `minmax(0, 1fr)` track, so a field whose content cannot shrink no longer widens the form
+  — the guards this field carried for itself were dropped once that landed. The duplicate
+  flip of `button-menu` was looked at and left as it is.
