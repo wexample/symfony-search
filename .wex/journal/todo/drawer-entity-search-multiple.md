@@ -56,5 +56,10 @@ section 3, and the legacy sources are listed there.
   field with its new rows anyway, which covers most of it. To be decided.
 - **No tests.** This package has an empty `tests/`, no `phpunit.xml` and no fixture kernel:
   a chantier of its own, not a step of this one.
+- **`.form--group` of `symfony-design-system` grows with its content**: its track is
+  `1fr`, so any field whose content cannot shrink — a line that never wraps — widens the
+  form past its column. The field guards itself with `min-width: 0`, and
+  `grid-template-columns: minmax(0, 1fr)` on the group would guard every field at once.
+  Measured, not applied: it touches every form of the suite.
 - **A duplicate flip lives in `symfony-design-system`**: `button-menu` measures its own
   placement instead of using `FloatingHelper`. Reported, not touched — another package.
