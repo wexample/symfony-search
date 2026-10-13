@@ -6,7 +6,9 @@ Author: agent:archeology-drawers, then agent:main
 
 ## Status
 
-Built, on a design validated by weeger beforehand on an HTML mockup
+**Done**, closed 2026-10-13 with weeger looking at the result.
+
+Built on a design validated by him beforehand on an HTML mockup
 (`tmp/entity-search-mockup.html`, not versioned). What is left is at the bottom of this
 page; the drawer page this came from is
 `/home/weeger/Desktop/WIP/WEB/WEXAMPLE/NETWORK/local/network/.wex/knowledge/readme/archeology/drawers-screens.md.j2`,
@@ -47,19 +49,19 @@ section 3, and the legacy sources are listed there.
   the removal, the two Escapes, the dropdown outliving the blur, the single field unchanged.
   Posted lists checked over HTTP: two values, over the cap, duplicates, an unknown id.
 
-## What is left
+## Left out, deliberately
 
 - **The "attachments changed" signal is not carried over.** The legacy reloaded the list
-  from `options.updatePath` when another component said new attachments had arrived. Not
-  built: the field cannot invent that path, and the reload belongs to whoever fills the
-  list — `symfony-media`'s uploader. An ajax form with `submit_on_change` re-renders the
-  field with its new rows anyway, which covers most of it. To be decided.
-- **No tests.** This package has an empty `tests/`, no `phpunit.xml` and no fixture kernel:
-  a chantier of its own, not a step of this one.
-- **`.form--group` of `symfony-design-system` grows with its content**: its track is
-  `1fr`, so any field whose content cannot shrink — a line that never wraps — widens the
-  form past its column. The field guards itself with `min-width: 0`, and
-  `grid-template-columns: minmax(0, 1fr)` on the group would guard every field at once.
-  Measured, not applied: it touches every form of the suite.
-- **A duplicate flip lives in `symfony-design-system`**: `button-menu` measures its own
-  placement instead of using `FloatingHelper`. Reported, not touched — another package.
+  from `options.updatePath` when another component said new attachments had arrived. The
+  field cannot invent that path, and the reload belongs to whoever fills the list —
+  `symfony-media`'s uploader. An ajax form with `submit_on_change` re-renders the field
+  with its new rows anyway, which covers most of it. Weeger's call, taken: left out, to be
+  looked at again if a screen ever needs it.
+
+## Carried elsewhere
+
+- **No tests in this package** — empty `tests/`, no `phpunit.xml`, no fixture kernel. Its
+  own chantier: `.wex/journal/todo/tests-kernel.md`.
+- **Two findings in `symfony-design-system`**, written in its own journal under
+  `drawer-entity-search-css-findings`: `.form--group` on a `1fr` track that grows with its
+  content, and `button-menu` measuring a placement `FloatingHelper` already computes.
