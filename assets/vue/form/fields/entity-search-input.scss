@@ -8,23 +8,19 @@
 // A field holding several records shows them and the box at once: the rows
 // first, the way of adding one under them.
 //
-// Nothing here is allowed to be as wide as what it holds: a title is one line
-// that never wraps, so a record named by a sentence would widen the field past
-// its column — and past the form, the column being a grid track that grows
-// with its content. The row is cut short instead, which is what the ellipsis
-// on it is for.
+// Nothing here says it may be narrower than what it holds: `.form--group`, the
+// group every field is drawn in, is a grid of one `minmax(0, 1fr)` track, so a
+// title that never wraps is cut short rather than widening the form.
 .entity-search-input {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  min-width: 0;
 }
 
 .entity-search-input--picked-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  min-width: 0;
 }
 
 .entity-search-input--picked {
@@ -81,7 +77,6 @@
     flex-direction: row;
     align-items: baseline;
     gap: var(--space-2);
-    min-width: 0;
 
     // Laid in a line, the name has to be allowed to give way, or a record
     // named by a sentence writes it straight through the capsule and out the
