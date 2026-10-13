@@ -29,6 +29,16 @@
   line-height: 1;
 }
 
+// Said in the room the rows would take, and dashed: nothing is there yet, and
+// a solid frame would read as something that is.
+.entity-search-input--empty {
+  border: var(--border-placeholder);
+  border-radius: var(--radius-box);
+  padding: var(--space-3);
+  color: var(--text-color-muted);
+  text-align: center;
+}
+
 // Several records searched for one at a time are read as a row of capsules
 // rather than a column of cartouches: a dozen recipients take the room three
 // of them would. A list nobody searches — attachments, put there by an

@@ -1,91 +1,114 @@
 en:
   clear: Pick something else
   remove: Remove
+  empty: 'Nothing here yet.'
 
 ar:
   clear: 'Pick something else'
   remove: إزالة
+  empty: 'لا شيء هنا بعد.'
 
 bn:
   clear: 'অন্য কিছু বেছে নিন'
   remove: সরান
+  empty: 'এখনও কিছু নেই।'
 
 de:
   clear: 'Wählen Sie etwas anderes'
   remove: Entfernen
+  empty: 'Noch nichts hier.'
 
 es:
   clear: 'Pick something else'
   remove: Quitar
+  empty: 'Todavía no hay nada.'
 
 fa:
   clear: 'چیز دیگری انتخاب کنید'
   remove: حذف
+  empty: 'هنوز چیزی اینجا نیست.'
 
 fi:
   clear: 'Valitse jokin muu'
   remove: Poista
+  empty: 'Täällä ei ole vielä mitään.'
 
 fr:
   clear: Choisir autre chose
   remove: Retirer
+  empty: 'Rien ici pour le moment.'
 
 he:
   clear: 'בחר משהו אחר'
   remove: הסר
+  empty: 'אין כאן עדיין כלום.'
 
 hi:
   clear: 'Pick something else'
   remove: हटाएँ
+  empty: 'यहाँ अभी कुछ नहीं है।'
 
 id:
   clear: 'Pilih sesuatu yang lain'
   remove: Hapus
+  empty: 'Belum ada apa-apa di sini.'
 
 it:
   clear: "Scegli qualcos'altro"
   remove: Rimuovi
+  empty: 'Ancora niente qui.'
 
 ja:
   clear: 別のものを選んでください
   remove: 削除
+  empty: 'まだ何もありません。'
 
 ko:
   clear: '다른 것을 선택하세요'
   remove: 제거
+  empty: '아직 아무것도 없습니다.'
 
 nl:
   clear: 'Kies iets anders'
   remove: Verwijderen
+  empty: 'Hier is nog niets.'
 
 pl:
   clear: 'Wybierz coś innego'
   remove: Usuń
+  empty: 'Jeszcze nic tu nie ma.'
 
 pt_BR:
   clear: 'Escolha outra coisa'
   remove: Remover
+  empty: 'Ainda não há nada aqui.'
 
 ru:
   clear: 'Выберите что-то другое'
   remove: Удалить
+  empty: 'Здесь пока ничего нет.'
 
 th:
   clear: เลือกอย่างอื่น
   remove: ลบ
+  empty: 'ยังไม่มีอะไรที่นี่'
 
 tr:
   clear: 'Başka bir şey seç'
   remove: Kaldır
+  empty: 'Burada henüz bir şey yok.'
 
 ur:
   clear: 'کچھ اور منتخب کریں'
   remove: ہٹائیں
+  empty: 'یہاں ابھی کچھ نہیں ہے۔'
 
 vi:
   clear: 'Chọn cái khác'
   remove: Xóa
+  empty: 'Chưa có gì ở đây.'
 
 zh:
   clear: 'Pick something else'
   remove: 移除
+  empty: '这里还没有任何内容。'

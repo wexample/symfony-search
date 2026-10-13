@@ -40,6 +40,9 @@
                 </template>
             </bar>
         </div>
+        {#- A field with no box has nothing else to show while it holds nothing:
+            left empty it would be a label standing over a blank. -#}
+        <div v-else-if="!search" class="entity-search-input--empty">[[ resolvedEmptyLabel ]]</div>
 
         <search-box
                 v-if="hasSearch"

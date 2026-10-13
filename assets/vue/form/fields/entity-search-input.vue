@@ -12,6 +12,10 @@ const translated = buildTranslatedBindings({
   resolvedRemoveLabel: [
     'removeLabel',
     'WexampleSymfonySearchBundle.vue.form.fields.entity-search-input::remove'
+  ],
+  resolvedEmptyLabel: [
+    'emptyLabel',
+    'WexampleSymfonySearchBundle.vue.form.fields.entity-search-input::empty'
   ]
 });
 
