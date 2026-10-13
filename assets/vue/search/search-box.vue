@@ -4,6 +4,7 @@ import FocusableVueMixin from "@wexample/symfony-design-system/js/Vue/FocusableV
 import WithRovingFocusKeyboardVueMixin from "@wexample/symfony-design-system/js/Vue/WithRovingFocusKeyboardVueMixin";
 import KeyboardService from "@wexample/symfony-loader/js/Services/KeyboardService";
 import OverlayService from "@wexample/symfony-loader/js/Services/OverlayService";
+import { floatingPlace } from "@wexample/symfony-design-system/js/Helper/FloatingHelper";
 import { stringToKebab } from '@wexample/js-helpers/Helper/String';
 import SearchResult from "./search-result.vue";
 import Spinner from "@wexample/symfony-design-system/components/spinner/spinner.vue";
@@ -36,8 +37,14 @@ const RESULT_COMPONENT_PREFIX = 'search-result-';
 //
 // Arrows, Home, End and Enter walk the rows through the keyboard service, so
 // that a dropdown and a modal open at once never both answer the same key.
-// Escape closes. The mouse is handled by the overlay service, which is what
-// says a click landed outside.
+// Escape closes, and closes again onto the question the field was entered
+// with. The mouse is handled by the overlay service, which is what says a
+// click landed outside — so the dropdown outlives the field losing focus, and
+// a click on a row is never lost on the way.
+//
+// The dropdown opens in the top layer, out of whatever clips or scrolls around
+// the field, placed by the design system's floating helper: under the field, or
+// over it when the window ends first.
 export default {
   template: '#vue-template-wexample-symfony-search-bundle-vue-search-search-box',
 
@@ -56,6 +63,11 @@ export default {
   props: {
     ...translated.props,
 
+    // The id the field carries, for a label pointing at it.
+    inputId: {
+      type: String,
+      default: ''
+    },
     // The entity repository answering, by the name the api client knows it under.
     repository: {
       type: String,
@@ -95,6 +107,9 @@ export default {
   data() {
     return {
       terms: '',
+      // What the question was when the field was entered, which Escape puts
+      // back once the dropdown is closed.
+      termsAtFocus: '',
       results: [],
       isOpen: false,
       isLoading: false,
@@ -118,6 +133,29 @@ export default {
     }
   },
 
+  watch: {
+    isOpen(open) {
+      if (open) {
+        // Shown before it is measured: a box with no size is placed nowhere.
+        this.$nextTick(() => this.showDropdown());
+
+        return;
+      }
+
+      this.hideDropdown();
+    },
+
+    // What it holds decides how tall it is, and how tall it is decides which
+    // side of the field it stands on.
+    results() {
+      this.$nextTick(() => this.placeDropdown());
+    },
+
+    isLoading() {
+      this.$nextTick(() => this.placeDropdown());
+    }
+  },
+
   mounted() {
     this.app.ready(() => {
       this.getOverlayService().register(this);
@@ -126,6 +164,7 @@ export default {
 
   beforeUnmount() {
     clearTimeout(this.debounceTimer);
+    this.stopFollowingViewport();
     this.getOverlayService().unregister(this);
   },
 
@@ -149,15 +188,27 @@ export default {
           key: KeyboardService.KEY_ESCAPE,
           callback: this.onEscapeKey,
           options: {
-            enabled: () => this.isOpen
+            // Only what the box has something to answer: once it is closed and
+            // holds the question it was entered with, Escape belongs to
+            // whatever stands behind it — a modal holding the field.
+            enabled: () => this.isOpen || this.terms !== this.termsAtFocus
           }
         }
       ];
     },
 
     onEscapeKey() {
-      this.close();
-      this.getSearchInputElement()?.focus();
+      if (this.isOpen) {
+        this.close();
+        this.getSearchInputElement()?.focus();
+
+        return true;
+      }
+
+      // Pressed again on a closed box: the question goes back to the one the
+      // field was entered with — nothing, for a field entered empty.
+      this.terms = this.termsAtFocus;
+      this.results = [];
 
       return true;
     },
@@ -200,6 +251,8 @@ export default {
 
     // Coming back to a field that still holds a question reopens its answer.
     onFocus() {
+      this.termsAtFocus = this.terms;
+
       if (this.hasItems && this.terms.trim().length >= this.minLength) {
         this.open();
       }
@@ -289,6 +342,70 @@ export default {
 
     onSelect(payload) {
       this.$emit('select', payload);
+    },
+
+    // The question has been answered. Called by whatever took the answer — a
+    // field that keeps the box to be handed the next one: left open, it would
+    // offer the rows of a question nobody is asking any more.
+    reset() {
+      clearTimeout(this.debounceTimer);
+      this.terms = '';
+      this.termsAtFocus = '';
+      this.results = [];
+      this.close();
+    },
+
+    // --- Where the dropdown stands.
+
+    showDropdown() {
+      const dropdown = this.$refs.dropdown;
+
+      if (dropdown && !dropdown.matches(':popover-open')) {
+        dropdown.showPopover?.();
+      }
+
+      this.placeDropdown();
+      window.addEventListener('scroll', this.onViewportChange, true);
+      window.addEventListener('resize', this.onViewportChange);
+    },
+
+    hideDropdown() {
+      this.stopFollowingViewport();
+
+      const dropdown = this.$refs.dropdown;
+
+      if (dropdown?.matches(':popover-open')) {
+        dropdown.hidePopover();
+      }
+    },
+
+    stopFollowingViewport() {
+      window.removeEventListener('scroll', this.onViewportChange, true);
+      window.removeEventListener('resize', this.onViewportChange);
+    },
+
+    onViewportChange(event) {
+      // The dropdown scrolling its own rows moves the field nowhere.
+      if (event?.target instanceof Node && this.$refs.dropdown?.contains(event.target)) {
+        return;
+      }
+
+      this.placeDropdown();
+    },
+
+    // Beside the field and never narrower than it, by the same helper that
+    // places the design system's select, its tooltips and its tours: the box
+    // measures nothing of its own.
+    placeDropdown() {
+      const dropdown = this.$refs.dropdown;
+      const field = this.$refs.focusableRoot;
+
+      if (!this.isOpen || !dropdown || !field) {
+        return;
+      }
+
+      dropdown.style.minWidth = `${field.offsetWidth}px`;
+      floatingPlace(field, dropdown, { placement: 'bottom', align: 'start', offset: 4 });
     },
 
     open() {

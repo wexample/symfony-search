@@ -50,6 +50,19 @@
   z-index: var(--z-dropdown);
 }
 
+// In the top layer, where it is out of whatever clips or scrolls around the
+// field: placed in the window's coordinates, so it takes none of the offsets
+// it would have inside the box. The browser's own frame around a popover goes
+// with them.
+.search-box--dropdown[popover] {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  padding: 0;
+  border: var(--border-default);
+  color: inherit;
+}
+
 .search-box--items {
   display: flex;
   flex-direction: column;
