@@ -68,9 +68,16 @@
   // What qualifies the record stands beside its name and not under it: a
   // capsule is one line high, and two of them in a row is a paragraph.
   .entity-search-input--picked .bar--title-block {
-    display: flex;
+    flex-direction: row;
     align-items: baseline;
     gap: var(--space-2);
     min-width: 0;
+
+    // Laid in a line, the name has to be allowed to give way, or a record
+    // named by a sentence writes it straight through the capsule and out the
+    // other side — what is cut short is the name, and the ellipsis says so.
+    > .text-ellipsis {
+      min-width: 0;
+    }
   }
 }
