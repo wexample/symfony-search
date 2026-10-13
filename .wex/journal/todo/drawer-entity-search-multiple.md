@@ -1,57 +1,59 @@
 # Entity search field: multiple values as chips, list-only variant, smarter autocomplete
 
 Opened: 2026-10-09
-Updated: 2026-10-09
-Author: agent:archeology-drawers
+Updated: 2026-10-13
+Author: agent:archeology-drawers, then agent:main
 
-## Read this first — status of this todo
+## Status
 
-> **This is a proposal for discussion, not an order to code.** It comes from the 2026-10 "bottom of the drawers" archaeology pass. Read it, then discuss it with the owner: every design choice below is to be challenged and validated **before** any code is written. Do not start implementing on your own.
->
-> - **Before anything else**: `/home/weeger/Desktop/WIP/WEB/WEXAMPLE/PACKAGES/PHP/.wex/local/package-agent-intro.md` — where you stand in the suite, what a package must look like, how to work, and how to judge a drawer todo.
-> - Context: `/home/weeger/Desktop/WIP/WEB/WEXAMPLE/NETWORK/local/network/.wex/knowledge/readme/archeology/index.md.j2`, `sources.md.j2`, and the drawers page linked below.
-> - Safety: `NETWORK/local/network` runs on production data — read its code only, never run anything against it. Anonymize anything taken from it. Never copy secrets found in its history.
+Built, on a design validated by weeger beforehand on an HTML mockup
+(`tmp/entity-search-mockup.html`, not versioned). What is left is at the bottom of this
+page; the drawer page this came from is
+`/home/weeger/Desktop/WIP/WEB/WEXAMPLE/NETWORK/local/network/.wex/knowledge/readme/archeology/drawers-screens.md.j2`,
+section 3, and the legacy sources are listed there.
 
-Drawers page: `/home/weeger/Desktop/WIP/WEB/WEXAMPLE/NETWORK/local/network/.wex/knowledge/readme/archeology/drawers-screens.md.j2`, section 3.
+## Decisions taken
 
-## What it is
+- **Chips: yes**, built on the design system's `bar` — no new component. A field searched
+  one record at a time draws them as capsules in a row; a list nobody searches keeps the
+  column, its rows being few and what they say long.
+- **Auto-submit: not here.** `submit_on_change` already exists on `AbstractForm` of
+  `wexample/symfony-forms` and belongs to the form, not to one field. The field only owes
+  it a `change` event, which it now raises — its inputs being hidden and filled by hand,
+  nothing else would.
+- **Placement: the existing pipe.** No `findScrollParent` port: the dropdown opens in the
+  top layer (`popover`) and is placed by `floatingPlace` of `symfony-design-system`, as the
+  design system's `select` already does. Leaving the clipping context beats measuring it.
+- **Keyboard: the keyboard service**, which the box already used. Escape closes; pressed
+  again it puts back the question the field was entered with, and only then — a box with
+  nothing left to answer leaves Escape to whatever stands behind it.
+- **Keep-open-on-hover: already covered.** The legacy needed it because blur closed the
+  dropdown; here the overlay service decides, and a blur closes nothing.
+- **Several values post `name[]`**, one input per record — not the legacy's comma list.
 
-network's Vue 2 search field family, used in production for mail recipients, mail attachments, project contributors and invoice relations/transactions:
+## Done
 
-- a search box whose autocomplete stays open while hovered (so clicking a result is not lost on blur), flips **above** the input when there is not enough room below inside the nearest scrollable parent, and whose Escape key blurs and **restores the value from before the edit**;
-- a form widget that holds **several selected entities shown as chips** (entity card + "×"), with a `maxValues` cap (autocomplete closes at the cap), duplicate guard, hidden input filled with comma-separated ids, the text input hidden once a single-value field is filled, client-side "required" blocking both normal and AJAX submit;
-- a **list-only variant** (no input: just the chips) for attachments, where removing asks for confirmation, every change auto-submits the form, and the list reloads when another component signals new attachments for that form.
+- `multiple`, `max_values`, `search`, `remove_confirm` on `EntitySearchInputType`;
+  `EntitySearchInputListTransformer`; the cap and the duplicate guard checked on the
+  server; the relation's arity has the last word on `multiple`.
+- Front: rows or capsules, a remove per record, the confirm service, the `change` event,
+  the id moved onto the search input so the label points at something focusable.
+- Search box: top-layer dropdown following the field, second Escape, `reset()` after a pick.
+- Verified in the showcase app through a browser: both placements, the cap, the duplicate,
+  the removal, the two Escapes, the dropdown outliving the blur, the single field unchanged.
+  Posted lists checked over HTTP: two values, over the cap, duplicates, an unknown id.
 
-`symfony-search` today has `src/Form/Type/EntitySearchInputType.php` + `assets/vue/form/fields/entity-search-input.vue` (single value); `symfony-design-system` has `assets/components/select-search` (Escape handling only). None of the points above.
+## What is left
 
-## Where the sources are
-
-Read-only, in `/home/weeger/Desktop/WIP/WEB/WEXAMPLE/NETWORK/archeo/trees/develop-131-fos-user/`:
-
-- `src/Wex/BaseBundle/Resources/js/vue/search-box.vue`, `templates/vue/search-box.vue.twig`, `css/vue/search-box.scss` (flip logic in `search()`, uses `findScrollParent` from `js/helpers/DomHelper`)
-- `src/Wex/BaseBundle/Resources/js/vue/{search-results,entity-selected}.vue` + templates
-- `src/Wex/BaseBundle/Resources/{js,templates,css}/forms_themes/vue/entity-search.*`
-- `front/vue/forms/attachment-entities.vue(.twig)`, `front/vue/forms/mail-recipient-search.vue(.twig)`
-- uses: `front/pages/entity/project/tabs/view/vue/contributors.vue.twig`, `front/pages/entity/invoice/tabs/edit/vue/{relations,transactions}.vue.twig`
-- 2019 ancestors: `git -C /home/weeger/Desktop/WIP/WEB/WEXAMPLE/NETWORK/archeo/repo.git show 2eb36455e^:project/assets/js/vue/SearchBox.vue`
-
-## What to recover
-
-Behaviour only (the code is Vue 2 options API with `extends` chains and globals — do not port it):
-
-1. `multiple` + `max_values` options on `EntitySearchInputType`, chips display, duplicate guard, transformer accepting a list.
-2. A "list-only" mode (no text input) with optional confirm-on-remove and auto-submit-on-change.
-3. Autocomplete placement flip against the scroll parent; keep open while hovered; Escape restores.
-
-## Proposed modern shape (suggestion)
-
-- Options on the existing type rather than a new type: `multiple` (bool), `max_values` (int|null), `input` (bool, false = list-only), `remove_confirm` (string|null), `submit_on_change` (bool).
-- Chips rendered with the same selected title/subtitle/icon options the single mode already has.
-- Placement flip as a small generic helper in `symfony-design-system` (or `js-helpers`) so `select-search` and the dropdowns can use it too.
-- The "attachments changed" signal as a DS event rather than a global string event.
-
-## Open questions
-
-- Multiple values: hidden field with ids, or one hidden input per value (`name[]`)? The legacy used a comma list.
-- Should list-only + auto-submit live here, or in `symfony-media` for attachments only?
-- Is the flip helper wanted in the design system for all floating panels?
+- **The "attachments changed" signal is not carried over.** The legacy reloaded the list
+  from `options.updatePath` when another component said new attachments had arrived. Not
+  built: the field cannot invent that path, and the reload belongs to whoever fills the
+  list — `symfony-media`'s uploader. An ajax form with `submit_on_change` re-renders the
+  field with its new rows anyway, which covers most of it. To be decided.
+- **No tests.** This package has an empty `tests/`, no `phpunit.xml` and no fixture kernel:
+  a chantier of its own, not a step of this one.
+- **No demo page for the new modes.** The field's demo lives in
+  `symfony-design-system-demo` (`FormSubmitBehaviorDemoForm`), which is not this package's
+  twin. A `multiple` field and a list-only one would belong there.
+- **A duplicate flip lives in `symfony-design-system`**: `button-menu` measures its own
+  placement instead of using `FloatingHelper`. Reported, not touched — another package.
