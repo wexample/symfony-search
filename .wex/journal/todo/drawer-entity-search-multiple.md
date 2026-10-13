@@ -39,6 +39,10 @@ section 3, and the legacy sources are listed there.
 - Front: rows or capsules, a remove per record, the confirm service, the `change` event,
   the id moved onto the search input so the label points at something focusable.
 - Search box: top-layer dropdown following the field, second Escape, `reset()` after a pick.
+- A list with no box says it holds nothing, rather than leaving a label over a blank.
+- Demo, in `symfony-design-system-demo`'s `FormSubmitBehaviorDemoForm` — weeger allowed the
+  reach outside the package: a `multiple` field capped at three, and a list without its box
+  opening on two records, with the question before one goes.
 - Verified in the showcase app through a browser: both placements, the cap, the duplicate,
   the removal, the two Escapes, the dropdown outliving the blur, the single field unchanged.
   Posted lists checked over HTTP: two values, over the cap, duplicates, an unknown id.
@@ -52,8 +56,5 @@ section 3, and the legacy sources are listed there.
   field with its new rows anyway, which covers most of it. To be decided.
 - **No tests.** This package has an empty `tests/`, no `phpunit.xml` and no fixture kernel:
   a chantier of its own, not a step of this one.
-- **No demo page for the new modes.** The field's demo lives in
-  `symfony-design-system-demo` (`FormSubmitBehaviorDemoForm`), which is not this package's
-  twin. A `multiple` field and a list-only one would belong there.
 - **A duplicate flip lives in `symfony-design-system`**: `button-menu` measures its own
   placement instead of using `FloatingHelper`. Reported, not touched — another package.
