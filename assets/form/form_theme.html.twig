@@ -22,6 +22,14 @@
     {% if placeholder_key is not null and form.vars.translation_domain is not same as(false) %}
         {% set placeholder_value = placeholder_key|trans({}, form.vars.translation_domain) %}
     {% endif %}
+    {% set remove_confirm_key = form.vars.remove_confirm ?? null %}
+    {% if remove_confirm_key is same as(true) %}
+        {% set remove_confirm_key = 'field.' ~ form.vars.name ~ '.remove_confirm' %}
+    {% endif %}
+    {% set remove_confirm_value = remove_confirm_key %}
+    {% if remove_confirm_key is not null and form.vars.translation_domain is not same as(false) %}
+        {% set remove_confirm_value = remove_confirm_key|trans({}, form.vars.translation_domain) %}
+    {% endif %}
     {#- The only field of this theme rendered as a Vue component rather than a
         Twig one: what it does — asking as it is typed in, and showing what was
         picked instead of itself — has no still form. -#}
@@ -38,9 +46,11 @@
             modelValue: value,
             type: form.vars.entity_type,
             context: form.vars.search_context,
-            selectedTitle: form.vars.selected_title,
-            selectedSubtitle: form.vars.selected_subtitle,
-            selectedIcon: form.vars.selected_icon,
+            multiple: form.vars.multiple,
+            maxValues: form.vars.max_values,
+            search: form.vars.search,
+            removeConfirm: remove_confirm_value,
+            selected: form.vars.selected,
             translate: false
         }
     ) }}

@@ -1,68 +1,91 @@
 en:
   clear: Pick something else
+  remove: Remove
 
 ar:
   clear: 'Pick something else'
+  remove: إزالة
 
 bn:
   clear: 'অন্য কিছু বেছে নিন'
+  remove: সরান
 
 de:
   clear: 'Wählen Sie etwas anderes'
+  remove: Entfernen
 
 es:
   clear: 'Pick something else'
+  remove: Quitar
 
 fa:
   clear: 'چیز دیگری انتخاب کنید'
+  remove: حذف
 
 fi:
   clear: 'Valitse jokin muu'
+  remove: Poista
 
 fr:
   clear: Choisir autre chose
+  remove: Retirer
 
 he:
   clear: 'בחר משהו אחר'
+  remove: הסר
 
 hi:
   clear: 'Pick something else'
+  remove: हटाएँ
 
 id:
   clear: 'Pilih sesuatu yang lain'
+  remove: Hapus
 
 it:
   clear: "Scegli qualcos'altro"
+  remove: Rimuovi
 
 ja:
   clear: 別のものを選んでください
+  remove: 削除
 
 ko:
   clear: '다른 것을 선택하세요'
+  remove: 제거
 
 nl:
   clear: 'Kies iets anders'
+  remove: Verwijderen
 
 pl:
   clear: 'Wybierz coś innego'
+  remove: Usuń
 
 pt_BR:
   clear: 'Escolha outra coisa'
+  remove: Remover
 
 ru:
   clear: 'Выберите что-то другое'
+  remove: Удалить
 
 th:
   clear: เลือกอย่างอื่น
+  remove: ลบ
 
 tr:
   clear: 'Başka bir şey seç'
+  remove: Kaldır
 
 ur:
   clear: 'کچھ اور منتخب کریں'
+  remove: ہٹائیں
 
 vi:
   clear: 'Chọn cái khác'
+  remove: Xóa
 
 zh:
   clear: 'Pick something else'
+  remove: 移除

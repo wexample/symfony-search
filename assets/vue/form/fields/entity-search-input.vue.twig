@@ -11,33 +11,40 @@
 {%- endblock -%}
 
 {%- block field_control -%}
-    <div class="entity-search-input">
+    <div class="entity-search-input" :class="{ 'entity-search-input--chips': multiple && search }">
         {#- The value the form submits. The box is a way of filling it, never
-            what is posted. -#}
-        <input type="hidden" :name="name || null" :id="resolvedId" :value="value">
+            what is posted. Several values are several inputs, as any
+            multi-valued field posts — the name already ends in `[]`. -#}
+        <template v-if="multiple">
+            <input v-for="row in picked" :key="row.id" type="hidden" :name="name || null" :value="row.id">
+        </template>
+        <input v-else type="hidden" :name="name || null" :value="value">
 
-        <template v-if="hasPicked">
+        <div v-if="hasPicked" class="entity-search-input--picked-list">
             <bar
+                    v-for="(row, index) in picked"
+                    :key="row.id"
                     class="entity-search-input--picked"
-                    :title="picked.title"
-                    :subtitle="picked.subtitle"
-                    :icon="picked.icon || null"
+                    :title="row.title"
+                    :subtitle="row.subtitle"
+                    :icon="row.icon || null"
             >
                 <template #trailing>
                     <button
                             type="button"
                             class="button button--flat entity-search-input--clear"
                             :disabled="isDisabled ? true : null"
-                            :aria-label="resolvedClearLabel"
-                            @click="clear"
+                            :aria-label="removeAriaLabel(row)"
+                            @click="remove(index)"
                     >&times;</button>
                 </template>
             </bar>
-        </template>
+        </div>
 
         <search-box
-                v-else
+                v-if="hasSearch"
                 ref="searchBox"
+                :input-id="resolvedId"
                 :type="type"
                 :context="context"
                 :placeholder="placeholder"

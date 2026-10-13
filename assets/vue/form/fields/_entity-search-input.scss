@@ -5,6 +5,20 @@
 @use '@wexample/symfony-design-system/components/button/button';
 @use '@wexample/symfony-design-system/css/shapes/form';
 
+// A field holding several records shows them and the box at once: the rows
+// first, the way of adding one under them.
+.entity-search-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.entity-search-input--picked-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .entity-search-input--picked {
   border: var(--border-default);
   border-radius: var(--radius-box);
@@ -13,4 +27,32 @@
 
 .entity-search-input--clear {
   line-height: 1;
+}
+
+// Several records searched for one at a time are read as a row of capsules
+// rather than a column of cartouches: a dozen recipients take the room three
+// of them would. A list nobody searches — attachments, put there by an
+// uploader — keeps the column: its rows are few and what they say is long.
+.entity-search-input--chips {
+  .entity-search-input--picked-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .entity-search-input--picked {
+    width: auto;
+    max-width: 100%;
+    border-radius: var(--radius-pill);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-2);
+    background: var(--surface-2);
+  }
+
+  // What qualifies the record stands beside its name and not under it: a
+  // capsule is one line high, and two of them in a row is a paragraph.
+  .entity-search-input--picked .bar--title-block {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    min-width: 0;
+  }
 }
