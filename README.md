@@ -1,6 +1,6 @@
 # symfony-search
 
-Version: 4.1.0
+Version: 4.1.1
 
 `wexample/symfony-search` answers one question — *what, here, is called this?* — across
 things that have nothing in common: rows in a table, pages in a router, and whatever else a
@@ -527,7 +527,7 @@ Visit the [Wexample Suite documentation](https://docs.wexample.com) for the comp
 - symfony/security-bundle: >=6.2
 - doctrine/orm: >=2.14
 - wexample/symfony-loader: >=23.0.0
-- wexample/symfony-design-system: >=34.0.0
+- wexample/symfony-design-system: >=35.0.0
 - wexample/symfony-content: >=4.0.0
 - wexample/symfony-forms: >=12.0.0
 
