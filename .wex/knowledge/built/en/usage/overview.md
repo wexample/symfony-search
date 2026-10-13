@@ -238,9 +238,21 @@ a block of the template. `wexample/symfony-design-system-demo` does exactly this
 two entities, and the showcase's header uses that box rather than the bare one.
 
 Arrows, Home, End and Enter walk the rows through the keyboard service of the loader, so
-a dropdown and a modal open at once never both answer the same key; Escape closes; a click
-outside is told by the overlay service. A result whose kind declared no `route` carries no
-url: its row stands as a plain block rather than a link.
+a dropdown and a modal open at once never both answer the same key. Escape closes it;
+pressed again, it puts back the question the field was entered with — and only then, a box
+with nothing of its own left to answer leaving Escape to whatever stands behind it, a modal
+holding the field. A click outside is told by the overlay service, which is also why the
+dropdown outlives the field losing focus: the click meant for a row is never lost on the
+way to it. A result whose kind declared no `route` carries no url: its row stands as a
+plain block rather than a link.
+
+### Where the dropdown stands
+
+It opens in the top layer, as a `popover`, placed by the design system's `floatingPlace`:
+under the field, over it when the window ends first, and following it while the page moves.
+So it is out of whatever clips or scrolls around the field — a modal's body, a collapsed
+zone — and the box measures nothing of its own: the helper that places a tooltip, a step of
+a tour and the design system's select places this too.
 
 ### Which pages are found
 
@@ -254,19 +266,84 @@ page that has no business being found.
 ## In a form
 
 src/Form/Type/EntitySearchInputType.php is a field whose value is a record
-picked by searching for it:
+picked by searching for it. Bound to a relation, it reads which kind from the relation
+itself:
+
+```php
+// Invoice::$client is a ManyToOne to Client, which carries #[Searchable].
+->add('client', EntitySearchInputType::class)
+```
+
+Unmapped, or bound to something that is not a relation, it is told — by class or by the
+type a query restricts itself to:
 
 ```php
 ->add('room', EntitySearchInputType::class, [
+    'mapped' => false,
     EntitySearchInputType::OPTION_ENTITY_TYPE => 'demo_room',
     'placeholder' => true,
 ])
 ```
 
-What the form carries is an identifier, in a hidden input like any other field; what the
-person sees is the search box narrowed to that one kind, then the picked record. The rows
-do not link there — picking is the point — and the context defaults to `form_field`, which
-is what lets an entity be findable in a picker without appearing in the header.
+What the form posts is an identifier, in a hidden input like any other field; what it
+hands back is the record. The person sees the search box narrowed to that one kind, then
+the picked record — its title, subtitle and icon read from the record the field opens on,
+the `selected_*` options standing in for a field handed a bare id. The rows do not link
+there — picking is the point — and the context defaults to `form_field`, which is what lets
+an entity be findable in a picker without appearing in the header.
+
+A posted id is checked on the road the search took to offer it: the same context, the
+narrowing of the entity's own provider, the role allowed to search. An id the person could
+not have been offered fails the field like a malformed value, however real the record —
+src/Service/EntityPicker.php is that check.
+
+### Several records
+
+```php
+// Mail::$recipients is a ManyToMany to Contact.
+->add('recipients', EntitySearchInputType::class, [
+    EntitySearchInputType::OPTION_MULTIPLE => true,
+    EntitySearchInputType::OPTION_MAX_VALUES => 5,
+])
+```
+
+`multiple` posts one identifier per value, in `name[]` inputs as any multi-valued field
+does, and hands back a collection — which Symfony writes through the relation's adder and
+remover like any other. The relation has the last word on the option: a field holding
+several bound to a `ManyToOne`, or holding one bound to a collection, is refused with a
+message naming the option to add or to drop.
+
+Each record is shown as a capsule carrying what takes it out, the box sitting under them.
+The same record picked twice is still one record: the field ignores it, and
+src/Form/DataTransformer/EntitySearchInputListTransformer.php collapses it
+again on the way in, so a list posted by hand gains no duplicate either. At `max_values`
+the box goes away rather than standing there refusing what it is handed, and comes back as
+soon as a row leaves — and the count is made again on the server, where what the field drew
+means nothing.
+
+### A list without its box
+
+`search` turned off leaves the records alone: no search field, only the rows and the way
+out of each. For a relation something else fills — an uploader putting attachments on a
+mail — where the field is how one is taken back off:
+
+```php
+->add('attachments', EntitySearchInputType::class, [
+    EntitySearchInputType::OPTION_MULTIPLE => true,
+    EntitySearchInputType::OPTION_SEARCH => false,
+    EntitySearchInputType::OPTION_REMOVE_CONFIRM => true,
+])
+```
+
+`remove_confirm` asks before a row goes, through the design system's confirm service;
+`true` reads the question from the field's own translations, as a label does.
+
+Nothing of this sends the form. A field whose every change is to be recorded at once is a
+form saying so — `submit_on_change`, on the `AbstractForm` of `wexample/symfony-forms`,
+which sends it as soon as any of its controls settles on a new value. What this field owes
+that feature is a `change` event: its inputs are hidden and filled by hand, and nothing
+raises `change` for what a program writes, so the field raises one itself once they hold
+the new value. The dirty state of the loader's form listens to that same event.
 
 The field lives here and not in `wexample/symfony-forms`, because it offers this package's
 feature and would have nothing to show without it. src/Resources/config/ is
@@ -275,7 +352,7 @@ block and the extension prepends it to `twig.form_themes`, which Twig merges —
 brings the fields it offers rather than the form package carrying fields whose feature it
 does not ship.
 
-## Configuration## Configuration
+## Configuration
 
 ```yaml
 # config/packages/wexample_symfony_search.yaml
