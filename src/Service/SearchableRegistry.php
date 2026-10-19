@@ -14,6 +14,7 @@ use Wexample\SymfonySearch\Attribute\SearchAmount;
 use Wexample\SymfonySearch\Attribute\SearchIgnore;
 use Wexample\SymfonySearch\Attribute\SearchText;
 use Wexample\SymfonySearch\Class\SearchableEntity;
+use Wexample\SymfonyHelpers\Attribute\WorkerSafe;
 
 /**
  * Every entity that declared itself findable, and what each is findable on.
@@ -39,6 +40,7 @@ class SearchableRegistry
     ];
 
     /** @var array<string, SearchableEntity>|null by the type they answer to */
+    #[WorkerSafe('Read once from the entities metadata, the same for every request.')]
     private ?array $entities = null;
 
     public function __construct(
