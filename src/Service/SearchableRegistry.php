@@ -8,13 +8,13 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use InvalidArgumentException;
 use ReflectionAttribute;
 use ReflectionClass;
+use Wexample\SymfonyHelpers\Attribute\WorkerSafe;
 use Wexample\SymfonySearch\Attribute\AbstractSearchField;
 use Wexample\SymfonySearch\Attribute\Searchable;
 use Wexample\SymfonySearch\Attribute\SearchAmount;
 use Wexample\SymfonySearch\Attribute\SearchIgnore;
 use Wexample\SymfonySearch\Attribute\SearchText;
 use Wexample\SymfonySearch\Class\SearchableEntity;
-use Wexample\SymfonyHelpers\Attribute\WorkerSafe;
 
 /**
  * Every entity that declared itself findable, and what each is findable on.
