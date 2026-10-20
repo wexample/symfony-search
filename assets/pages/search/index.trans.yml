@@ -1,5 +1,6 @@
 en:
   page_title: Search
+  document_title: "One search across pages and records"
   page_description: "One search field for every kind of result — pages from the router, records from the entities — each provider registered by implementing one interface."
   page_icon: ph:bold/magnifying-glass
 
