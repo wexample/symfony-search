@@ -57,7 +57,8 @@ en:
 
 ar:
   page_title: بحث
-  page_description: "حقل بحث واحد لكل أنواع النتائج — صفحات من الموجّه وسجلات من الكيانات — ويُسجَّل كل مزوّد بتنفيذ واجهة واحدة."
+  document_title: 'بحث واحد عبر الصفحات والسجلات'
+  page_description: 'حقل بحث واحد لكل أنواع النتائج — صفحات من الموجّه وسجلات من الكيانات — ويُسجَّل كل مزوّد بتنفيذ واجهة واحدة.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: جربه
@@ -92,7 +93,8 @@ ar:
 
 bn:
   page_title: অনুসন্ধান
-  page_description: "সব ধরনের ফলাফলের জন্য একটি সার্চ ফিল্ড — রাউটার থেকে পেজ, এনটিটি থেকে রেকর্ড — প্রতিটি প্রোভাইডার একটি ইন্টারফেস বাস্তবায়ন করে নিবন্ধিত।"
+  document_title: 'একটি অনুসন্ধান পৃষ্ঠাগুলি এবং রেকর্ডগুলির মধ্যে'
+  page_description: 'সব ধরনের ফলাফলের জন্য একটি সার্চ ফিল্ড — রাউটার থেকে পেজ, এনটিটি থেকে রেকর্ড — প্রতিটি প্রোভাইডার একটি ইন্টারফেস বাস্তবায়ন করে নিবন্ধিত।'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'এটি চেষ্টা করুন'
@@ -127,7 +129,8 @@ bn:
 
 de:
   page_title: Suche
-  page_description: "Ein Suchfeld für jede Art von Ergebnis — Seiten aus dem Router, Datensätze aus den Entitäten — jeder Anbieter registriert durch die Implementierung einer Schnittstelle."
+  document_title: 'Eine Suche über Seiten und Datensätze'
+  page_description: 'Ein Suchfeld für jede Art von Ergebnis — Seiten aus dem Router, Datensätze aus den Entitäten — jeder Anbieter registriert durch die Implementierung einer Schnittstelle.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Ausprobieren
@@ -162,7 +165,8 @@ de:
 
 es:
   page_title: Buscar
-  page_description: "Un solo campo de búsqueda para todo tipo de resultados — páginas del enrutador, registros de las entidades — cada proveedor registrado implementando una interfaz."
+  document_title: 'Una búsqueda en todas las páginas y registros'
+  page_description: 'Un solo campo de búsqueda para todo tipo de resultados — páginas del enrutador, registros de las entidades — cada proveedor registrado implementando una interfaz.'
   page_icon: 'ph:bold/lupa'
   try:
     title: Pruébalo
@@ -197,7 +201,8 @@ es:
 
 fa:
   page_title: جستجو
-  page_description: "یک فیلد جستجو برای همه نوع نتیجه — صفحه‌ها از مسیریاب، رکوردها از موجودیت‌ها — و هر فراهم‌کننده با پیاده‌سازی یک اینترفیس ثبت می‌شود."
+  document_title: 'یک جستجو در صفحات و سوابق'
+  page_description: 'یک فیلد جستجو برای همه نوع نتیجه — صفحه‌ها از مسیریاب، رکوردها از موجودیت‌ها — و هر فراهم‌کننده با پیاده‌سازی یک اینترفیس ثبت می‌شود.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'تجربه کنید'
@@ -232,7 +237,8 @@ fa:
 
 fi:
   page_title: Haku
-  page_description: "Yksi hakukenttä kaikenlaisille tuloksille — sivut reitittimestä, tietueet entiteeteistä — ja jokainen tarjoaja rekisteröityy toteuttamalla yhden rajapinnan."
+  document_title: 'Yksi haku sivuilla ja tiedoissa'
+  page_description: 'Yksi hakukenttä kaikenlaisille tuloksille — sivut reitittimestä, tietueet entiteeteistä — ja jokainen tarjoaja rekisteröityy toteuttamalla yhden rajapinnan.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Kokeile
@@ -266,65 +272,44 @@ fi:
 
 fr:
   page_title: Recherche
-  page_description: "Un seul champ de recherche pour tous les types de résultats — pages issues du routeur, enregistrements issus des entités — chaque fournisseur déclaré en implémentant une interface."
-  page_icon: ph:bold/magnifying-glass
-
+  document_title: 'Une recherche à travers les pages et les enregistrements'
+  page_description: 'Un seul champ de recherche pour tous les types de résultats — pages issues du routeur, enregistrements issus des entités — chaque fournisseur déclaré en implémentant une interface.'
+  page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Essayer
-    body: >
-      Un seul champ, toutes les natures de résultat. Les pages viennent du routeur
-      et ne se déclarent nulle part ; les enregistrements viennent des entités qui
-      portent l'attribut plus bas. Chaque résultat porte sa destination, donc la
-      barre n'a rien à décider de ce qu'un clic veut dire.
-
+    body: |
+      Un seul champ, toutes les natures de résultat. Les pages viennent du routeur et ne se déclarent nulle part ; les enregistrements viennent des entités qui portent l'attribut plus bas. Chaque résultat porte sa destination, donc la barre n'a rien à décider de ce qu'un clic veut dire.
   providers:
     title: Fournisseurs
-    body: >
-      Un fournisseur, c'est une famille de choses trouvables. Implémenter
-      l'interface suffit à l'enregistrer — l'autoconfiguration le tague, donc un
-      fournisseur écrit dans une application rejoint la recherche en existant.
-      Voici ceux qui répondent ici, sous le nom par lequel une requête peut se
-      restreindre.
-
+    body: |
+      Un fournisseur, c'est une famille de choses trouvables. Implémenter l'interface suffit à l'enregistrer — l'autoconfiguration le tague, donc un fournisseur écrit dans une application rejoint la recherche en existant. Voici ceux qui répondent ici, sous le nom par lequel une requête peut se restreindre.
   entities:
-    title: Entités cherchables
-    body: >
-      La classe dit qu'une entité est cherchable ; ses propriétés disent sur quoi, chacune avec sa nature
-      — un titre se lit, un montant est un chiffre, une adresse est entière ou
-      rien — et la nature décide du SQL comme des points. Six des sept fonctions
-      de score du legacy étaient cette liste déguisée. La septième raisonnait, et
-      celle-là nomme une classe de scoring ; l'entité dont la réponse dépend de
-      qui demande ajoute provider: true et obtient son propre fournisseur.
-    empty: Aucune entité ne porte encore l'attribut dans cette application — les résultats de pages fonctionnent quand même.
+    title: 'Entités cherchables'
+    body: |
+      La classe dit qu'une entité est cherchable ; ses propriétés disent sur quoi, chacune avec sa nature — un titre se lit, un montant est un chiffre, une adresse est entière ou rien — et la nature décide du SQL comme des points. Six des sept fonctions de score du legacy étaient cette liste déguisée. La septième raisonnait, et celle-là nomme une classe de scoring ; l'entité dont la réponse dépend de qui demande ajoute provider: true et obtient son propre fournisseur.
+    empty: "Aucune entité ne porte encore l'attribut dans cette application — les résultats de pages fonctionnent quand même."
     fields: Champs
-    scoring: Scoré par
+    scoring: 'Scoré par'
     contexts: Contextes
-    own_provider: Servie par un fournisseur dédié.
-
+    own_provider: 'Servie par un fournisseur dédié.'
   api:
-    title: L'API
-    body: >
-      Un résultat est une entité, donc son endpoint est la collection de cette
-      entité et rien d'autre. Le repository TypeScript généré depuis la même
-      classe PHP l'appelle sans qu'on lui dise où il est — c'est ce qu'utilise le
-      champ ci-dessus.
-    query: Paramètres de requête
-    query_search: Ce qu'on cherche. Une requête vide ne répond rien, et non pas tout.
-    query_context: D'où la recherche est faite, ce qui décide de ce qu'elle peut répondre. Contextes livrés :
-    query_type: Restreint la réponse à une seule nature — un nom d'entité, ou la clé d'un fournisseur.
-    query_length: Combien de résultats. Absent, la configuration du bundle décide.
-
+    title: "L'API"
+    body: |
+      Un résultat est une entité, donc son endpoint est la collection de cette entité et rien d'autre. Le repository TypeScript généré depuis la même classe PHP l'appelle sans qu'on lui dise où il est — c'est ce qu'utilise le champ ci-dessus.
+    query: 'Paramètres de requête'
+    query_search: "Ce qu'on cherche. Une requête vide ne répond rien, et non pas tout."
+    query_context: "D'où la recherche est faite, ce qui décide de ce qu'elle peut répondre. Contextes livrés :"
+    query_type: "Restreint la réponse à une seule nature — un nom d'entité, ou la clé d'un fournisseur."
+    query_length: 'Combien de résultats. Absent, la configuration du bundle décide.'
   translations:
     title: Traductions
-    body: >
-      La barre lit ses libellés dans les quatre faces du composant, donc aucun
-      placeholder ne s'écrit dans le markup. Les titres de résultats, eux, viennent
-      de l'enregistrement ou du nom de route — les traduire n'est pas encore
-      câblé, et une page affiche aujourd'hui son nom de route humanisé.
+    body: |
+      La barre lit ses libellés dans les quatre faces du composant, donc aucun placeholder ne s'écrit dans le markup. Les titres de résultats, eux, viennent de l'enregistrement ou du nom de route — les traduire n'est pas encore câblé, et une page affiche aujourd'hui son nom de route humanisé.
 
 he:
   page_title: חיפוש
-  page_description: "שדה חיפוש אחד לכל סוגי התוצאות — עמודים מהנתב, רשומות מהישויות — וכל ספק נרשם על ידי מימוש ממשק אחד."
+  document_title: 'חיפוש אחד בעמודים וברשומות'
+  page_description: 'שדה חיפוש אחד לכל סוגי התוצאות — עמודים מהנתב, רשומות מהישויות — וכל ספק נרשם על ידי מימוש ממשק אחד.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'נסה את זה'
@@ -359,7 +344,8 @@ he:
 
 hi:
   page_title: खोजें
-  page_description: "हर तरह के परिणाम के लिए एक खोज फ़ील्ड — राउटर से पेज, एंटिटी से रिकॉर्ड — हर प्रदाता एक इंटरफ़ेस लागू करके पंजीकृत।"
+  document_title: 'पृष्ठों और रिकॉर्ड में एक खोज'
+  page_description: 'हर तरह के परिणाम के लिए एक खोज फ़ील्ड — राउटर से पेज, एंटिटी से रिकॉर्ड — हर प्रदाता एक इंटरफ़ेस लागू करके पंजीकृत।'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'इसे आजमाएं'
@@ -394,7 +380,8 @@ hi:
 
 id:
   page_title: Cari
-  page_description: "Satu kolom pencarian untuk semua jenis hasil — halaman dari router, rekaman dari entitas — setiap penyedia terdaftar dengan mengimplementasikan satu antarmuka."
+  document_title: 'Satu pencarian di seluruh halaman dan catatan'
+  page_description: 'Satu kolom pencarian untuk semua jenis hasil — halaman dari router, rekaman dari entitas — setiap penyedia terdaftar dengan mengimplementasikan satu antarmuka.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Coba
@@ -429,6 +416,7 @@ id:
 
 it:
   page_title: Cerca
+  document_title: 'Una ricerca su pagine e registri'
   page_description: "Un unico campo di ricerca per ogni tipo di risultato — pagine dal router, record dalle entità — ogni provider registrato implementando un'interfaccia."
   page_icon: 'ph:bold/magnifying-glass'
   try:
@@ -464,7 +452,8 @@ it:
 
 ja:
   page_title: 検索
-  page_description: "あらゆる結果をひとつの検索欄で。ルーターからのページ、エンティティからのレコード。各プロバイダーはインターフェースを1つ実装するだけで登録されます。"
+  document_title: ページと記録を横断して検索する
+  page_description: あらゆる結果をひとつの検索欄で。ルーターからのページ、エンティティからのレコード。各プロバイダーはインターフェースを1つ実装するだけで登録されます。
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 試してみる
@@ -499,7 +488,8 @@ ja:
 
 ko:
   page_title: 검색
-  page_description: "모든 종류의 결과를 위한 하나의 검색창 — 라우터의 페이지, 엔티티의 레코드 — 각 제공자는 인터페이스 하나만 구현하면 등록됩니다."
+  document_title: '페이지와 기록을 아우르는 검색'
+  page_description: '모든 종류의 결과를 위한 하나의 검색창 — 라우터의 페이지, 엔티티의 레코드 — 각 제공자는 인터페이스 하나만 구현하면 등록됩니다.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 해보기
@@ -534,6 +524,7 @@ ko:
 
 nl:
   page_title: Zoeken
+  document_title: "Één zoekopdracht over pagina's en records"
   page_description: "Eén zoekveld voor elk soort resultaat — pagina's uit de router, records uit de entiteiten — elke provider geregistreerd door één interface te implementeren."
   page_icon: 'ph:bold/magnifying-glass'
   try:
@@ -569,7 +560,8 @@ nl:
 
 pl:
   page_title: Szukaj
-  page_description: "Jedno pole wyszukiwania dla każdego rodzaju wyników — strony z routera, rekordy z encji — każdy dostawca rejestrowany przez implementację jednego interfejsu."
+  document_title: 'Jedno wyszukiwanie w stronach i rekordach'
+  page_description: 'Jedno pole wyszukiwania dla każdego rodzaju wyników — strony z routera, rekordy z encji — każdy dostawca rejestrowany przez implementację jednego interfejsu.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Wypróbuj
@@ -604,7 +596,8 @@ pl:
 
 pt_BR:
   page_title: Pesquisar
-  page_description: "Um único campo de busca para todo tipo de resultado — páginas do roteador, registros das entidades — cada provedor registrado ao implementar uma interface."
+  document_title: 'Uma busca em páginas e registros'
+  page_description: 'Um único campo de busca para todo tipo de resultado — páginas do roteador, registros das entidades — cada provedor registrado ao implementar uma interface.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Experimente
@@ -639,7 +632,8 @@ pt_BR:
 
 ru:
   page_title: Поиск
-  page_description: "Одно поле поиска для любых результатов — страниц из маршрутизатора, записей из сущностей; каждый провайдер регистрируется реализацией одного интерфейса."
+  document_title: 'Поиск по страницам и записям'
+  page_description: 'Одно поле поиска для любых результатов — страниц из маршрутизатора, записей из сущностей; каждый провайдер регистрируется реализацией одного интерфейса.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Попробовать
@@ -674,7 +668,8 @@ ru:
 
 th:
   page_title: ค้นหา
-  page_description: "ช่องค้นหาเดียวสำหรับผลลัพธ์ทุกประเภท — หน้าจากเราเตอร์ ระเบียนจากเอนทิตี — ผู้ให้บริการแต่ละรายลงทะเบียนด้วยการอิมพลีเมนต์อินเทอร์เฟซเดียว"
+  document_title: ค้นหาหนึ่งครั้งในหลายหน้าและบันทึก
+  page_description: 'ช่องค้นหาเดียวสำหรับผลลัพธ์ทุกประเภท — หน้าจากเราเตอร์ ระเบียนจากเอนทิตี — ผู้ให้บริการแต่ละรายลงทะเบียนด้วยการอิมพลีเมนต์อินเทอร์เฟซเดียว'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: ลองใช้งาน
@@ -708,7 +703,8 @@ th:
 
 tr:
   page_title: Ara
-  page_description: "Her tür sonuç için tek bir arama alanı — yönlendiriciden sayfalar, varlıklardan kayıtlar — her sağlayıcı tek bir arayüzü uygulayarak kaydolur."
+  document_title: 'Sayfalar ve kayıtlar arasında tek arama'
+  page_description: 'Her tür sonuç için tek bir arama alanı — yönlendiriciden sayfalar, varlıklardan kayıtlar — her sağlayıcı tek bir arayüzü uygulayarak kaydolur.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Deneyin
@@ -743,7 +739,8 @@ tr:
 
 ur:
   page_title: 'تلاش کریں'
-  page_description: "ہر قسم کے نتیجے کے لیے ایک تلاش فیلڈ — راؤٹر سے صفحات، اینٹیٹیز سے ریکارڈز — ہر فراہم کنندہ ایک انٹرفیس نافذ کر کے رجسٹر ہوتا ہے۔"
+  document_title: 'ایک تلاش صفحات اور ریکارڈز میں'
+  page_description: 'ہر قسم کے نتیجے کے لیے ایک تلاش فیلڈ — راؤٹر سے صفحات، اینٹیٹیز سے ریکارڈز — ہر فراہم کنندہ ایک انٹرفیس نافذ کر کے رجسٹر ہوتا ہے۔'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: آزمائیں
@@ -778,7 +775,8 @@ ur:
 
 vi:
   page_title: 'Tìm kiếm'
-  page_description: "Một ô tìm kiếm cho mọi loại kết quả — trang từ bộ định tuyến, bản ghi từ thực thể — mỗi nhà cung cấp được đăng ký bằng cách triển khai một interface."
+  document_title: 'Tìm kiếm trên tất cả các trang và hồ sơ'
+  page_description: 'Một ô tìm kiếm cho mọi loại kết quả — trang từ bộ định tuyến, bản ghi từ thực thể — mỗi nhà cung cấp được đăng ký bằng cách triển khai một interface.'
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'Thử ngay'
@@ -812,7 +810,8 @@ vi:
 
 zh:
   page_title: 搜索
-  page_description: "一个搜索框覆盖所有类型的结果——来自路由的页面、来自实体的记录——每个提供者只需实现一个接口即可注册。"
+  document_title: 跨页面和记录的一次搜索
+  page_description: 一个搜索框覆盖所有类型的结果——来自路由的页面、来自实体的记录——每个提供者只需实现一个接口即可注册。
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 试试
