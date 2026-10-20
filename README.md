@@ -1,6 +1,6 @@
 # symfony-search
 
-Version: 4.2.2
+Version: 4.2.3
 
 `wexample/symfony-search` answers one question — *what, here, is called this?* — across
 things that have nothing in common: rows in a table, pages in a router, and whatever else a
@@ -517,15 +517,15 @@ The suite includes packages for configuration management, file handling, prompts
 - php: >=8.5
 - wexample/php-helpers: >=7.0.0
 - wexample/php-pseudocode: >=2.2.0
-- wexample/symfony-helpers: >=17.0.0
+- wexample/symfony-helpers: >=18.0.0
 - wexample/symfony-api: >=14.0.0
 - wexample/symfony-pseudocode: >=4.0.0
 - symfony/uid: >=6.2
 - symfony/routing: >=6.2
 - symfony/security-bundle: >=6.2
 - doctrine/orm: >=2.14
-- wexample/symfony-loader: >=23.3.0
-- wexample/symfony-design-system: >=38.0.0
+- wexample/symfony-loader: >=24.0.0
+- wexample/symfony-design-system: >=39.0.0
 - wexample/symfony-content: >=4.0.0
 - wexample/symfony-forms: >=14.0.0
 
