@@ -1,5 +1,6 @@
 en:
   page_title: Search
+  page_description: "One search field for every kind of result — pages from the router, records from the entities — each provider registered by implementing one interface."
   page_icon: ph:bold/magnifying-glass
 
   try:
@@ -55,6 +56,7 @@ en:
 
 ar:
   page_title: بحث
+  page_description: "حقل بحث واحد لكل أنواع النتائج — صفحات من الموجّه وسجلات من الكيانات — ويُسجَّل كل مزوّد بتنفيذ واجهة واحدة."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: جربه
@@ -89,6 +91,7 @@ ar:
 
 bn:
   page_title: অনুসন্ধান
+  page_description: "সব ধরনের ফলাফলের জন্য একটি সার্চ ফিল্ড — রাউটার থেকে পেজ, এনটিটি থেকে রেকর্ড — প্রতিটি প্রোভাইডার একটি ইন্টারফেস বাস্তবায়ন করে নিবন্ধিত।"
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'এটি চেষ্টা করুন'
@@ -123,6 +126,7 @@ bn:
 
 de:
   page_title: Suche
+  page_description: "Ein Suchfeld für jede Art von Ergebnis — Seiten aus dem Router, Datensätze aus den Entitäten — jeder Anbieter registriert durch die Implementierung einer Schnittstelle."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Ausprobieren
@@ -157,6 +161,7 @@ de:
 
 es:
   page_title: Buscar
+  page_description: "Un solo campo de búsqueda para todo tipo de resultados — páginas del enrutador, registros de las entidades — cada proveedor registrado implementando una interfaz."
   page_icon: 'ph:bold/lupa'
   try:
     title: Pruébalo
@@ -191,6 +196,7 @@ es:
 
 fa:
   page_title: جستجو
+  page_description: "یک فیلد جستجو برای همه نوع نتیجه — صفحه‌ها از مسیریاب، رکوردها از موجودیت‌ها — و هر فراهم‌کننده با پیاده‌سازی یک اینترفیس ثبت می‌شود."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'تجربه کنید'
@@ -225,6 +231,7 @@ fa:
 
 fi:
   page_title: Haku
+  page_description: "Yksi hakukenttä kaikenlaisille tuloksille — sivut reitittimestä, tietueet entiteeteistä — ja jokainen tarjoaja rekisteröityy toteuttamalla yhden rajapinnan."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Kokeile
@@ -258,6 +265,7 @@ fi:
 
 fr:
   page_title: Recherche
+  page_description: "Un seul champ de recherche pour tous les types de résultats — pages issues du routeur, enregistrements issus des entités — chaque fournisseur déclaré en implémentant une interface."
   page_icon: ph:bold/magnifying-glass
 
   try:
@@ -315,6 +323,7 @@ fr:
 
 he:
   page_title: חיפוש
+  page_description: "שדה חיפוש אחד לכל סוגי התוצאות — עמודים מהנתב, רשומות מהישויות — וכל ספק נרשם על ידי מימוש ממשק אחד."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'נסה את זה'
@@ -349,6 +358,7 @@ he:
 
 hi:
   page_title: खोजें
+  page_description: "हर तरह के परिणाम के लिए एक खोज फ़ील्ड — राउटर से पेज, एंटिटी से रिकॉर्ड — हर प्रदाता एक इंटरफ़ेस लागू करके पंजीकृत।"
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'इसे आजमाएं'
@@ -383,6 +393,7 @@ hi:
 
 id:
   page_title: Cari
+  page_description: "Satu kolom pencarian untuk semua jenis hasil — halaman dari router, rekaman dari entitas — setiap penyedia terdaftar dengan mengimplementasikan satu antarmuka."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Coba
@@ -417,6 +428,7 @@ id:
 
 it:
   page_title: Cerca
+  page_description: "Un unico campo di ricerca per ogni tipo di risultato — pagine dal router, record dalle entità — ogni provider registrato implementando un'interfaccia."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Provalo
@@ -451,6 +463,7 @@ it:
 
 ja:
   page_title: 検索
+  page_description: "あらゆる結果をひとつの検索欄で。ルーターからのページ、エンティティからのレコード。各プロバイダーはインターフェースを1つ実装するだけで登録されます。"
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 試してみる
@@ -485,6 +498,7 @@ ja:
 
 ko:
   page_title: 검색
+  page_description: "모든 종류의 결과를 위한 하나의 검색창 — 라우터의 페이지, 엔티티의 레코드 — 각 제공자는 인터페이스 하나만 구현하면 등록됩니다."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 해보기
@@ -519,6 +533,7 @@ ko:
 
 nl:
   page_title: Zoeken
+  page_description: "Eén zoekveld voor elk soort resultaat — pagina's uit de router, records uit de entiteiten — elke provider geregistreerd door één interface te implementeren."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'Probeer het'
@@ -553,6 +568,7 @@ nl:
 
 pl:
   page_title: Szukaj
+  page_description: "Jedno pole wyszukiwania dla każdego rodzaju wyników — strony z routera, rekordy z encji — każdy dostawca rejestrowany przez implementację jednego interfejsu."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Wypróbuj
@@ -587,6 +603,7 @@ pl:
 
 pt_BR:
   page_title: Pesquisar
+  page_description: "Um único campo de busca para todo tipo de resultado — páginas do roteador, registros das entidades — cada provedor registrado ao implementar uma interface."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Experimente
@@ -621,6 +638,7 @@ pt_BR:
 
 ru:
   page_title: Поиск
+  page_description: "Одно поле поиска для любых результатов — страниц из маршрутизатора, записей из сущностей; каждый провайдер регистрируется реализацией одного интерфейса."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Попробовать
@@ -655,6 +673,7 @@ ru:
 
 th:
   page_title: ค้นหา
+  page_description: "ช่องค้นหาเดียวสำหรับผลลัพธ์ทุกประเภท — หน้าจากเราเตอร์ ระเบียนจากเอนทิตี — ผู้ให้บริการแต่ละรายลงทะเบียนด้วยการอิมพลีเมนต์อินเทอร์เฟซเดียว"
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: ลองใช้งาน
@@ -688,6 +707,7 @@ th:
 
 tr:
   page_title: Ara
+  page_description: "Her tür sonuç için tek bir arama alanı — yönlendiriciden sayfalar, varlıklardan kayıtlar — her sağlayıcı tek bir arayüzü uygulayarak kaydolur."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: Deneyin
@@ -722,6 +742,7 @@ tr:
 
 ur:
   page_title: 'تلاش کریں'
+  page_description: "ہر قسم کے نتیجے کے لیے ایک تلاش فیلڈ — راؤٹر سے صفحات، اینٹیٹیز سے ریکارڈز — ہر فراہم کنندہ ایک انٹرفیس نافذ کر کے رجسٹر ہوتا ہے۔"
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: آزمائیں
@@ -756,6 +777,7 @@ ur:
 
 vi:
   page_title: 'Tìm kiếm'
+  page_description: "Một ô tìm kiếm cho mọi loại kết quả — trang từ bộ định tuyến, bản ghi từ thực thể — mỗi nhà cung cấp được đăng ký bằng cách triển khai một interface."
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 'Thử ngay'
@@ -789,6 +811,7 @@ vi:
 
 zh:
   page_title: 搜索
+  page_description: "一个搜索框覆盖所有类型的结果——来自路由的页面、来自实体的记录——每个提供者只需实现一个接口即可注册。"
   page_icon: 'ph:bold/magnifying-glass'
   try:
     title: 试试
