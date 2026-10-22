@@ -3,7 +3,7 @@
   "description": "Cross-cutting search for Symfony: entities, pages, and anything else worth finding",
   "type": "library",
   "license": "MIT",
-  "version": "4.2.4",
+  "version": "4.2.5",
   "autoload": {
     "psr-4": {
       "Wexample\\SymfonySearch\\": "src/"
@@ -17,19 +17,19 @@
   ],
   "require": {
     "php": ">=8.5",
-    "wexample/php-helpers": ">=7.0.0",
-    "wexample/php-pseudocode": ">=2.2.0",
-    "wexample/symfony-helpers": ">=18.0.0",
-    "wexample/symfony-api": ">=14.0.0",
-    "wexample/symfony-pseudocode": ">=4.0.0",
+    "wexample/php-helpers": ">=7.0.4",
+    "wexample/php-pseudocode": ">=2.2.4",
+    "wexample/symfony-helpers": ">=18.0.2",
+    "wexample/symfony-api": ">=14.0.5",
+    "wexample/symfony-pseudocode": ">=4.0.2",
     "symfony/uid": ">=6.2",
     "symfony/routing": ">=6.2",
     "symfony/security-bundle": ">=6.2",
     "doctrine/orm": ">=2.14",
-    "wexample/symfony-loader": ">=25.0.0",
-    "wexample/symfony-design-system": ">=39.0.0",
-    "wexample/symfony-content": ">=4.0.0",
-    "wexample/symfony-forms": ">=14.0.0"
+    "wexample/symfony-loader": ">=25.0.1",
+    "wexample/symfony-design-system": ">=39.0.3",
+    "wexample/symfony-content": ">=4.0.12",
+    "wexample/symfony-forms": ">=14.0.2"
   },
   "extra": {
     "install": {
