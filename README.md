@@ -1,6 +1,6 @@
 # symfony-search
 
-Version: 4.2.5
+Version: 4.2.6
 
 Cross-cutting search for Symfony: entities, pages, and anything else worth finding
 
