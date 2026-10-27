@@ -23,7 +23,7 @@ use Wexample\SymfonySearch\Service\SearchService;
  * the `list` of that entity, and the `SearchResultRepository.ts` generated from
  * the same class calls it without being told where it is.
  */
-#[Route(path: 'api/search-result/', name: 'api_search_result_')]
+#[Route(path: '_api/search-result/', name: 'api_search_result_')]
 class SearchResultController extends AbstractApiController
 {
     final public const string ROUTE_LIST = 'list';
