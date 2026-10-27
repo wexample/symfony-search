@@ -124,7 +124,7 @@ $results = $searchService->search(
 Over HTTP, the results are the collection of one entity like any other:
 
 ```
-GET /api/search-result/list?search=dupont&context=header&length=10
+GET /_api/search-result/list?search=dupont&context=header&length=10
 ```
 
 `type` restricts the answer to one kind — `?type=invoice` for one entity, `?type=route` for
