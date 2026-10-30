@@ -2,6 +2,7 @@
 
 namespace Wexample\SymfonySearch\Attribute;
 
+use Doctrine\ORM\Query\Expr\Andx;
 use Doctrine\ORM\Query\Expr\Comparison;
 use Doctrine\ORM\QueryBuilder;
 use Wexample\SymfonySearch\Class\SearchQuery;
@@ -39,14 +40,14 @@ abstract class AbstractSearchField
 
     /**
      * The clause finding this field, or null when the query's shape cannot be
-     * looked for in it.
+     * looked for in it — a comparison, or several held together (a range).
      */
     abstract public function constrain(
         QueryBuilder $builder,
         string $alias,
         SearchQuery $query,
         string $parameter
-    ): ?Comparison;
+    ): Comparison|Andx|null;
 
     /** The points this field earns, said to the builder. */
     abstract public function score(

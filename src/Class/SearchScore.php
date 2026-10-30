@@ -3,6 +3,7 @@
 namespace Wexample\SymfonySearch\Class;
 
 use BackedEnum;
+use DateTimeInterface;
 use Wexample\SymfonySearch\Helper\SearchScoreHelper;
 
 /**
@@ -32,6 +33,8 @@ class SearchScore
 
     /** An id is pasted, not searched: worth something, not much. */
     public const float POINTS_ID = 5;
+
+    public const float POINTS_DATE = 20;
 
     private float $points = 0;
 
@@ -104,6 +107,20 @@ class SearchScore
     ): self {
         if ($this->query->isEmail()) {
             $this->points += SearchScoreHelper::stringScore($this->query->terms, $value, $points);
+        }
+
+        return $this;
+    }
+
+    /** The day the query names, or nothing. */
+    public function date(
+        ?DateTimeInterface $value,
+        float $points = self::POINTS_DATE
+    ): self {
+        $day = $this->query->getDate();
+
+        if (null !== $value && null !== $day && $value->format('Y-m-d') === $day->format('Y-m-d')) {
+            $this->points += $points;
         }
 
         return $this;

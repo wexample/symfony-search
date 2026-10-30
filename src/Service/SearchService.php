@@ -38,7 +38,10 @@ class SearchService
      */
     public function search(SearchQuery $query): array
     {
-        if ($query->isEmpty() || ! $this->isGranted()) {
+        // Nothing typed asks nothing — unless one kind is named, which then
+        // lists itself if its provider says it can (listsWhenEmpty()): the
+        // records a picker shows before anything is typed.
+        if (($query->isEmpty() && null === $query->type) || ! $this->isGranted()) {
             return [];
         }
 

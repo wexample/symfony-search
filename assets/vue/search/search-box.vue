@@ -83,6 +83,12 @@ export default {
       type: String,
       default: null
     },
+    // What narrows the answer besides the terms, by name — the record the
+    // results belong to ({ scenario: id }) —, sent as `filter[name]`.
+    filters: {
+      type: Object,
+      default: () => ({})
+    },
     // Whether a row opens what it names. False where picking is the point.
     linkResults: {
       type: Boolean,
@@ -92,7 +98,9 @@ export default {
       type: Number,
       default: 8
     },
-    // One letter matches everything and means nothing.
+    // One letter matches everything and means nothing. Zero lists before
+    // anything is typed, as soon as the field is entered — a picker's latest,
+    // which a `type` whose provider lists when empty answers.
     minLength: {
       type: Number,
       default: 2
@@ -255,6 +263,8 @@ export default {
 
       if (this.hasItems && this.terms.trim().length >= this.minLength) {
         this.open();
+      } else if (0 === this.minLength) {
+        this.search();
       }
     },
 
@@ -270,6 +280,12 @@ export default {
 
       if (this.type) {
         query.type = this.type;
+      }
+
+      for (const [name, value] of Object.entries(this.filters || {})) {
+        if (value !== null && value !== undefined && value !== '') {
+          query[`filter[${name}]`] = value;
+        }
       }
 
       return { query, length: this.length };

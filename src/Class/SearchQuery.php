@@ -3,6 +3,7 @@
 namespace Wexample\SymfonySearch\Class;
 
 use BackedEnum;
+use DateTimeImmutable;
 use Wexample\Helpers\Helper\TextHelper;
 use Wexample\SymfonySearch\Enum\SearchContext;
 
@@ -35,6 +36,14 @@ class SearchQuery
          * `invoice`, or the key of a provider. Null asks everyone.
          */
         public readonly ?string $type = null,
+        /**
+         * What narrows the answer besides the terms, by name — the record the
+         * results belong to (`scenario` => its id). Read by the providers that
+         * know the name; the others pass it by.
+         *
+         * @var array<string, string>
+         */
+        public readonly array $filters = [],
     ) {
         // Trimmed once, here, rather than in each provider: a query is what the
         // user typed, and the spaces around it are never part of it.
@@ -75,6 +84,26 @@ class SearchQuery
         return TextHelper::getFloatFromString($this->terms);
     }
 
+    /**
+     * The day the query names, or null when it names none: `2026-10-30`,
+     * `30/10/2026`, `30.10.2026`, or `30/10` — this year's.
+     */
+    public function getDate(): ?DateTimeImmutable
+    {
+        foreach (['!Y-m-d', '!d/m/Y', '!d.m.Y', '!d/m'] as $format) {
+            $date = DateTimeImmutable::createFromFormat($format, $this->terms);
+
+            // Read whole and as written: `31/02` is no day, not the 3rd of March.
+            if (false !== $date && $date->format(ltrim($format, '!')) === $this->terms) {
+                return '!d/m' === $format
+                    ? $date->setDate((int) date('Y'), (int) $date->format('m'), (int) $date->format('d'))
+                    : $date;
+            }
+        }
+
+        return null;
+    }
+
     /** A whole address, which is an intent rather than a fragment. */
     public function isEmail(): bool
     {
@@ -96,6 +125,14 @@ class SearchQuery
         return false;
     }
 
+    /** The value a filter was given, or null when the query names none. */
+    public function getFilter(string $name): ?string
+    {
+        $value = $this->filters[$name] ?? null;
+
+        return is_string($value) && '' !== $value ? $value : null;
+    }
+
     /** Whether a provider answering with `$type` was asked anything. */
     public function acceptsType(string $type): bool
     {
@@ -113,7 +150,8 @@ class SearchQuery
             $this->terms,
             $this->context,
             $maxResults,
-            $this->type
+            $this->type,
+            $this->filters
         );
     }
 }

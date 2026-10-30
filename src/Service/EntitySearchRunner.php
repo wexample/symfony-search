@@ -96,6 +96,12 @@ class EntitySearchRunner
             ->select(self::ALIAS)
             ->from($searchableEntity->className, self::ALIAS);
 
+        // Nothing typed: every record, as many as asked — what a provider
+        // listing when empty narrows and orders itself (configureQuery()).
+        if ($query->isEmpty()) {
+            return $builder->setMaxResults($query->maxResults);
+        }
+
         $orX = $builder->expr()->orX();
 
         foreach ($searchableEntity->fields as $index => $field) {

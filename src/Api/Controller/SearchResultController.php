@@ -4,6 +4,8 @@ namespace Wexample\SymfonySearch\Api\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\Constraints\Type;
+use Wexample\SymfonyApi\Api\Attribute\QueryOption\CustomQueryOption;
 use Wexample\SymfonyApi\Api\Attribute\QueryOption\LengthQueryOption;
 use Wexample\SymfonyApi\Api\Attribute\QueryOption\SearchQueryOption;
 use Wexample\SymfonyApi\Api\Attribute\QueryOption\StringQueryOption;
@@ -32,6 +34,9 @@ class SearchResultController extends AbstractApiController
 
     final public const string QUERY_OPTION_TYPE = VariableHelper::TYPE;
 
+    // `filter[scenario]=…`: what narrows the answer, by name (SearchQuery::$filters).
+    final public const string QUERY_OPTION_FILTER = 'filter';
+
     #[Route(path: 'list', name: self::ROUTE_LIST, methods: AbstractController::ROUTE_OPTIONS_METHOD_ONLY_GET, options: AbstractController::ROUTE_OPTIONS_ONLY_EXPOSE)]
     #[SearchQueryOption(default: '')]
     #[StringQueryOption(key: self::QUERY_OPTION_CONTEXT, default: SearchContext::DEFAULT->value)]
@@ -39,6 +44,7 @@ class SearchResultController extends AbstractApiController
     // Zero rather than a number: the bundle's configured default is what a
     // client saying nothing gets, and it is not this controller's to decide.
     #[LengthQueryOption(default: SearchQuery::MAX_RESULTS_UNSET)]
+    #[CustomQueryOption(key: self::QUERY_OPTION_FILTER, constraint: new Type('array'), default: [])]
     public function list(
         Request $request,
         SearchService $searchService,
@@ -52,6 +58,10 @@ class SearchResultController extends AbstractApiController
                 (string) self::getQueryOptionValue($request, self::QUERY_OPTION_CONTEXT, SearchContext::DEFAULT->value),
                 (int) self::getQueryOptionValue($request, VariableHelper::LENGTH, SearchQuery::MAX_RESULTS_UNSET),
                 '' === $type ? null : $type,
+                array_filter(
+                    (array) self::getQueryOptionValue($request, self::QUERY_OPTION_FILTER, []),
+                    static fn ($value): bool => is_string($value)
+                ),
             )
         );
 
