@@ -3,7 +3,7 @@
   "description": "Cross-cutting search for Symfony: entities, pages, and anything else worth finding",
   "type": "library",
   "license": "MIT",
-  "version": "5.0.5",
+  "version": "5.0.6",
   "autoload": {
     "psr-4": {
       "Wexample\\SymfonySearch\\": "src/"
@@ -26,8 +26,8 @@
     "symfony/routing": ">=6.2",
     "symfony/security-bundle": ">=6.2",
     "doctrine/orm": ">=2.14",
-    "wexample/symfony-loader": ">=26.1.0",
-    "wexample/symfony-design-system": ">=41.0.0",
+    "wexample/symfony-loader": ">=27.0.0",
+    "wexample/symfony-design-system": ">=42.0.0",
     "wexample/symfony-content": ">=4.0.12",
     "wexample/symfony-forms": ">=14.0.2"
   },
