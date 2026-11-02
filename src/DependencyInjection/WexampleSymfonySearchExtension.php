@@ -31,6 +31,10 @@ class WexampleSymfonySearchExtension extends AbstractWexampleSymfonyExtension
 
     public const PARAMETER_MAX_RESULTS = 'wexample_symfony_search.max_results';
 
+    public const PARAMETER_MAX_RESULTS_LIMIT = 'wexample_symfony_search.max_results_limit';
+
+    public const PARAMETER_MAX_TERMS_LENGTH = 'wexample_symfony_search.max_terms_length';
+
     public function load(
         array $configs,
         ContainerBuilder $container
@@ -67,6 +71,16 @@ class WexampleSymfonySearchExtension extends AbstractWexampleSymfonyExtension
         $container->setParameter(
             self::PARAMETER_MAX_RESULTS,
             $config['max_results']
+        );
+
+        $container->setParameter(
+            self::PARAMETER_MAX_RESULTS_LIMIT,
+            $config['max_results_limit']
+        );
+
+        $container->setParameter(
+            self::PARAMETER_MAX_TERMS_LENGTH,
+            $config['max_terms_length']
         );
     }
 }

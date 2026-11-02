@@ -61,6 +61,12 @@ final readonly class SearchableEntity
         return $this->searchable->provider;
     }
 
+    /** The role a reader must hold for this entity to answer, or null for none of its own. */
+    public function getRole(): ?string
+    {
+        return $this->searchable->role;
+    }
+
     public function isInContext(string $context): bool
     {
         return [] === $this->searchable->contexts

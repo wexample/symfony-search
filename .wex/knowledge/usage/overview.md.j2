@@ -157,6 +157,27 @@ is still what the provider searches with. What `provider: true` changes is only 
 the query: the generic provider steps aside, because both answering would show every record
 twice.
 
+## Who may find what
+
+Three things decide whether a record can come back, and only two of them are access
+control.
+
+- `minimum_role` (configuration) — who may search at all.
+- `role` on `#[Searchable]` — who may find this entity: a reader without it gets none of its
+  records, in a list or as an id a field posted back. Checked where every entity search
+  passes, so a provider of its own cannot forget it.
+- `contexts` — **not** access control. A context says where a result is meant to be shown,
+  and it is the client that names it: anyone allowed to search can ask
+  `?context=form_field&type=user` by hand. An entity some readers must never find says so
+  with `role`, or with a provider narrowing its query by who asks.
+
+```php
+// Accounts: only who may administer them finds them.
+#[Searchable(fields: ['email' => new SearchEmail(), 'username' => new SearchText()], role: 'ROLE_ADMIN')]
+```
+
+What is typed is matched as written: a `%` or a `_` is looked for, not a wildcard.
+
 ## Searching something that is not an entity
 
 Implement {{ path("src/Interface/SearchProviderInterface.php") }} — usually by extending
@@ -361,6 +382,10 @@ wexample_symfony_search:
     minimum_role: ROLE_USER
     # How many results a query asking for no number gets.
     max_results: 5
+    # The most a query may ask for, whatever `length` it sends.
+    max_results_limit: 50
+    # The longest text searched; longer answers nothing.
+    max_terms_length: 255
 ```
 
 ## Hiding a page from the search

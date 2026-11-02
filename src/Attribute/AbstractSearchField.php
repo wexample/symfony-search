@@ -66,8 +66,31 @@ abstract class AbstractSearchField
     ): Comparison {
         // Lowered on both sides rather than trusting the collation, which is
         // the database's business and differs between two of them.
-        $builder->setParameter($parameter, '%'.mb_strtolower($query->terms).'%');
+        $builder->setParameter($parameter, '%'.self::escapeLike(mb_strtolower($query->terms)).'%');
 
-        return $builder->expr()->like('LOWER('.$alias.'.'.$this->name.')', ':'.$parameter);
+        // The escape character said, not assumed: PostgreSQL and MySQL take a
+        // backslash by default, SQLite takes none.
+        return new Comparison(
+            'LOWER('.$alias.'.'.$this->name.')',
+            'LIKE',
+            ':'.$parameter." ESCAPE '".self::LIKE_ESCAPE."'"
+        );
+    }
+
+    /** The character a typed `%` or `_` is escaped with in a `LIKE`. */
+    public const string LIKE_ESCAPE = '!';
+
+    /**
+     * What was typed, matched as written: a `%` or a `_` is a character
+     * looked for, not a wildcard — without which typing `%` alone listed every
+     * record of every entity the reader may search.
+     */
+    public static function escapeLike(string $terms): string
+    {
+        return strtr($terms, [
+            self::LIKE_ESCAPE => self::LIKE_ESCAPE.self::LIKE_ESCAPE,
+            '%' => self::LIKE_ESCAPE.'%',
+            '_' => self::LIKE_ESCAPE.'_',
+        ]);
     }
 }

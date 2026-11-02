@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Psr\Container\ContainerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Wexample\Helpers\Helper\ClassHelper;
@@ -52,7 +53,21 @@ class EntitySearchRunner
         private readonly UrlGeneratorInterface $urlGenerator,
         #[AutowireLocator(SearchScoringInterface::TAG)]
         private readonly ContainerInterface $scorings,
+        private readonly Security $security,
     ) {
+    }
+
+    /**
+     * Whether the reader may find this entity at all: the role its attribute
+     * names, if it names one. Asked here, where every entity search passes —
+     * the generic provider, a provider of its own, a field checking a posted
+     * id — so that no road around it exists.
+     */
+    public function isGranted(SearchableEntity $searchableEntity): bool
+    {
+        $role = $searchableEntity->getRole();
+
+        return null === $role || $this->security->isGranted($role);
     }
 
     /**
@@ -65,6 +80,10 @@ class EntitySearchRunner
         SearchQuery $query,
         ?Closure $configureQuery = null,
     ): iterable {
+        if (! $this->isGranted($searchableEntity)) {
+            return;
+        }
+
         $builder = $this->createQueryBuilder($searchableEntity, $query);
 
         // No field could be asked this shape of query: nothing to fetch, and
@@ -137,7 +156,7 @@ class EntitySearchRunner
         SearchQuery $query,
         ?Closure $configureQuery = null,
     ): ?AbstractEntity {
-        if (! $searchableEntity->isInContext($query->context)) {
+        if (! $searchableEntity->isInContext($query->context) || ! $this->isGranted($searchableEntity)) {
             return null;
         }
 

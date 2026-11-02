@@ -30,6 +30,8 @@ class SearchService
         private readonly Security $security,
         private readonly string $minimumRole,
         private readonly int $maxResultsDefault,
+        private readonly int $maxResultsLimit = 50,
+        private readonly int $maxTermsLength = 255,
     ) {
     }
 
@@ -45,8 +47,17 @@ class SearchService
             return [];
         }
 
+        // Longer than anyone types to find a record: not a search.
+        if (mb_strlen($query->terms) > $this->maxTermsLength) {
+            return [];
+        }
+
+        // No number asked takes the default; a number asked never passes the
+        // limit — it comes from the client, and nothing else bounds it.
         if (SearchQuery::MAX_RESULTS_UNSET === $query->maxResults) {
             $query = $query->withMaxResults($this->maxResultsDefault);
+        } elseif ($query->maxResults < 0 || $query->maxResults > $this->maxResultsLimit) {
+            $query = $query->withMaxResults(min(max($query->maxResults, 1), $this->maxResultsLimit));
         }
 
         $results = [];

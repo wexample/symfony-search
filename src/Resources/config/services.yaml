@@ -19,6 +19,8 @@ services:
         arguments:
             $minimumRole: '%wexample_symfony_search.minimum_role%'
             $maxResultsDefault: '%wexample_symfony_search.max_results%'
+            $maxResultsLimit: '%wexample_symfony_search.max_results_limit%'
+            $maxTermsLength: '%wexample_symfony_search.max_terms_length%'
 
     Wexample\SymfonySearch\Api\Controller\:
         resource: '../../Api/Controller/*'

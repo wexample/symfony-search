@@ -60,6 +60,17 @@ class Searchable
          * every result would appear twice.
          */
         public readonly bool $provider = false,
+        /**
+         * The role a reader must hold for this entity to answer at all — in a
+         * list of results, and for an id posted by a field. Null leaves it to
+         * the bundle's `minimum_role`.
+         *
+         * A context is not this: it says where a result is shown, and it is
+         * the client that names it, so any reader allowed to search can ask
+         * any context. What some readers must never find is said here, or in
+         * a provider of its own that narrows its query by who asks.
+         */
+        public readonly ?string $role = null,
     ) {
         // Cases in, strings out: an application declares its contexts in its
         // own enum, and nothing downstream has to know that enum exists.
