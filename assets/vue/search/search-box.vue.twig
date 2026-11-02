@@ -29,6 +29,9 @@
                     @focus="onFocus"
                     @keydown.tab="onSearchTab"
             >
+            {#- What acts on the field, in its frame after what is typed: a
+                subclass's actions (`form--input-action`). -#}
+            {%- block search_box_field_end -%}{%- endblock -%}
         </div>
         {#- `manual`: what closes it is the overlay service and Escape, not the
             light dismiss of a browser that would take the click meant for a

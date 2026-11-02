@@ -22,6 +22,16 @@
   }
 }
 
+// The field's actions reach its edges: the frame's room given back to them, so
+// their line runs from its top to its foot.
+.search-box--field > .form--input-action {
+  margin-block: calc(-1 * var(--space-2));
+
+  &:last-child {
+    margin-inline-end: calc(-1 * var(--space-3));
+  }
+}
+
 .search-box--icon {
   @include field.icon-muted;
 }
