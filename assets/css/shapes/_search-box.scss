@@ -32,6 +32,12 @@
   }
 }
 
+// Two actions side by side are parted by their line alone: the frame's gap,
+// meant between the icon, the input and what follows, taken back.
+.search-box--field > .form--input-action + .form--input-action {
+  margin-inline-start: calc(-1 * var(--space-2));
+}
+
 .search-box--icon {
   @include field.icon-muted;
 }
