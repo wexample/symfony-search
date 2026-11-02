@@ -82,8 +82,16 @@ class SearchScoreHelper
             return $score;
         }
 
+        // Slugified, a needle of punctuation alone (`%`, `--`) is nothing — and
+        // nothing is contained in every value: it scores nothing instead.
+        $slugifiedNeedle = TextHelper::slugify($needle);
+
+        if ('' === $slugifiedNeedle) {
+            return 0;
+        }
+
         return self::scoreAtLevel(
-            TextHelper::slugify($needle),
+            $slugifiedNeedle,
             TextHelper::slugify($haystack),
             $pointsBase * self::MULTIPLIER_SLUGIFIED,
             self::MULTIPLIER_EQUAL
