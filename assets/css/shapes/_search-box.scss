@@ -17,7 +17,9 @@
   gap: var(--space-2);
   padding: var(--space-2) var(--space-3);
 
-  &:focus-within {
+  // Ringed while what is typed has the focus, not while an action of the
+  // field has it: pressing one is not writing in the field.
+  &:has(> .search-box--input:focus) {
     @include field.field-focus;
   }
 }
