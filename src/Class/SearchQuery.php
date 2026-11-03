@@ -32,8 +32,9 @@ class SearchQuery
         BackedEnum|string $context = SearchContext::DEFAULT,
         public readonly int $maxResults = self::MAX_RESULTS_UNSET,
         /**
-         * Restricts the answer to one kind of result — an entity path such as
-         * `invoice`, or the key of a provider. Null asks everyone.
+         * Restricts the answer to some kinds of result — an entity path such
+         * as `invoice`, or the key of a provider; several separated by commas
+         * (`project,scenario`). Null asks everyone.
          */
         public readonly ?string $type = null,
         /**
@@ -136,7 +137,20 @@ class SearchQuery
     /** Whether a provider answering with `$type` was asked anything. */
     public function acceptsType(string $type): bool
     {
-        return null === $this->type || $this->type === $type;
+        return null === $this->type || in_array($type, $this->getTypes(), true);
+    }
+
+    /**
+     * The kinds asked, one per name the `type` lists — empty when it lists
+     * none, which asks everyone.
+     *
+     * @return list<string>
+     */
+    public function getTypes(): array
+    {
+        return null === $this->type
+            ? []
+            : array_values(array_filter(array_map('trim', explode(',', $this->type)), static fn (string $type): bool => '' !== $type));
     }
 
     /**

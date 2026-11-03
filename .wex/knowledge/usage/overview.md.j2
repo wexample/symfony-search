@@ -128,7 +128,7 @@ GET /_api/search-result/list?search=dupont&context=header&length=10
 ```
 
 `type` restricts the answer to one kind — `?type=invoice` for one entity, `?type=route` for
-pages only.
+pages only — or to a few, separated by commas: `?type=project,scenario`.
 
 ## When the entity has to reason
 
