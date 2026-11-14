@@ -3,11 +3,11 @@
 namespace Wexample\SymfonySearch\Helper;
 
 use function filter_var;
+use function mb_strtolower;
 use function preg_match;
 use function preg_quote;
 use function str_contains;
 use function str_starts_with;
-use function strtolower;
 
 use Wexample\Helpers\Helper\TextHelper;
 
@@ -67,9 +67,10 @@ class SearchScoreHelper
 
         // Typing the wrong case is the common mistake rather than a different
         // word, so containment costs nothing here and only equality is worth
-        // less than it would have been written exactly.
-        $needle = strtolower($needle);
-        $haystack = strtolower($haystack);
+        // less than it would have been written exactly. Lowered as characters:
+        // byte-wise, an `É` stays an `É` and the two only meet once slugified.
+        $needle = mb_strtolower($needle);
+        $haystack = mb_strtolower($haystack);
 
         $score = self::scoreAtLevel(
             $needle,
@@ -124,8 +125,9 @@ class SearchScoreHelper
 
         // Quoted, because the needle is what the user typed: the legacy
         // interpolated it raw into the pattern, so a query containing `(`
-        // scored nothing and emitted a warning.
-        if (preg_match('/\b'.preg_quote($needle, '/').'\b/', $haystack)) {
+        // scored nothing and emitted a warning. In UTF-8 mode, so that a letter
+        // with an accent is a letter of the word and not its boundary.
+        if (preg_match('/\b'.preg_quote($needle, '/').'\b/u', $haystack)) {
             $score *= self::MULTIPLIER_WHOLE_WORD;
         }
 
