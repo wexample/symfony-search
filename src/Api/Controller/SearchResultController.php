@@ -2,6 +2,7 @@
 
 namespace Wexample\SymfonySearch\Api\Controller;
 
+use Wexample\SymfonyApi\Api\Attribute\ApiAccess;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Constraints\Type;
@@ -26,6 +27,7 @@ use Wexample\SymfonySearch\Service\SearchService;
  * the same class calls it without being told where it is.
  */
 #[Route(path: '_api/search-result/', name: 'api_search_result_')]
+#[ApiAccess(ApiAccess::CONTROLLER, "each search provider returns what the reader may see, anonymous readers included")]
 class SearchResultController extends AbstractApiController
 {
     final public const string ROUTE_LIST = 'list';
