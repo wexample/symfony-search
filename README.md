@@ -1,6 +1,6 @@
 # symfony-search
 
-Version: 8.0.7
+Version: 8.0.8
 
 Cross-cutting search for Symfony: entities, pages, and anything else worth finding
 
