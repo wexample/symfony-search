@@ -34,15 +34,12 @@ class SearchResultController extends AbstractApiController
 
     final public const string QUERY_OPTION_CONTEXT = VariableHelper::CONTEXT;
 
-    final public const string QUERY_OPTION_TYPE = VariableHelper::TYPE;
-
     // `filter[scenario]=…`: what narrows the answer, by name (SearchQuery::$filters).
     final public const string QUERY_OPTION_FILTER = 'filter';
 
     #[Route(path: 'list', name: self::ROUTE_LIST, methods: AbstractController::ROUTE_OPTIONS_METHOD_ONLY_GET, options: AbstractController::ROUTE_OPTIONS_ONLY_EXPOSE)]
     #[SearchQueryOption(default: '')]
     #[StringQueryOption(key: self::QUERY_OPTION_CONTEXT, default: SearchContext::DEFAULT->value)]
-    #[StringQueryOption(key: self::QUERY_OPTION_TYPE, default: '')]
     // Zero rather than a number: the bundle's configured default is what a
     // client saying nothing gets, and it is not this controller's to decide.
     #[LengthQueryOption(default: SearchQuery::MAX_RESULTS_UNSET)]
@@ -52,14 +49,11 @@ class SearchResultController extends AbstractApiController
         SearchService $searchService,
         DefaultSearchResultNormalizer $normalizer,
     ): ApiResponse {
-        $type = (string) self::getQueryOptionValue($request, self::QUERY_OPTION_TYPE, '');
-
         $results = $searchService->search(
             new SearchQuery(
                 (string) self::getQueryOptionValue($request, VariableHelper::SEARCH, ''),
                 (string) self::getQueryOptionValue($request, self::QUERY_OPTION_CONTEXT, SearchContext::DEFAULT->value),
                 (int) self::getQueryOptionValue($request, VariableHelper::LENGTH, SearchQuery::MAX_RESULTS_UNSET),
-                '' === $type ? null : $type,
                 array_filter(
                     (array) self::getQueryOptionValue($request, self::QUERY_OPTION_FILTER, []),
                     static fn ($value): bool => is_string($value)

@@ -17,8 +17,8 @@ interface SearchProviderInterface
     public const string TAG = 'wexample_symfony_search.provider';
 
     /**
-     * What this provider answers with, as it appears in `SearchResult::$type`
-     * and in the `type` a query may restrict itself to.
+     * What this provider answers with, as it appears in `SearchResult::$type`:
+     * what a client draws a result by.
      */
     public function getKey(): string;
 

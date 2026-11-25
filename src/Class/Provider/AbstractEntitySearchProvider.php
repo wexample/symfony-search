@@ -45,7 +45,7 @@ abstract class AbstractEntitySearchProvider extends AbstractSearchProvider
 
     public function supports(SearchQuery $query): bool
     {
-        if (($query->isEmpty() && ! $this->listsWhenEmpty()) || ! $query->acceptsType($this->getKey())) {
+        if ($query->isEmpty() && ! $this->listsWhenEmpty()) {
             return false;
         }
 
@@ -55,8 +55,8 @@ abstract class AbstractEntitySearchProvider extends AbstractSearchProvider
     /**
      * Whether nothing typed lists the records — in the order configureQuery()
      * gives them, as many as asked — rather than answering nothing: a picker
-     * showing the latest before anything is typed. Asked only when the query
-     * names this provider's type.
+     * showing the latest before anything is typed, in a context its entity
+     * alone answers to.
      */
     protected function listsWhenEmpty(): bool
     {

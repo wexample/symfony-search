@@ -19,8 +19,8 @@ abstract class AbstractSearchProvider implements SearchProviderInterface
 
     /**
      * Read off the class name — `RouteSearchProvider` answers with `route` —
-     * so that the key, the class and the `type` a client asks for are never
-     * three things to keep in agreement.
+     * so that the key and the class are never two things to keep in
+     * agreement.
      */
     public function getKey(): string
     {
@@ -45,7 +45,7 @@ abstract class AbstractSearchProvider implements SearchProviderInterface
 
     public function supports(SearchQuery $query): bool
     {
-        if ($query->isEmpty() || ! $query->acceptsType($this->getKey())) {
+        if ($query->isEmpty()) {
             return false;
         }
 

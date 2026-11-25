@@ -41,7 +41,7 @@ class EntityPicker
             return null;
         }
 
-        $query = new SearchQuery('', $context, type: $searchableEntity->getType());
+        $query = new SearchQuery('', $context);
 
         if (! $searchableEntity->hasOwnProvider()) {
             return $this->runner->find($searchableEntity, $id, $query);

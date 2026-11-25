@@ -32,12 +32,6 @@ class SearchQuery
         BackedEnum|string $context = SearchContext::DEFAULT,
         public readonly int $maxResults = self::MAX_RESULTS_UNSET,
         /**
-         * Restricts the answer to some kinds of result — an entity path such
-         * as `invoice`, or the key of a provider; several separated by commas
-         * (`project,scenario`). Null asks everyone.
-         */
-        public readonly ?string $type = null,
-        /**
          * What narrows the answer besides the terms, by name — the record the
          * results belong to (`scenario` => its id). Read by the providers that
          * know the name; the others pass it by.
@@ -134,25 +128,6 @@ class SearchQuery
         return is_string($value) && '' !== $value ? $value : null;
     }
 
-    /** Whether a provider answering with `$type` was asked anything. */
-    public function acceptsType(string $type): bool
-    {
-        return null === $this->type || in_array($type, $this->getTypes(), true);
-    }
-
-    /**
-     * The kinds asked, one per name the `type` lists — empty when it lists
-     * none, which asks everyone.
-     *
-     * @return list<string>
-     */
-    public function getTypes(): array
-    {
-        return null === $this->type
-            ? []
-            : array_values(array_filter(array_map('trim', explode(',', $this->type)), static fn (string $type): bool => '' !== $type));
-    }
-
     /**
      * The same question with a number of results on it, which the service puts
      * there before any provider reads it — so that a provider capping its query
@@ -164,7 +139,6 @@ class SearchQuery
             $this->terms,
             $this->context,
             $maxResults,
-            $this->type,
             $this->filters
         );
     }

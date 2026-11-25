@@ -46,7 +46,6 @@ class EntitySearchProvider extends AbstractSearchProvider
             array_filter(
                 $this->registry->all(),
                 static fn (SearchableEntity $entity): bool => ! $entity->hasOwnProvider()
-                    && $query->acceptsType($entity->getType())
                     && $entity->isInContext($query->context)
             )
         );
