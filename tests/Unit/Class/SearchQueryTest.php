@@ -46,30 +46,22 @@ class SearchQueryTest extends TestCase
         $this->assertNull((new SearchQuery('dupont'))->getDate());
     }
 
-    public function testTypesAndFilters(): void
+    public function testFilters(): void
     {
-        $query = new SearchQuery('x', type: 'project, ,scenario', filters: ['scenario' => 'abc', 'empty' => '']);
+        $query = new SearchQuery('x', filters: ['scenario' => 'abc', 'empty' => '']);
 
-        $this->assertSame(['project', 'scenario'], $query->getTypes());
-        $this->assertTrue($query->acceptsType('scenario'));
-        $this->assertFalse($query->acceptsType('invoice'));
         $this->assertSame('abc', $query->getFilter('scenario'));
         $this->assertNull($query->getFilter('empty'));
         $this->assertNull($query->getFilter('missing'));
-
-        $everyone = new SearchQuery('x');
-        $this->assertSame([], $everyone->getTypes());
-        $this->assertTrue($everyone->acceptsType('invoice'));
     }
 
     public function testWithMaxResultsKeepsTheRestOfTheQuestion(): void
     {
-        $query = (new SearchQuery('x', SearchContext::FORM_FIELD, type: 'invoice', filters: ['a' => 'b']))->withMaxResults(5);
+        $query = (new SearchQuery('x', SearchContext::FORM_FIELD, filters: ['a' => 'b']))->withMaxResults(5);
 
         $this->assertSame(5, $query->maxResults);
         $this->assertSame('x', $query->terms);
         $this->assertSame(SearchContext::FORM_FIELD->value, $query->context);
-        $this->assertSame('invoice', $query->type);
         $this->assertSame(['a' => 'b'], $query->filters);
     }
 }

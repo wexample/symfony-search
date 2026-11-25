@@ -51,11 +51,6 @@ export default {
       type: [String, Array],
       default: ''
     },
-    // Which kind of record this field asks for — an entity name.
-    type: {
-      type: String,
-      default: null
-    },
     context: {
       type: String,
       default: 'form_field'

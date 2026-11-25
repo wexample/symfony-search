@@ -44,7 +44,6 @@ en:
     query: Query parameters
     query_search: What is being looked for. An empty query answers nothing rather than everything.
     query_context: Where the search is made from, which decides what it may answer. Shipped contexts :
-    query_type: Restricts the answer to one kind — an entity name, or a provider key.
     query_length: How many results. Absent, the bundle configuration decides.
 
   translations:
@@ -84,7 +83,6 @@ ar:
     query: 'معلمات الاستعلام'
     query_search: 'ما الذي يتم البحث عنه. الاستعلام الفارغ لا يجيب على شيء بدلاً من كل شيء.'
     query_context: 'من أين يتم إجراء البحث، مما يحدد ما يمكن أن يجيب عليه. السياقات المشحونة :'
-    query_type: 'يقتصر الجواب على نوع واحد - اسم كيان، أو مفتاح مزود.'
     query_length: 'عدد النتائج. في حالة الغياب، يحدد تكوين الحزمة.'
   translations:
     title: الترجمات
@@ -120,7 +118,6 @@ bn:
     query: 'প্রশ্নের প্যারামিটার'
     query_search: 'কী খুঁজে বের করা হচ্ছে। একটি খালি প্রশ্ন কিছু উত্তর দেয় না বরং সবকিছু।'
     query_context: 'অনুসন্ধান কোথা থেকে করা হচ্ছে, যা এটি কি উত্তর দিতে পারে সেটি নির্ধারণ করে। প্রেরিত প্রেক্ষাপট:'
-    query_type: 'উত্তরকে একটি প্রকারে সীমাবদ্ধ করে — একটি সত্তার নাম, অথবা একটি প্রদানকারী কীগুলির।'
     query_length: 'কতগুলো ফলাফল। অনুপস্থিত হলে, বান্ডল কনফিগারেশন নির্ধারণ করে।'
   translations:
     title: অনুবাদ
@@ -156,7 +153,6 @@ de:
     query: Abfrageparameter
     query_search: 'Wonach gesucht wird. Eine leere Abfrage ergibt nichts statt alles.'
     query_context: 'Von wo die Suche ausgeführt wird, was entscheidet, was sie beantworten kann. Gelieferte Kontexte :'
-    query_type: 'Beschränkt die Antwort auf eine Art – einen Entitätsnamen oder einen Anbieter-Schlüssel.'
     query_length: 'Wie viele Ergebnisse. Abwesend entscheidet die Bundle-Konfiguration.'
   translations:
     title: Übersetzungen
@@ -192,7 +188,6 @@ es:
     query: 'Parámetros de consulta'
     query_search: 'Qué se está buscando. Una consulta vacía no responde nada en lugar de todo.'
     query_context: 'Desde dónde se realiza la búsqueda, lo que decide lo que puede responder. Contextos enviados:'
-    query_type: 'Restringe la respuesta a un tipo — un nombre de entidad, o una clave de proveedor.'
     query_length: 'Cuántos resultados. Ausente, la configuración del paquete decide.'
   translations:
     title: Traducciones
@@ -228,7 +223,6 @@ fa:
     query: 'پارامترهای پرسش'
     query_search: 'چه چیزی در حال جستجو است. یک پرسش خالی پاسخ هیچ چیزی را نمی‌دهد تا همه چیز را.'
     query_context: 'جایی که جستجو از آن انجام می‌شود، که تعیین می‌کند چه چیزی ممکن است پاسخ دهد. زمینه‌های ارسال شده:'
-    query_type: 'پاسخ را به یک نوع محدود می‌کند — یک نام موجودیت یا یک کلید تأمین‌کننده.'
     query_length: 'چند نتیجه. در صورت نبود، پیکربندی بسته تصمیم می‌گیرد.'
   translations:
     title: ترجمه‌ها
@@ -264,7 +258,6 @@ fi:
     query: Kyselyparametrit
     query_search: 'Mitä etsitään. Tyhjään kyselyyn ei vastata mitään sen sijaan, että vastattaisiin kaikkeen.'
     query_context: 'Mistä haku tehdään, mikä päättää, mihin se voi vastata. Lähetetyt kontekstit :'
-    query_type: 'Rajoittaa vastauksen yhteen tyyppiin — entiteetin nimeen tai palveluntarjoajan avaimen.'
     query_length: 'Kuinka monta tulosta. Poissa ollessa, paketin konfigurointi päättää.'
   translations:
     title: Käännökset
@@ -299,7 +292,6 @@ fr:
     query: 'Paramètres de requête'
     query_search: "Ce qu'on cherche. Une requête vide ne répond rien, et non pas tout."
     query_context: "D'où la recherche est faite, ce qui décide de ce qu'elle peut répondre. Contextes livrés :"
-    query_type: "Restreint la réponse à une seule nature — un nom d'entité, ou la clé d'un fournisseur."
     query_length: 'Combien de résultats. Absent, la configuration du bundle décide.'
   translations:
     title: Traductions
@@ -335,7 +327,6 @@ he:
     query: 'פרמטרי שאילתה'
     query_search: 'מה מחפשים. שאילתה ריקה לא עונה על כלום ולא על הכל.'
     query_context: 'מאיפה מתבצע החיפוש, מה שמחליט מה היא עשויה לענות. הקשרים שנשלחו :'
-    query_type: 'מגביל את התשובה לסוג אחד — שם ישות, או מפתח ספק.'
     query_length: 'כמה תוצאות. בהיעדרן, קונפיגורציית החבילה מחליטה.'
   translations:
     title: תרגומים
@@ -371,7 +362,6 @@ hi:
     query: 'क्वेरी पैरामीटर'
     query_search: 'क्या खोजा जा रहा है। एक खाली क्वेरी कुछ नहीं जवाब देती बल्कि सब कुछ।'
     query_context: 'जहाँ से खोज की जा रही है, जो यह निर्णय करती है कि यह क्या उत्तर दे सकती है। भेजे गए संदर्भ:'
-    query_type: 'उत्तर को एक प्रकार तक सीमित करता है - एक एंटिटी का नाम, या एक प्रदाता कुंजी।'
     query_length: 'कितने परिणाम। अनुपस्थित होने पर, बंडल कॉन्फ़िगरेशन निर्णय लेता है।'
   translations:
     title: अनुवाद
@@ -407,7 +397,6 @@ id:
     query: 'Parameter kueri'
     query_search: 'Apa yang dicari. Kueri kosong tidak menjawab apa pun daripada segalanya.'
     query_context: 'Di mana pencarian dilakukan, yang menentukan apa yang mungkin dijawab. Konteks yang dikirim:'
-    query_type: 'Membatasi jawaban ke satu jenis — nama entitas, atau kunci penyedia.'
     query_length: 'Berapa banyak hasil. Jika tidak ada, konfigurasi bundle memutuskan.'
   translations:
     title: Terjemahan
@@ -443,7 +432,6 @@ it:
     query: 'Parametri della query'
     query_search: 'Cosa si sta cercando. Una query vuota non risponde a nulla piuttosto che a tutto.'
     query_context: 'Da dove viene effettuata la ricerca, il che decide a cosa può rispondere. Contesti inviati:'
-    query_type: 'Limita la risposta a un tipo — un nome di entità o una chiave di fornitore.'
     query_length: 'Quanti risultati. In assenza, la configurazione del pacchetto decide.'
   translations:
     title: Traduzioni
@@ -479,7 +467,6 @@ ja:
     query: クエリパラメーター
     query_search: 探しているもの。空のクエリは、すべてではなく何も返しません。
     query_context: 検索が行われる場所で、それが何に答えるかを決定します。出荷されたコンテキスト：
-    query_type: '回答を1つの種類に制限します — エンティティ名またはプロバイダーキー。'
     query_length: 結果の数。欠如している場合、バンドルの設定が決定します。
   translations:
     title: 翻訳
@@ -515,7 +502,6 @@ ko:
     query: '쿼리 매개변수'
     query_search: '무엇을 찾고 있는지. 빈 쿼리는 모든 것이 아니라 아무것도 응답하지 않습니다.'
     query_context: '검색이 이루어지는 위치로, 어떤 응답을 할 수 있는지를 결정합니다. 제공되는 컨텍스트 :'
-    query_type: '응답을 한 종류로 제한합니다 — 엔티티 이름 또는 제공자 키.'
     query_length: '결과 수. 없으면, 번들 구성에 의해 결정됩니다.'
   translations:
     title: 번역
@@ -551,7 +537,6 @@ nl:
     query: Queryparameters
     query_search: 'Wat er wordt gezocht. Een lege zoekopdracht geeft niets terug in plaats van alles.'
     query_context: 'Waar de zoekopdracht vandaan komt, wat bepaalt wat het kan antwoorden. Verzonden contexten :'
-    query_type: 'Beperkt het antwoord tot één soort — een entiteitsnaam of een leverancier sleutel.'
     query_length: 'Hoeveel resultaten. Afwezig, de bundelconfiguratie beslist.'
   translations:
     title: Vertalingen
@@ -587,7 +572,6 @@ pl:
     query: 'Parametry zapytania'
     query_search: 'Czego się szuka. Puste zapytanie nie odpowiada niczemu zamiast wszystkiemu.'
     query_context: 'Z jakiego miejsca jest przeprowadzane wyszukiwanie, co decyduje, na co może odpowiedzieć. Wysłane konteksty :'
-    query_type: 'Ogranicza odpowiedź do jednego rodzaju — nazwy encji lub klucza dostawcy.'
     query_length: 'Ile wyników. Nieobecne, konfiguracja pakietu decyduje.'
   translations:
     title: Tłumaczenia
@@ -623,7 +607,6 @@ pt_BR:
     query: 'Parâmetros da consulta'
     query_search: 'O que está sendo procurado. Uma consulta vazia não responde nada ao invés de tudo.'
     query_context: 'De onde a busca é feita, o que decide o que pode responder. Contextos enviados:'
-    query_type: 'Restringe a resposta a um tipo — um nome de entidade ou uma chave de provedor.'
     query_length: 'Quantos resultados. Ausente, a configuração do pacote decide.'
   translations:
     title: Traduções
@@ -659,7 +642,6 @@ ru:
     query: 'Параметры запроса'
     query_search: 'Что ищется. Пустой запрос не дает ответа, а не все.'
     query_context: 'Откуда производится поиск, что определяет, что он может ответить. Доставленные контексты:'
-    query_type: 'Ограничивает ответ одним видом — именем сущности или ключом поставщика.'
     query_length: 'Сколько результатов. При отсутствии этого, конфигурация пакета решает.'
   translations:
     title: Переводы
@@ -695,7 +677,6 @@ th:
     query: พารามิเตอร์การค้นหา
     query_search: 'สิ่งที่กำลังถูกค้นหา คำค้นหาที่ว่างเปล่าจะตอบกลับว่าไม่มีสิ่งใดมากกว่าทุกอย่าง'
     query_context: 'ที่ที่การค้นหาถูกทำขึ้น ซึ่งตัดสินใจว่าสามารถตอบอะไรได้ ส่งบริบท:'
-    query_type: 'จำกัดคำตอบให้เป็นประเภทหนึ่ง — ชื่อเอนทิตี หรือ คีย์ของผู้ให้บริการ'
     query_length: 'จำนวนผลลัพธ์ ถ้าไม่มีการกำหนด การกำหนดค่าชุดจะตัดสินใจ'
   translations:
     title: การแปล
@@ -730,7 +711,6 @@ tr:
     query: 'Sorgu parametreleri'
     query_search: 'Ne arandığı. Boş bir sorgu, her şey yerine hiçbir şeye yanıt vermez.'
     query_context: 'Aramanın yapıldığı yer, neye yanıt verebileceğini belirler. Gönderilen bağlamlar:'
-    query_type: 'Yanıtı bir türe kısıtlar — bir varlık ismi veya bir sağlayıcı anahtarı.'
     query_length: 'Kaç tane sonuç. Yoksa, paket yapılandırması karar verir.'
   translations:
     title: Çeviriler
@@ -766,7 +746,6 @@ ur:
     query: 'تلاش کے پیرامیٹرز'
     query_search: 'کیا تلاش کیا جا رہا ہے۔ ایک خالی درخواست کچھ نہیں جواب دیتی بلکہ سب کچھ۔'
     query_context: 'کہاں سے تلاش کی جا رہی ہے، جو یہ فیصلہ کرتی ہے کہ یہ کیا جواب دے سکتی ہے۔ بھیجے گئے سیاق و سباق :'
-    query_type: 'جواب کو ایک قسم پر محدود کرتا ہے — ایک ادارے کا نام، یا ایک مہیا کرنے والے کی کلید۔'
     query_length: 'کتنے نتائج۔ غیر موجود، پیکج کی تشکیل فیصلہ کرتی ہے۔'
   translations:
     title: ترجمے
@@ -802,7 +781,6 @@ vi:
     query: 'Tham số truy vấn'
     query_search: 'Điều gì đang được tìm kiếm. Một truy vấn trống không trả lời gì cả thay vì mọi thứ.'
     query_context: 'Nơi mà tìm kiếm được thực hiện từ đó, điều này quyết định cái mà nó có thể trả lời. Các ngữ cảnh đã được gửi:'
-    query_type: 'Giới hạn câu trả lời chỉ cho một loại — tên thực thể, hoặc khóa nhà cung cấp.'
     query_length: 'Số lượng kết quả. Nếu không có, cấu hình gói sẽ quyết định.'
   translations:
     title: 'Dịch thuật'
@@ -836,7 +814,6 @@ zh:
     query: 查询参数
     query_search: 正在查找的内容。空查询不会回答任何内容，而不是所有内容。
     query_context: 搜索的来源，决定了它可能的回答。已提供的上下文：
-    query_type: 将答案限制为一种类型——实体名称或提供者密钥。
     query_length: 结果数量。缺失时，包配置决定。
   translations:
     title: 翻译

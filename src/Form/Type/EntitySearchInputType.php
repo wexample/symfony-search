@@ -40,7 +40,11 @@ use Wexample\SymfonySearch\Service\SearchableRegistry;
  *
  * Which kind is read from the relation the field is bound to: `client` on an
  * invoice asks for clients without being told. `class` or `entity_type` say it
- * where there is no relation to read — an unmapped field.
+ * where there is no relation to read — an unmapped field. The kind stays on
+ * the server, which checks every value posted against it: what the browser
+ * is handed is the field's search context alone, and that context has to be
+ * one the kind alone answers to (`#[Searchable(contexts: …)]`) — a context
+ * shared with another kind would offer records the field refuses.
  *
  * It lives here and not in `wexample/symfony-forms` because it offers this
  * package's feature and would be useless without it. The dependency only reads
@@ -51,13 +55,18 @@ class EntitySearchInputType extends AbstractType
 {
     use FieldOptionsTrait;
 
-    /** Which kind of record the field asks for, by its search type. */
+    /** Which kind of record the field asks for, by its search type: read here, never sent. */
     public const string OPTION_ENTITY_TYPE = 'entity_type';
 
     /** Which kind of record the field asks for, by its class. */
     public const string OPTION_CLASS = 'class';
 
-    /** Where the search is made from, which decides what it may answer. */
+    /**
+     * Where the search is made from, which decides what it may answer: a
+     * context the field's kind alone declares — `form_invoice_client` on the
+     * client's #[Searchable] —, the shared `form_field` while only one kind
+     * declares it.
+     */
     public const string OPTION_SEARCH_CONTEXT = 'search_context';
 
     /** Several records rather than one, each posted in its own input. */
@@ -226,7 +235,7 @@ class EntitySearchInputType extends AbstractType
     ): void {
         parent::buildView($view, $form, $options);
 
-        $view->vars[self::OPTION_ENTITY_TYPE] = $this->resolveTarget($form, $options)->getType();
+        $this->assertContextOf($form, $this->resolveTarget($form, $options), $options[self::OPTION_SEARCH_CONTEXT]);
         $view->vars[self::OPTION_SEARCH_CONTEXT] = $options[self::OPTION_SEARCH_CONTEXT];
         $view->vars[self::OPTION_MULTIPLE] = $options[self::OPTION_MULTIPLE];
         $view->vars[self::OPTION_MAX_VALUES] = $options[self::OPTION_MAX_VALUES];
@@ -347,6 +356,33 @@ class EntitySearchInputType extends AbstractType
                 )
             )
         );
+    }
+
+    /**
+     * The field's context is answered by its kind alone: the search box offers
+     * what the context answers, and the field takes its kind only — any other
+     * kind there would be offered, then refused.
+     */
+    private function assertContextOf(
+        FormInterface $form,
+        SearchableEntity $target,
+        string $context
+    ): void {
+        if (! $target->isInContext($context)) {
+            throw new LogicException(sprintf('Field "%s" searches in "%s", which %s does not declare: add it to its #[Searchable] contexts.', $form->getName(), $context, $target->className));
+        }
+
+        $others = array_values(array_map(
+            static fn (SearchableEntity $entity): string => $entity->className,
+            array_filter(
+                $this->registry->all(),
+                static fn (SearchableEntity $entity): bool => $entity->className !== $target->className && $entity->isInContext($context)
+            )
+        ));
+
+        if ([] !== $others) {
+            throw new LogicException(sprintf('Field "%s" searches in "%s", which %s answer to as well: give the field a context %s alone declares.', $form->getName(), $context, implode(', ', $others), $target->className));
+        }
     }
 
     /**

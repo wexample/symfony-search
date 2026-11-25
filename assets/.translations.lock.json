@@ -20,10 +20,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -112,10 +108,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -208,10 +200,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -300,10 +288,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -396,10 +380,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -488,10 +468,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -590,10 +566,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -682,10 +654,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -778,10 +746,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -870,10 +834,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -966,10 +926,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -1058,10 +1014,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -1154,10 +1106,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -1246,10 +1194,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -1342,10 +1286,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -1434,10 +1374,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -1530,10 +1466,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -1622,10 +1554,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {
@@ -1718,10 +1646,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -1812,10 +1736,6 @@
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
             "engine": "syrtis"
         },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
-            "engine": "syrtis"
-        },
         "api.title": {
             "hash": "19c7f89da1a32df0907979f52f3119cd",
             "engine": "syrtis"
@@ -1904,10 +1824,6 @@
         },
         "api.query_search": {
             "hash": "f499dc4dfb4d4cf16fd9e8c3dc88c637",
-            "engine": "syrtis"
-        },
-        "api.query_type": {
-            "hash": "9f56319eb783fd240229259d11c9eeec",
             "engine": "syrtis"
         },
         "api.title": {

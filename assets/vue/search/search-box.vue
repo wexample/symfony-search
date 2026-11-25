@@ -77,12 +77,6 @@ export default {
       type: String,
       default: 'default'
     },
-    // Restricts the answer to one kind — an entity name, or a provider key.
-    // Null asks everyone, which is what a header does.
-    type: {
-      type: String,
-      default: null
-    },
     // What narrows the answer besides the terms, by name — the record the
     // results belong to ({ scenario: id }) —, sent as `filter[name]`.
     filters: {
@@ -100,7 +94,7 @@ export default {
     },
     // One letter matches everything and means nothing. Zero lists before
     // anything is typed, as soon as the field is entered — a picker's latest,
-    // which a `type` whose provider lists when empty answers.
+    // which a provider listing when empty answers in its context.
     minLength: {
       type: Number,
       default: 2
@@ -277,10 +271,6 @@ export default {
         search: this.terms.trim(),
         context: this.context
       };
-
-      if (this.type) {
-        query.type = this.type;
-      }
 
       for (const [name, value] of Object.entries(this.filters || {})) {
         if (value !== null && value !== undefined && value !== '') {
