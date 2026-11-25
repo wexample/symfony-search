@@ -21,6 +21,10 @@ enum SearchContext: string
     /** The search field of a layout, answering across every kind of result. */
     case HEADER = 'header';
 
-    /** A form field picking one record, answering with one kind of result. */
+    /**
+     * A form field picking a record, for the one kind that declares it: a
+     * field whose kind shares it with another names a context of its own,
+     * declared on its kind's #[Searchable] (EntitySearchInputType).
+     */
     case FORM_FIELD = 'form_field';
 }

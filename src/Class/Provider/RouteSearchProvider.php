@@ -15,6 +15,7 @@ use Wexample\Helpers\Helper\TextHelper;
 use Wexample\SymfonyLoader\Controller\AbstractPagesController;
 use Wexample\SymfonyLoader\Service\PageService;
 use Wexample\SymfonySearch\Class\SearchQuery;
+use Wexample\SymfonySearch\Enum\SearchContext;
 use Wexample\SymfonySearch\Helper\SearchScoreHelper;
 
 /**
@@ -50,6 +51,16 @@ class RouteSearchProvider extends AbstractSearchProvider
         private readonly PageService $pageService,
         private readonly TranslatorInterface $translator,
     ) {
+    }
+
+    /**
+     * The search answering everything alone: a page is no record a field, a
+     * picker or a layout's search box asks for — those name their context,
+     * and pages are not in it.
+     */
+    protected function getContexts(): ?array
+    {
+        return [SearchContext::DEFAULT->value];
     }
 
     public function provide(SearchQuery $query): iterable
