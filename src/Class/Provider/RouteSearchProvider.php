@@ -54,13 +54,14 @@ class RouteSearchProvider extends AbstractSearchProvider
     }
 
     /**
-     * The search answering everything alone: a page is no record a field, a
-     * picker or a layout's search box asks for — those name their context,
-     * and pages are not in it.
+     * The searches answering across every kind of result: the one answering
+     * everything alone, and a layout's search box (`header`) — where a page
+     * is found as a record is. Never a field or a picker: a page is no record
+     * one of those asks for.
      */
     protected function getContexts(): ?array
     {
-        return [SearchContext::DEFAULT->value];
+        return [SearchContext::DEFAULT->value, SearchContext::HEADER->value];
     }
 
     public function provide(SearchQuery $query): iterable
